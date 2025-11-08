@@ -1,0 +1,58 @@
+// Zed Settings
+//
+// Documentação: https://zed.dev/docs/configuring-zed
+// Para visualizar as configurações padrão: cmd+shift+p / ctrl+shift+p → "zed: open default settings"
+
+{
+  // Aparência geral
+  "icon_theme": "Catppuccin Mocha",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha"
+  },
+  "buffer_line_height": "comfortable",
+  "buffer_font_family": "JetBrains Mono",
+  "ui_font_family": "Inter",
+
+  // Interface
+  "project_panel": {
+    "dock": "right"
+  },
+
+  // Modo Vim
+  "vim_mode": true,
+
+  // Salvamento automático
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 100
+    }
+  },
+
+  // Formatação
+  "format_on_save": "on",
+
+  // Dicas inline (Inlay Hints)
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true,
+    "show_background": false,
+    "edit_debounce_ms": 700,
+    "scroll_debounce_ms": 50,
+    "toggle_on_modifiers_press": null
+  },
+
+  "terminal": {
+    "font_family": "CaskaydiaCove Nerd Font"
+  },
+
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": null
+    }
+  }
+}
