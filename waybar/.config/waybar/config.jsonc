@@ -5,9 +5,12 @@
   "modules-center": ["hyprland/window"],
   "modules-right": ["network", "pulseaudio", "battery", "clock", "custom/power"],
 
+ 
   "clock": {
-    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
-    "tooltip-format": "<big>{:%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    "format": "<span foreground='#f5c2e7'>   </span>{:L%A %d %H:%M}",
+    "timezone": "America/Sao_Paulo",
+    "locale": "pt_BR.UTF-8",
+    "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
   "network": {
