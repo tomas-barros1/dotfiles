@@ -36,7 +36,7 @@ lspkind.setup {
         Unknown = nerdfonts_symbols.utf8["cod-symbol_misc"]
     },
     format = 'symbol',
-    size = 14 * SCALE, 
+    size = 14 * SCALE,
     font_raw = renderer.font.load(nerdfonts_symbols.path, 14 * SCALE)
 }
 
@@ -49,5 +49,3 @@ lspconfig.solargraph.setup {}
 config.plugins.lsp_emmet.file_patterns = {
   "%.jsx$", "%.tsx$", "%.html?$", "%.xml$", "%.scss$", "%.css$", "%.astro$", "%.erb$"
 }
-
-

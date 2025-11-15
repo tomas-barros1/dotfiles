@@ -16,10 +16,11 @@ local binary_extension = (PLATFORM == "Windows" and ".exe" or (PLATFORM == "Andr
 config.plugins.plugin_manager = common.merge({
   lpm_binary_name = "lpm." .. ARCH .. binary_extension,
   lpm_binary_path = nil,
+  show_libraries = false,
   -- Restarts the plugin manager on changes.
   restart_on_change = true,
   -- Path to a local copy of all repositories.
-  cachdir = USERDIR  .. PATHSEP .. "lpm",
+  cachdir = nil,
   -- Path to the folder that holds user-specified plugins.
   userdir = USERDIR,
   -- Path to ssl certificate directory or bunde. Nil will auto-detect.
@@ -156,7 +157,12 @@ end
 
 function PluginManager:refresh(options)
   local prom = Promise.new()
-  run({ "list" }, options):done(function(addons)
+  local cmd = { "list" }
+  if not config.plugins.plugin_manager.show_libraries then
+    table.insert(cmd, "--type")
+    table.insert(cmd, "!library")
+  end
+  run(cmd, options):done(function(addons)
     self.addons = json.decode(addons)["addons"]
     table.sort(self.addons, function(a,b) return a.id < b.id end)
     self.valid_addons = {}
@@ -449,8 +455,8 @@ if config.plugins.plugin_manager.addons then
     end
   end
   local plugins = system.list_dir(USERDIR .. PATHSEP .. "plugins")
-  run({ "apply", table.unpack(addons), }, { userdir = target_plugin_directory, cachedir =  USERDIR .. PATHSEP .. "lpm" }):done(function(status)
-    if json.decode(status)["changed"] then command.perform("core:restart") end
+  run({ "apply", table.unpack(addons), }, { userdir = target_plugin_directory }):done(function(status)
+    if json.decode(status)["changed"] then command.perform("core:restart") end 
   end)
   lpm_load_plugins()
   local old_configs = {}
