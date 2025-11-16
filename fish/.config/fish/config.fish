@@ -24,9 +24,4 @@ end
 alias l="ls -la"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias cat="bat --theme='CatppuccinMocha' --paging=never"
-
-if status is-interactive 
-  mise activate fish | source 
-else 
-  mise activate fish --shims | source 
-end
+~/.local/bin/mise activate fish | source
