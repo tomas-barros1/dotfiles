@@ -1,4 +1,4 @@
-set --export --global POSH_SESSION_ID "8ed82ee3-34f7-4c26-b9a4-6363650f9ab4"
+set --export --global POSH_SESSION_ID "f958d21c-05f8-4b67-9afd-3287ce85cbc0";
 set -x EDITOR nvim
 set -x SUDO_EDITOR $EDITOR
 
@@ -28,3 +28,6 @@ alias cat="bat --theme='Catppuccin Mocha' --paging=never"
 ~/.local/bin/mise activate fish | source
 zoxide init fish | source
 source '/home/tom/.cache/oh-my-posh/init.12353866967644111694.fish'
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
