@@ -19,6 +19,11 @@ function fastconvert
     ffmpeg -i $input -c copy $output
 end
 
+function p 
+    set input $argv[1]
+    paru -S $input
+end
+
 alias l="ls -la"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias z="zoxide"

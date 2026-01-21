@@ -22,7 +22,7 @@ return {
     })
 
     opts.formatting = opts.formatting or {}
-    opts.formatting.format_on_save = false   -- ← DESATIVAR autoformat
+    opts.formatting.format_on_save = true
 
   end,
 }
