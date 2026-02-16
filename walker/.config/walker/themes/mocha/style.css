@@ -1,0 +1,248 @@
+/* ============================================
+ *  Catppuccin Mocha — Walker Launcher Theme
+ * ============================================ */
+
+/* --- Catppuccin Mocha Palette --- */
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
+
+/* Semantic mappings */
+@define-color window_bg_color @base;
+@define-color accent_bg_color @mauve;
+@define-color theme_fg_color @text;
+@define-color error_bg_color @red;
+@define-color error_fg_color @base;
+
+/* --- Reset --- */
+* {
+  all: unset;
+  font-family: "0xProto Nerd Font";
+  font-size: 16px;
+}
+
+/* --- Window Wrapper --- */
+.box-wrapper {
+  background: @mantle;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid @surface0;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.45),
+    0 6px 16px rgba(0, 0, 0, 0.30);
+}
+
+/* --- Search Input --- */
+.input {
+  caret-color: @mauve;
+  background: @base;
+  padding: 12px 16px;
+  color: @text;
+  border-radius: 12px;
+  border: 1px solid @surface1;
+  font-size: 15px;
+  transition: border-color 200ms ease-in-out;
+}
+
+.input:focus {
+  border: 1px solid @mauve;
+}
+
+.input placeholder {
+  color: @overlay1;
+  opacity: 0.7;
+}
+
+/* --- Results List --- */
+.list {
+  color: @text;
+  margin-top: 8px;
+}
+
+/* --- Item Styling --- */
+.item-box {
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 2px 0;
+  transition: background 150ms ease-in-out;
+}
+
+child:hover .item-box {
+  background: alpha(@surface0, 0.6);
+}
+
+child:selected .item-box {
+  background: alpha(@mauve, 0.18);
+  border-left: 3px solid @mauve;
+  padding-left: 9px;
+  /* compensate for border */
+}
+
+.item-text {
+  font-size: 14px;
+  color: @text;
+}
+
+child:selected .item-text {
+  color: @lavender;
+}
+
+.item-subtext {
+  font-size: 12px;
+  color: @subtext0;
+  opacity: 0.75;
+}
+
+child:selected .item-subtext {
+  color: @subtext1;
+  opacity: 0.85;
+}
+
+.item-image,
+.item-image-text {
+  margin-right: 12px;
+  opacity: 0.9;
+}
+
+child:selected .item-image,
+child:selected .item-image-text {
+  opacity: 1;
+}
+
+/* --- Quick Activation Labels (F1, F2, …) --- */
+.item-quick-activation {
+  margin-left: 10px;
+  background: alpha(@surface1, 0.5);
+  color: @overlay2;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+child:selected .item-quick-activation {
+  background: alpha(@mauve, 0.22);
+  color: @mauve;
+}
+
+/* --- Placeholder / Empty State --- */
+.placeholder,
+.elephant-hint {
+  color: @overlay1;
+  opacity: 0.55;
+  font-size: 14px;
+}
+
+/* --- Keybinds Bar --- */
+.keybinds-wrapper {
+  border-top: 1px solid @surface0;
+  margin-top: 8px;
+  padding-top: 8px;
+  font-size: 11px;
+  color: @overlay1;
+}
+
+.keybind-bind {
+  font-weight: bold;
+  color: @subtext0;
+  text-transform: lowercase;
+}
+
+/* --- Error Display --- */
+.error {
+  padding: 10px 14px;
+  background: @red;
+  color: @base;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* --- Preview Pane --- */
+.preview {
+  border: 1px solid @surface1;
+  padding: 12px;
+  border-radius: 10px;
+  color: @text;
+  background: @base;
+}
+
+/* --- Provider-Specific Styles --- */
+
+/* Calculator */
+.calc .item-text {
+  font-family: monospace;
+  font-size: 16px;
+  color: @green;
+  font-weight: bold;
+}
+
+/* Symbols */
+.symbols .item-image {
+  font-size: 18px;
+}
+
+/* Todo */
+.todo.done {
+  opacity: 0.45;
+}
+
+.todo.done .item-text {
+  text-decoration: line-through;
+  color: @overlay0;
+}
+
+.todo.urgent .item-text {
+  color: @red;
+  font-weight: bold;
+}
+
+.todo.active .item-text {
+  color: @green;
+}
+
+/* Files */
+.files .item-image {
+  -gtk-icon-size: 20px;
+}
+
+/* Bluetooth */
+.bluetooth.disconnected {
+  opacity: 0.35;
+}
+
+/* --- Icon Sizes --- */
+.normal-icons {
+  -gtk-icon-size: 16px;
+}
+
+.large-icons {
+  -gtk-icon-size: 32px;
+}
+
+/* --- Hide Scrollbar --- */
+scrollbar {
+  opacity: 0;
+}

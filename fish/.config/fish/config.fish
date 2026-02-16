@@ -7,28 +7,14 @@ set -x FZF_CTRL_T_OPTS "\
   --preview 'bat -n --color=always {}'\
   --bind 'ctrl-/:change-preview-window(down|hidden)'"
 
-function convert
-    set input $argv[1]
-    set output (string replace -r '\.mp4$' '.mkv' $input)
-    ffmpeg -i $input $output
-end
-
-function fastconvert
-    set input $argv[1]
-    set output (string replace -r '\.[^.]+$' '.mkv' $input)
-    ffmpeg -i $input -c copy $output
-end
-
-function p 
-    set input $argv[1]
-    paru -S $input
-end
-
+alias y="yay"
 alias l="ls -la"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias z="zoxide"
 alias cat="bat --theme='Catppuccin Mocha' --paging=never"
+alias pg="docker exec -it -u postgres postgres psql"
 
 zoxide init fish | source
 starship init fish | source
 /home/tom/.local/bin/mise activate fish | source
+atuin init fish --disable-up-arrow | source
