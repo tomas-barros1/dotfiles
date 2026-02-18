@@ -17,5 +17,4 @@ alias pg="docker exec -it -u postgres postgres psql"
 zoxide init fish | source
 starship init fish | source
 /home/tom/.local/bin/mise activate fish | source
-atuin init fish --disable-up-arrow | source
 fzf --fish | source
