@@ -1,6 +1,7 @@
 [appearance]
 font_name = "CaskaydiaCove Nerd Font"
 scale_factor = 1.3
+style = "Solid"
 
 # Texto padrão (igual Waybar)
 text_color = "#cdd6f4"        # text
@@ -36,7 +37,7 @@ strong = "#45475a"            # surface1
 enabled = false
 
 [services.brightness]
-enabled = false
+enabled = true
 
 [workspaces]
 enable_workspace_filling = true

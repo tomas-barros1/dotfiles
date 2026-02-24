@@ -77,10 +77,10 @@
   },
   "network": {
     "interval": 3,
-    "format-wifi": " {essid}",
+    "format-wifi": "  {essid}",
     "format-ethernet": "󰈀 {ifname}",
     "format-disconnected": "󰖪 Disconnected",
-    "format-alt": "󰖨 {signalStrength}%",
+    "format-alt": "  {signalStrength}%",
     "tooltip-format": "{ifname}\n{ipaddr}/{cidr}\nSignal: {signalStrength}%\nFrequency: {frequency}MHz",
     "tooltip-format-wifi": "󰖨 {essid}\n{ipaddr}/{cidr}\nSignal: {signalStrength}%\nFrequency: {frequency}MHz",
     "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}/{cidr}\nUp: {bandwidthUpBytes} Down: {bandwidthDownBytes}",
@@ -119,5 +119,5 @@
     "interval": 5,
     "on-scroll-up": "ddcutil -b 7 setvcp 10 + 10",
     "on-scroll-down": "ddcutil -b 7 setvcp 10 - 10"
-  },
+  }
 }

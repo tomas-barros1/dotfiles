@@ -7,11 +7,11 @@
     "hyprland/window"
   ],
   "modules-right": [
+    "custom/brightness",
     "network",
     "pulseaudio",
     "battery",
-    "clock",
-    "custom/power"
+    "clock"
   ],
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -51,7 +51,7 @@
   },
   "pulseaudio": {
     "format": "{icon}  {volume}%",
-    "format-muted": "",
+    "format-muted": "󰝟",
     "format-icons": {
       "default": [
         "",
@@ -61,9 +61,15 @@
     },
     "on-click": "pavucontrol"
   },
-  "custom/power": {
-    "format": "<span foreground='#f38ba8'>⏻</span>",
-    "tooltip": false,
-    "on-click": "~/.config/waybar/scripts/powermenu.sh"
+  "custom/brightness": {
+    "exec": "ddcutil -b 7 getvcp 10 -t | perl -nE 'if (/ C (\\d+) /) { say $1; }'",
+    "exec-if": "ddcutil -b 7 getvcp 10 >/dev/null 2>&1",
+    "format": "{icon}  {text}%",
+    "format-icons": [
+      ""
+    ],
+    "interval": 5,
+    "on-scroll-up": "ddcutil -b 7 setvcp 10 + 10",
+    "on-scroll-down": "ddcutil -b 7 setvcp 10 - 10"
   }
 }
