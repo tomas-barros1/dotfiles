@@ -41,7 +41,8 @@
 * {
   all: unset;
   font-family: "0xProto Nerd Font";
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 /* --- Window Wrapper --- */

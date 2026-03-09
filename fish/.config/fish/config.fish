@@ -10,11 +10,12 @@ set -x FZF_CTRL_T_OPTS "\
 alias y="yay"
 alias l="ls -la"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-alias z="zoxide"
 alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
 alias pg="docker exec -it -u postgres postgres psql"
 
-zoxide init fish | source
 starship init fish | source
-/home/tom/.local/bin/mise activate fish | source
+zoxide init fish | source
 fzf --fish | source
+/home/tom/.local/bin/mise activate fish | source
+
+fish_config theme choose catppuccin-mocha --color-theme=dark

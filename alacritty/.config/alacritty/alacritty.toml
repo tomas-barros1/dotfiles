@@ -19,4 +19,4 @@ padding.y = 14
 decorations = "None"
 
 [terminal]
-shell = "zellij"
+shell = "tmux"
