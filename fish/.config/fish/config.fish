@@ -12,6 +12,8 @@ alias l="ls -la"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
 alias pg="docker exec -it -u postgres postgres psql"
+alias vim="nvim"
+alias n="nvim"
 
 starship init fish | source
 zoxide init fish | source
