@@ -1,6 +1,6 @@
-
 [general]
 working_directory = "C:\\Users\\tom"
+
 import = [
   "./catppuccin-mocha.toml"
 ]
@@ -9,32 +9,17 @@ import = [
 TERM = "xterm-256color"
 
 [font]
-size = 14.0
+size = 12.0
+normal = { family = "CaskaydiaCove Nerd Font", style = "Regular" }
 
-[font.bold]
-# family = "MesloLGS Nerd Font Mono"
-family = "CaskaydiaCove Nerd Font"
-style = "Bold"
-
-[font.bold_italic]
-family = "CaskaydiaCove Nerd Font"
-# family = "MesloLGS Nerd Font Mono"
-style = "Bold Italic"
-
-[font.italic]
-family = "CaskaydiaCove Nerd Font"
-# family = "MesloLGS Nerd Font Mono"
-style = "Italic"
-
-[font.normal]
-# family = "MesloLGS Nerd Font Mono"
-family = "CaskaydiaCove Nerd Font"
-style = "Regular"
+[window]
+padding = { x = 6, y = 6 }
 
 [terminal]
-shell = "pwsh"
+shell = { program = "pwsh", args = ["-NoLogo"] }
 
-[[keyboard.bindings]]
-key = "Back"
-mods = "Control"
-chars = "\u0017"
+[keyboard]
+bindings = [
+  { key = "Back", mods = "Control", chars = "\u0017" },
+  { key = "Back", mods = "Alt", chars = "\u0017" }
+]
