@@ -10,4 +10,7 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 Set-PSReadLineKeyHandler -Chord Tab -Function Complete
 
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+
 Import-Module -Name Terminal-Icons
+Import-Module PSFzf
