@@ -6,12 +6,18 @@ bindkey '^R' fzf-history-widget
 bindkey '\e[1;3D' backward-word
 bindkey '\e[1;3C' forward-word
 
+# [Ctrl-RightArrow] - move forward one word
+bindkey -M emacs '^[[1;5C' forward-word
+
+# [Ctrl-LeftArrow] - move backward one word
+bindkey -M emacs '^[[1;5D' backward-word
+
+# [Ctrl-Delete] - delete whole forward-word
+bindkey -M emacs '^[[3;5~' kill-word
+
 export SUDO_EDITOR='nvim'
 
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
-
-export POSH_SESSION_ID="db9f20cb-78d8-483f-8682-e3b65744259d"
-source $'/home/tom/.cache/oh-my-posh/init.4244779036844201410.zsh'
 
 export PATH=/home/tom/.local/bin:$PATH
 
@@ -50,6 +56,7 @@ alias c="clear"
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

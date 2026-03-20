@@ -5,6 +5,11 @@
 
 {
   // Aparência geral
+  "toolbar": {
+    "agent_review": false,
+    "selections_menu": false,
+    "quick_actions": false
+  },
   "icon_theme": "Catppuccin Mocha",
   "theme": {
     "mode": "system",

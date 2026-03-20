@@ -9,9 +9,9 @@ set -x FZF_CTRL_T_OPTS "\
 
 alias y="yay"
 alias l="ls -la"
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --git --icons=auto --group-directories-first"
 alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
-alias pg="docker exec -it -u postgres postgres psql"
+alias pg="docker exec -it -u postgres meu-postgres psql"
 alias vim="nvim"
 alias n="nvim"
 
