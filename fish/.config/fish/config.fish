@@ -14,6 +14,7 @@ alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
 alias pg="docker exec -it -u postgres meu-postgres psql"
 alias vim="nvim"
 alias n="nvim"
+alias cd="z"
 
 starship init fish | source
 zoxide init fish | source

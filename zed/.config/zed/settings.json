@@ -5,6 +5,9 @@
 
 {
   // Aparência geral
+  "session": {
+    "trust_all_worktrees": true
+  },
   "toolbar": {
     "agent_review": false,
     "selections_menu": false,
