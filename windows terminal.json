@@ -1,217 +1,214 @@
 {
-  "$help": "https://aka.ms/terminal-documentation",
-  "$schema": "https://aka.ms/terminal-profiles-schema",
-
-  "actions": [
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "closeTab"
+            },
+            "id": "User.closeTab.0"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "id": "User.newTab.5DEADB41"
+        },
+        {
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u0017"
+            },
+            "id": "User.sendInput.817164EE"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "keybindings": 
+    [
+        {
+            "id": "User.sendInput.817164EE",
+            "keys": "alt+backspace"
+        },
+        {
+            "id": "Terminal.OpenNewTab",
+            "keys": "alt+n"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+t"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+1"
+        },
+        {
+            "id": "Terminal.ClosePane",
+            "keys": "ctrl+x"
+        },
+        {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "alt+1"
+        },
+        {
+            "id": "Terminal.SwitchToTab2",
+            "keys": "alt+3"
+        },
+        {
+            "id": "Terminal.SwitchToTab1",
+            "keys": "alt+2"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+2"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+3"
+        },
+        {
+            "id": "Terminal.SwitchToTab3",
+            "keys": "alt+4"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+4"
+        },
+        {
+            "id": "Terminal.SwitchToTab4",
+            "keys": "alt+5"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+alt+5"
+        },
+        {
+            "id": null,
+            "keys": "alt+shift+plus"
+        },
+        {
+            "id": "Terminal.DuplicatePaneRight",
+            "keys": "ctrl+\\"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+w"
+        },
+        {
+            "id": "User.closeTab.0",
+            "keys": "ctrl+w"
+        }
+    ],
+    "launchMode": "default",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles": 
     {
-      "command": {
-        "action": "closeTab"
-      },
-      "id": "User.closeTab.0"
+        "defaults": 
+        {
+            "colorScheme": "Catppuccin Mocha",
+            "font": 
+            {
+                "face": "JetBrainsMonoNL Nerd Font",
+                "size": 12
+            }
+        },
+        "list": 
+        [
+            {
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -nologo",
+                "cursorShape": "filledBox",
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Prompt de comando"
+            },
+            {
+                "commandline": "C:\\Program Files\\Git\\bin\\bash.exe --login -i",
+                "guid": "{fe8ab4e3-1304-447d-acf7-068d488c4955}",
+                "icon": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico",
+                "name": "Git Bash",
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "guid": "{6be11fa3-ec9f-5e36-9b3a-8d19b31f6b63}",
+                "hidden": false,
+                "name": "Arch",
+                "source": "Microsoft.WSL"
+            }
+        ]
     },
-    {
-      "command": {
-        "action": "newTab"
-      },
-      "id": "User.newTab.5DEADB41"
-    }
-  ],
-
-  "copyFormatting": "none",
-  "copyOnSelect": false,
-  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-
-  "keybindings": [
-    {
-      "id": "Terminal.CopyToClipboard",
-      "keys": "ctrl+c"
-    },
-    {
-      "id": "Terminal.PasteFromClipboard",
-      "keys": "ctrl+v"
-    },
-    {
-      "id": "Terminal.SwitchToTab1",
-      "keys": "ctrl+2"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+6"
-    },
-    {
-      "id": "Terminal.DuplicatePaneAuto",
-      "keys": "alt+shift+d"
-    },
-    {
-      "id": "User.closeTab.0",
-      "keys": "ctrl+w"
-    },
-    {
-      "id": "Terminal.SwitchToTab0",
-      "keys": "ctrl+1"
-    },
-    {
-      "id": "User.newTab.5DEADB41",
-      "keys": "ctrl+n"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+1"
-    },
-    {
-      "id": "Terminal.SwitchToTab5",
-      "keys": "ctrl+6"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+2"
-    },
-    {
-      "id": "Terminal.SwitchToTab2",
-      "keys": "ctrl+3"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+3"
-    },
-    {
-      "id": "Terminal.SwitchToTab3",
-      "keys": "ctrl+4"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+4"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+7"
-    },
-    {
-      "id": "Terminal.SwitchToTab4",
-      "keys": "ctrl+5"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+5"
-    },
-    {
-      "id": "Terminal.SwitchToTab6",
-      "keys": "ctrl+7"
-    },
-    {
-      "id": "Terminal.SwitchToTab7",
-      "keys": "ctrl+8"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+8"
-    }
-  ],
-
-  "launchMode": "default",
-
-  "newTabMenu": [
-    {
-      "type": "remainingProfiles"
-    }
-  ],
-
-  "profiles": {
-    "defaults": {
-      "colorScheme": "Catppuccin Mocha",
-      "font": {
-        "face": "0xProto Nerd Font Mono",
-        "size": 14
-      }
-    },
-
-    "list": [
-      {
-        "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -nologo",
-        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "hidden": false,
-        "name": "PowerShell",
-        "source": "Windows.Terminal.PowershellCore"
-      },
-      {
-        "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-        "hidden": false,
-        "name": "Windows PowerShell"
-      },
-      {
-        "commandline": "%SystemRoot%\\System32\\cmd.exe",
-        "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-        "hidden": false,
-        "name": "Prompt de comando"
-      },
-      {
-        "guid": "{00bac192-8db9-53ea-bb29-c78666f5d590}",
-        "hidden": false,
-        "name": "Developer Command Prompt for VS 18 [Preview]",
-        "source": "Windows.Terminal.VisualStudio"
-      },
-      {
-        "guid": "{2a894759-86e2-5ef3-b986-e8fae990765e}",
-        "hidden": false,
-        "name": "Developer PowerShell for VS 18 [Preview]",
-        "source": "Windows.Terminal.VisualStudio"
-      }
+    "schemes": 
+    [
+        {
+            "background": "#1E1E2E",
+            "black": "#45475A",
+            "blue": "#89B4FA",
+            "brightBlack": "#585B70",
+            "brightBlue": "#89B4FA",
+            "brightCyan": "#94E2D5",
+            "brightGreen": "#A6E3A1",
+            "brightPurple": "#F5C2E7",
+            "brightRed": "#F38BA8",
+            "brightWhite": "#A6ADC8",
+            "brightYellow": "#F9E2AF",
+            "cursorColor": "#F5E0DC",
+            "cyan": "#94E2D5",
+            "foreground": "#CDD6F4",
+            "green": "#A6E3A1",
+            "name": "Catppuccin Mocha",
+            "purple": "#F5C2E7",
+            "red": "#F38BA8",
+            "selectionBackground": "#585B70",
+            "white": "#BAC2DE",
+            "yellow": "#F9E2AF"
+        }
+    ],
+    "themes": 
+    [
+        {
+            "name": "Catppuccin Mocha",
+            "tab": 
+            {
+                "background": "#1E1E2EFF",
+                "iconStyle": "default",
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "tabRow": 
+            {
+                "background": "#181825FF",
+                "unfocusedBackground": "#11111BFF"
+            },
+            "window": 
+            {
+                "applicationTheme": "dark",
+                "experimental.rainbowFrame": false,
+                "frame": null,
+                "unfocusedFrame": null,
+                "useMica": false
+            }
+        }
     ]
-  },
-
-  "schemes": [
-    {
-      "name": "Catppuccin Mocha",
-      "background": "#1E1E2E",
-      "foreground": "#CDD6F4",
-
-      "black": "#45475A",
-      "blue": "#89B4FA",
-      "cyan": "#94E2D5",
-      "green": "#A6E3A1",
-      "purple": "#F5C2E7",
-      "red": "#F38BA8",
-      "white": "#BAC2DE",
-      "yellow": "#F9E2AF",
-
-      "brightBlack": "#585B70",
-      "brightBlue": "#89B4FA",
-      "brightCyan": "#94E2D5",
-      "brightGreen": "#A6E3A1",
-      "brightPurple": "#F5C2E7",
-      "brightRed": "#F38BA8",
-      "brightWhite": "#A6ADC8",
-      "brightYellow": "#F9E2AF",
-
-      "cursorColor": "#F5E0DC",
-      "selectionBackground": "#585B70"
-    }
-  ],
-
-  "themes": [
-    {
-      "name": "Catppuccin Mocha",
-
-      "tab": {
-        "background": "#1E1E2EFF",
-        "iconStyle": "default",
-        "showCloseButton": "always",
-        "unfocusedBackground": null
-      },
-
-      "tabRow": {
-        "background": "#181825FF",
-        "unfocusedBackground": "#11111BFF"
-      },
-
-      "window": {
-        "applicationTheme": "dark",
-        "experimental.rainbowFrame": false,
-        "frame": null,
-        "unfocusedFrame": null,
-        "useMica": false
-      }
-    }
-  ]
 }
