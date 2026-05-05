@@ -7,4 +7,5 @@ return {
   { import = "astrocommunity.pack.ruby" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.pack.go" }
 }

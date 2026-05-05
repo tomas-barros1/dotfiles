@@ -5,15 +5,38 @@
 
 {
   // Aparência geral
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "colorize_brackets": true,
+  "project_panel": {
+    "dock": "right",
+  },
+  "disable_ai": true,
   "session": {
-    "trust_all_worktrees": true
+    "trust_all_worktrees": true,
   },
   "toolbar": {
     "agent_review": false,
     "selections_menu": false,
-    "quick_actions": false
+    "quick_actions": false,
   },
-  "icon_theme": "Catppuccin Mocha",
+  "icon_theme": "JetBrains New UI Icons (Dark)",
   "theme": {
     "mode": "system",
     "light": "Catppuccin Mocha",
@@ -22,6 +45,9 @@
   "buffer_line_height": "comfortable",
   "buffer_font_family": "JetBrains Mono",
   "ui_font_family": "Inter",
+  "buffer_font_features": {
+    "calt": true,
+  },
 
   // Modo Vim
   "vim_mode": true,
