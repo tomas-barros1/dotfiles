@@ -1,0 +1,6 @@
+terminal = "alacritty"
+fileManager = "nautilus"
+menu = "nc -U /run/user/1000/walker/walker.sock"
+mainMod = "SUPER"
+shiftMod = "SHIFT"
+browser = "brave"

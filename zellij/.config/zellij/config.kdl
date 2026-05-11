@@ -235,6 +235,5 @@ theme "catppuccin-mocha"
 pane_frames false
  
 default_mode "locked"
-//default_layout "compact"
 on_force_close "quit"
 show_startup_tips false

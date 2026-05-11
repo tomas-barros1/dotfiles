@@ -1,7 +1,7 @@
 $env:POWERSHELL_TELEMETRY_OPTOUT = 1
 $env:POWERSHELL_UPDATECHECK = 0
 
-Invoke-Expression (& 'C:\Users\Tom\AppData\Local\Microsoft\WinGet\Links\starship.exe' init powershell --print-full-init | Out-String)
+Invoke-Expression (& 'C:\Users\Tom\AppData\Local\Microsoft\WinGet\Packages\Starship.Starship_Microsoft.Winget.Source_8wekyb3d8bbwe\starship.exe' init powershell --print-full-init | Out-String)
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 Import-Module Terminal-Icons
@@ -40,15 +40,4 @@ function cd {
     } else {
         z $path
     }
-}
-
-$prompt = ""
-function Invoke-Starship-PreCommand {
-    $current_location = $executionContext.SessionState.Path.CurrentLocation
-    if ($current_location.Provider.Name -eq "FileSystem") {
-        $ansi_escape = [char]27
-        $provider_path = $current_location.ProviderPath -replace "\\", "/"
-        $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
-    }
-    $host.ui.Write($prompt)
 }
