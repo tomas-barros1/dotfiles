@@ -5,6 +5,11 @@
 
 {
   // Aparência geral
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry"
+    }
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false
@@ -16,7 +21,7 @@
     "dock": "left",
   },
   "agent": {
-    "dock": "right",
+    "dock": "left",
     "favorite_models": [],
     "model_parameters": [],
   },
@@ -27,7 +32,7 @@
   "project_panel": {
     "dock": "right",
   },
-  "disable_ai": true,
+  "disable_ai": false,
   "session": {
     "trust_all_worktrees": true,
   },

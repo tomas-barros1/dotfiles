@@ -8,26 +8,23 @@
       "ctrl-y": "editor::Undo", // vim default: line up
       "ctrl-f": "buffer_search::Deploy", // vim default: page down
       "ctrl-o": "workspace::Open", // vim default: go back
-      "ctrl-a": "editor::SelectAll" // vim default: increment
-    }
+      "ctrl-a": "editor::SelectAll", // vim default: increment
+      "ctrl-b": "workspace::ToggleRightDock",
+      "ctrl-alt-b": "workspace::ToggleLeftDock",
+      "ctrl-j": "workspace::ToggleBottomDock",
+    },
   },
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-`": "workspace::ToggleBottomDock",
-      "ctrl-b": "workspace::ToggleRightDock"
-    }
+      "ctrl-b": "workspace::ToggleRightDock",
+      "ctrl-alt-b": "workspace::ToggleLeftDock",
+    },
   },
   {
     "context": "Pane", // Added missing comma here
     "bindings": {
-      "ctrl-w": "pane::CloseActiveItem"
-    }
+      "ctrl-w": "pane::CloseActiveItem",
+    },
   },
-  {
-    "context": "(VimControl && !menu) || vim_mode == insert",
-    "bindings": {
-      "ctrl-w": "pane::CloseActiveItem"
-    }
-  }
 ]
