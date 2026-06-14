@@ -1,3 +1,3 @@
-mauve = "rgba(cba6f7ff)"
-flamingo = "rgba(f2cdcdff)"
-subtext0 = "rgba(a6adc8ff)"
+FLAMINGO = "rgba(f2cdcdff)"
+MAUVE = "rgba(cba6f7ff)"
+SUBTEXT0 = "rgba(a6adc8ff)"

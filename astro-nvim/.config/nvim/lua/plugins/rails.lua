@@ -1,1 +1,1 @@
-return { name = "vim-rails", "tpope/vim-rails" }
+return { "tpope/vim-rails" }

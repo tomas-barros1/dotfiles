@@ -1,1 +1,1 @@
-return { name = "vesper-nvim", "datsfilipe/vesper.nvim" }
+return { "datsfilipe/vesper.nvim", name = "vesper-nvim" }

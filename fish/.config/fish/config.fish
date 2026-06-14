@@ -1,11 +1,11 @@
-set -x EDITOR nvim
+set -x EDITOR /home/tom/.local/share/mise/installs/neovim/0.11.7/bin/nvim
 set -x SUDO_EDITOR $EDITOR
 
-set -x FZF_CTRL_T_OPTS "\
-  --style full \
-  --walker-skip .git,node_modules,target \
-  --preview \"bat -n --theme='Catppuccin Mocha' --color=always {}\" \
-  --bind 'ctrl-/:change-preview-window(down|hidden)'"
+set -x FZF_CTRL_T_OPTS \
+"--style full \
+--walker-skip .git,node_modules,target \
+--preview 'bat -n --theme=\"Catppuccin Mocha\" --color=always {}' \
+--bind 'ctrl-/:change-preview-window(down|hidden)'"
 
 alias y="yay"
 alias l="ls -la"

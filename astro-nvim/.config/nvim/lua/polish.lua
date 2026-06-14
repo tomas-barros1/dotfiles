@@ -1,5 +1,6 @@
-if true then return end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+vim.opt.autoread = true
 
--- This will run last in the setup process.
--- This is just pure lua so anything that doesn't
--- fit in the normal config locations above can go here
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  command = "checktime",
+})
