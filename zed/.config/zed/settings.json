@@ -9,12 +9,12 @@
   "cursor_blink": true,
   "agent_servers": {
     "github-copilot-cli": {
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "telemetry": {
     "diagnostics": false,
-    "metrics": false
+    "metrics": false,
   },
   "tab_size": 2,
   "outline_panel": {
@@ -51,7 +51,7 @@
     "dark": "Catppuccin Mocha",
   },
   "buffer_line_height": "comfortable",
-  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_family": "Maple Mono Normal NL",
   "ui_font_family": "JetBrains Mono",
   "buffer_font_features": {
     "calt": true,

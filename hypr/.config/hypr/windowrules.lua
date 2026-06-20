@@ -8,7 +8,8 @@ hl.window_rule({
 })
 
 -- Games
-for _, class in ipairs({ "^dota2$", "^osu!$" }) do
+for _, class in ipairs({ "^dota2$", "^osu!$", "^Lunar Client"
+}) do
   hl.window_rule({
     match = { class = class },
     fullscreen = true,

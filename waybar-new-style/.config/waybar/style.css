@@ -1,76 +1,105 @@
-@import "mocha.css";
+/* Waybar — Catppuccin Mocha (redesign)
+   Fonte recomendada: Iosevka Nerd Font
+   (alternativa: JetBrainsMono Nerd Font)
+   ======================================= */
 
-/* Global Styles */
+@define-color rosewater #f5e0dc;
+@define-color flamingo  #f2cdcd;
+@define-color pink      #f5c2e7;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color maroon    #eba0ac;
+@define-color peach     #fab387;
+@define-color yellow    #f9e2af;
+@define-color green     #a6e3a1;
+@define-color teal      #94e2d5;
+@define-color sky       #89dceb;
+@define-color sapphire  #74c7ec;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+@define-color overlay2  #9399b2;
+@define-color overlay1  #7f849c;
+@define-color overlay0  #6c7086;
+@define-color surface2  #585b70;
+@define-color surface1  #45475a;
+@define-color surface0  #313244;
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+
+/* ── Base ─────────────────────────────── */
 * {
-  font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 15px;
+  font-weight: 500;
   min-height: 0;
 }
 
 window#waybar {
-  background-color: transparent;
+  background-color: @mantle;
   color: @text;
+  border-bottom: 1px solid @surface0;
 }
 
-/* Tooltips */
+/* ── Tooltips ─────────────────────────── */
 tooltip {
-  background-color: @base;
-  border: 2px solid @mauve;
-  border-radius: 10px;
-  padding: 10px;
+  background-color: @mantle;
+  border: 1px solid @surface1;
+  border-radius: 6px;
+  padding: 8px 12px;
   color: @text;
 }
-
 tooltip label {
   color: @text;
 }
 
-/* Module Styling */
+/* ── Módulos: base compartilhada ───────── */
 #workspaces,
 #window,
 #clock,
-#cpu,
-#memory,
-#temperature,
-#backlight,
+#custom-weather,
 #custom-brightness,
-#battery,
 #network,
 #pulseaudio,
-#idle_inhibitor,
-#tray,
-#custom-power {
+#tray {
   background-color: @surface0;
-  padding: 0px 14px;
-  margin: 0px 4px;
-  border-radius: 10px;
+  padding: 0 12px;
+  margin: 6px 2px;
+  border-radius: 4px;
   color: @text;
 }
 
-/* Workspaces */
+/* ── Workspaces ───────────────────────── */
 #workspaces {
-  background-color: @surface0;
-  padding: 0px 6px;
+  background-color: transparent;
+  padding: 0 4px;
+  margin: 4px 2px;
 }
 
 #workspaces button {
-  padding: 0px 8px;
-  margin: 0px 2px;
+  padding: 0 7px;
+  margin: 0 1px;
   background-color: transparent;
   color: @overlay0;
-  border-radius: 8px;
+  border-radius: 4px;
+  border: none;
+  min-width: 24px;
+  min-height: 28px;
+  transition: background 0.1s, color 0.1s;
 }
 
 #workspaces button:hover {
   background-color: @surface1;
-  color: @text;
+  color: @subtext1;
 }
 
 #workspaces button.active {
   background-color: @mauve;
   color: @crust;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 #workspaces button.urgent {
@@ -78,174 +107,78 @@ tooltip label {
   color: @crust;
 }
 
-/* Window Title */
+/* ── Janela ativa ─────────────────────── */
 #window {
-  background-color: @surface0;
+  background-color: transparent;
+  border: 1px solid @surface0;
   color: @lavender;
   font-style: italic;
-  padding: 0px 16px;
+  font-weight: 400;
+  padding: 0 14px;
 }
 
-/* Clock */
+/* ── Relógio ──────────────────────────── */
 #clock {
-  background-color: @surface0;
   color: @blue;
-  font-weight: bold;
-  padding: 0px 18px;
+  font-weight: 600;
+  /* font-variant-numeric: tabular-nums; */
+  letter-spacing: 0.02em;
 }
 
-/* CPU */
-#cpu {
-  background-color: @surface0;
-  color: @sky;
-}
-
-#cpu.warning {
-  background-color: @yellow;
-  color: @crust;
-}
-
-#cpu.critical {
-  background-color: @red;
-  color: @crust;
-}
-
-/* Memory */
-#memory {
-  background-color: @surface0;
-  color: @green;
-}
-
-#memory.warning {
-  background-color: @yellow;
-  color: @crust;
-}
-
-#memory.critical {
-  background-color: @red;
-  color: @crust;
-}
-
-/* Temperature */
-#temperature {
-  background-color: @surface0;
-  color: @teal;
-}
-
-#temperature.critical {
-  background-color: @red;
-  color: @crust;
-}
-
-/* Backlight */
-#backlight {
-  background-color: @surface0;
+/* ── Clima ────────────────────────────── */
+#custom-weather {
   color: @yellow;
 }
 
-/* Custom Brightness */
+/* ── Brilho ───────────────────────────── */
 #custom-brightness {
-  background-color: @surface0;
   color: @yellow;
 }
 
-/* Battery */
-#battery {
-  background-color: @surface0;
-  color: @green;
-}
-
-#battery.charging {
-  color: @teal;
-  background-color: @surface0;
-}
-
-#battery.plugged {
-  color: @green;
-  background-color: @surface0;
-}
-
-#battery.warning:not(.charging) {
-  background-color: @yellow;
-  color: @crust;
-}
-
-#battery.critical:not(.charging) {
-  background-color: @red;
-  color: @crust;
-}
-
-/* Network */
+/* ── Rede ─────────────────────────────── */
 #network {
-  background-color: @surface0;
   color: @sapphire;
 }
 
 #network.disconnected {
-  background-color: @surface0;
-  color: @overlay0;
+  color: @overlay1;
 }
 
-/* PulseAudio */
+/* ── Volume ───────────────────────────── */
 #pulseaudio {
-  background-color: @surface0;
   color: @maroon;
 }
 
 #pulseaudio.muted {
-  background-color: @surface0;
-  color: @overlay0;
+  color: @overlay1;
 }
 
-/* Idle Inhibitor */
-#idle_inhibitor {
-  background-color: @surface0;
+#pulseaudio.bluetooth {
   color: @lavender;
 }
 
-#idle_inhibitor.activated {
-  background-color: @green;
-  color: @crust;
-}
-
-/* System Tray */
+/* ── Bandeja ──────────────────────────── */
 #tray {
   background-color: @surface0;
-  padding: 0px 10px;
+  padding: 0 8px;
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @red;
+  border-radius: 4px;
 }
 
-/* Power Button */
-#custom-power {
-  background-color: @red;
-  color: @crust;
-  font-size: 16px;
-  padding: 0px 14px;
-  margin-right: 0px;
-}
-
-#custom-power:hover {
-  background-color: @maroon;
-}
-
-/* Hover Effects */
-#cpu:hover,
-#memory:hover,
-#temperature:hover,
-#backlight:hover,
-#custom-brightness:hover,
-#battery:hover,
-#network:hover,
-#pulseaudio:hover,
+/* ── Hover geral ──────────────────────── */
 #clock:hover,
-#idle_inhibitor:hover {
+#custom-weather:hover,
+#custom-brightness:hover,
+#network:hover,
+#pulseaudio:hover {
   background-color: @surface1;
+  transition: background 0.15s;
 }

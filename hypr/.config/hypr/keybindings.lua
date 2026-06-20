@@ -20,6 +20,8 @@ hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + T",
 -- Window management
 hl.bind(MAIN_MOD .. " + W", hl.dsp.window.close())
 hl.bind(MAIN_MOD .. " + F", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(MAIN_MOD .. " + F11", hl.dsp.window.fullscreen())
+hl.bind(MAIN_MOD .. " + J", hl.dsp.window.fullscreen())
 hl.bind(MAIN_MOD .. " + P", hl.dsp.window.pseudo())
 hl.bind(MAIN_MOD .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(MAIN_MOD .. " + M", hl.dsp.exit())

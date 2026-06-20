@@ -1,4 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export AMD_VULKAN_ICD:RADV
+SETUVAR --export MESA_SHADER_CACHE_MAX_SIZE:12G
 SETUVAR __fish_initialized:4300
 SETUVAR fish_greeting:
