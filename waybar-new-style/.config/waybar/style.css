@@ -121,7 +121,6 @@ tooltip label {
 #clock {
   color: @blue;
   font-weight: 600;
-  /* font-variant-numeric: tabular-nums; */
   letter-spacing: 0.02em;
 }
 
@@ -160,7 +159,7 @@ tooltip label {
 /* ── Bandeja ──────────────────────────── */
 #tray {
   background-color: @surface0;
-  padding: 0 8px;
+  padding: 0 12px;
 }
 
 #tray > .passive {

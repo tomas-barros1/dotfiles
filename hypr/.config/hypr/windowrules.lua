@@ -7,6 +7,12 @@ hl.window_rule({
   size = "1200 800",
 })
 
+-- Polkit agent
+hl.window_rule({
+  match = { class = "^(polkit-gnome-authentication-agent-1)$" },
+  workspace = "unset",
+})
+
 -- Games
 for _, class in ipairs({ "^dota2$", "^osu!$", "^Lunar Client"
 }) do
