@@ -1,4 +1,3 @@
 function p
-    set input $argv[1]
-    paru -S $input
+    paru -S $argv
 end

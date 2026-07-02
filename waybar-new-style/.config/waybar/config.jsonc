@@ -54,7 +54,7 @@
     "interval": 1,
     "format": " {:L%A %d %H:%M}",
     "format-alt": "{:L%A, %d de %B de %Y}",
-    "tooltip-format": "{:L%A, %d de %B de %Y}",
+    "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
     "locale": "pt_BR.utf8",
     "calendar": {
       "mode": "month",

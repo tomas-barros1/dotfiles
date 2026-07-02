@@ -35,7 +35,7 @@
   "project_panel": {
     "dock": "right",
   },
-  "disable_ai": true,
+  "disable_ai": false,
   "session": {
     "trust_all_worktrees": true,
   },
