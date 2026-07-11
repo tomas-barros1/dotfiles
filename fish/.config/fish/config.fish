@@ -2,9 +2,12 @@ if not status is-interactive
     return
 end
 
+# starship init fish | source
+# oh-my-posh init fish --config ~/dotfiles/oh-my-posh/catppuccin_mocha.omp.json | source
+# prompt_for_fish init fish | source
 zoxide init fish | source
 fzf --fish | source
-$HOME/.local/bin/mise activate fish | source
+$HOME/.local/bin/mise activate fish --shims | source
 
 set -x EDITOR nvim
 set -x SUDO_EDITOR $EDITOR

@@ -129,7 +129,14 @@ function hydro_multiline --on-variable hydro_multiline
     end
 end && hydro_multiline
 
-set --query hydro_color_error || set --global hydro_color_error $fish_color_error
+# Catppuccin Mocha colors
+set --query hydro_color_pwd    || set --global hydro_color_pwd    89b4fa
+set --query hydro_color_git    || set --global hydro_color_git    cba6f7
+set --query hydro_color_start  || set --global hydro_color_start  cdd6f4
+set --query hydro_color_prompt || set --global hydro_color_prompt fab387
+set --query hydro_color_error  || set --global hydro_color_error  f38ba8
+set --query hydro_color_duration || set --global hydro_color_duration a6adc8
+set --query fish_prompt_pwd_dir_length || set --global fish_prompt_pwd_dir_length 999
 set --query hydro_symbol_prompt || set --global hydro_symbol_prompt ❱
 set --query hydro_symbol_git_dirty || set --global hydro_symbol_git_dirty •
 set --query hydro_symbol_git_ahead || set --global hydro_symbol_git_ahead ↑

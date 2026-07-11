@@ -5,6 +5,9 @@
 
 {
   // Aparência geral
+  "ui_font_weight": 400.0,
+  "ui_font_size": 16.0,
+  "buffer_font_size": 15.0,
   "cli_default_open_behavior": "existing_window",
   "cursor_blink": true,
   "agent_servers": {
@@ -51,7 +54,7 @@
     "dark": "Catppuccin Mocha",
   },
   "buffer_line_height": "comfortable",
-  "buffer_font_family": "Maple Mono Normal NL",
+  "buffer_font_family": "JetBrains Mono",
   "ui_font_family": "JetBrains Mono",
   "buffer_font_features": {
     "calt": true,

@@ -114,7 +114,7 @@
 
   // Brilho (DDC/CI)
   "custom/brightness": {
-    "exec": "ddcutil -b 7 getvcp 10 -t | perl -nE 'if (/ C (\\d+) /) { say $1; }'",
+    "exec": "ddcutil -b 7 getvcp 10 -t | awk '{print $4}'",
     "exec-if": "ddcutil -b 7 getvcp 10 >/dev/null 2>&1",
     "format": "󰃟 {}%",
     "interval": 5,

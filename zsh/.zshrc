@@ -1,23 +1,17 @@
-bindkey -e
-
 bindkey '^R' fzf-history-widget
 
-# Alt arrows
-bindkey '\e[1;3D' backward-word
-bindkey '\e[1;3C' forward-word
+export nvim='/home/tom/.local/share/mise/installs/neovim/0.11.7/bin/nvim'
 
-# [Ctrl-RightArrow] - move forward one word
-bindkey -M emacs '^[[1;5C' forward-word
-
-# [Ctrl-LeftArrow] - move backward one word
-bindkey -M emacs '^[[1;5D' backward-word
-
-# [Ctrl-Delete] - delete whole forward-word
-bindkey -M emacs '^[[3;5~' kill-word
-
-export SUDO_EDITOR='nvim'
+export SUDO_EDITOR=$nvim
 
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
 
 export PATH=/home/tom/.local/bin:$PATH
 
@@ -38,25 +32,45 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 autoload -Uz compinit
-compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle :prompt:pure:git:branch cache 1
+zstyle ':prompt:pure:*' async 1
 
 alias y="yay"
+
+alias gs="git status"
+alias ga="git add ."
+alias gc="git commit -m"
+alias gp="git push"
+
 alias l="ls -la"
-alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --git --no-filesize --icons=always"
+
 alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
+
 alias pg="docker exec -it -u postgres postgres psql"
+
 alias vim="nvim"
 alias n="nvim"
+
 alias c="clear"
 
 eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
-eval "$(starship init zsh)"
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath+=($HOME/.zsh/pure)
+autoload -U promptinit; promptinit
+prompt pure
+
+source ~/.key-bindings.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

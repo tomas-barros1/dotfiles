@@ -5,17 +5,20 @@ hl.bind(MAIN_MOD .. " + B", hl.dsp.exec_cmd(BROWSER))
 hl.bind(MAIN_MOD .. " + Z", hl.dsp.exec_cmd("zeditor"))
 hl.bind(MAIN_MOD .. " + E", hl.dsp.exec_cmd(FILE_MANAGER))
 hl.bind(MAIN_MOD .. " + I", hl.dsp.exec_cmd(HOME_DIR .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"))
-hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd("alacritty -e nvim ~/dotfiles/hypr/.config/hypr/"))
+hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd("zeditor ~/dotfiles/hypr/.config/hypr/"))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd("~/.local/bin/powermenu.sh"))
 hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd("wallpaper-select.sh"))
+hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd("steam"))
 
 -- Screenshots
 hl.bind(MAIN_MOD .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m output --clipboard-only"))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + T",
-  hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']]))
+hl.bind(
+  MAIN_MOD .. " + " .. SHIFT_MOD .. " + T",
+  hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']])
+)
 
 -- Window management
 hl.bind(MAIN_MOD .. " + W", hl.dsp.window.close())
@@ -62,12 +65,21 @@ hl.bind(MAIN_MOD .. " + minus", hl.dsp.window.resize({ x = -20, y = -20, relativ
 hl.bind(MAIN_MOD .. " + 0", hl.dsp.window.resize({ x = 900, y = 600 }))
 
 -- Media / Volume
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-  { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
-  { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
-  { locked = true, repeating = true })
+hl.bind(
+  "XF86AudioRaiseVolume",
+  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+  { locked = true, repeating = true }
+)
+hl.bind(
+  "XF86AudioLowerVolume",
+  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+  { locked = true, repeating = true }
+)
+hl.bind(
+  "XF86AudioMute",
+  hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+  { locked = true, repeating = true }
+)
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
