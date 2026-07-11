@@ -9,6 +9,10 @@ hl.config({
     gaps_in = 4,
     gaps_out = 8,
     layout = "dwindle",
-    allow_tearing = false,
+    allow_tearing = true,
+  },
+  misc = {
+    disable_hyprland_logo = true,
+    mouse_move_enables_dpms = false,
   },
 })
