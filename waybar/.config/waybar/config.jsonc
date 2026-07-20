@@ -2,10 +2,10 @@
   "position": "top",
   "height": 32,
   "modules-left": [
-    "hyprland/workspaces"
+    "sway/workspaces"
   ],
   "modules-center": [
-    "hyprland/window"
+    "sway/window"
   ],
   "modules-right": [
     "custom/brightness",
@@ -15,7 +15,7 @@
     "battery",
     "clock"
   ],
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {

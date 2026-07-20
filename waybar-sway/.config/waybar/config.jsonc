@@ -1,0 +1,117 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "margin-top": 6,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 4,
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "custom/brightness",
+        "custom/weather",
+        "network",
+        "pulseaudio",
+        "battery",
+        "tray",
+        "clock"
+    ],
+    "sway/workspaces": {
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "default": "󰧟",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
+        },
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+    "sway/window": {
+        "format": "{}",
+        "max-length": 60,
+        "tooltip": false,
+        "icon": true,
+        "icon-size": 16
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    },
+    "clock": {
+        "format": "󰅐 {:L%A %d %H:%M}",
+        "timezone": "America/Sao_Paulo",
+        "locale": "pt_BR.UTF-8",
+        "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "gnome-calendar"
+    },
+    "custom/weather": {
+        "exec": "waybar-weather",
+        "restart-interval": 60,
+        "return-type": "json",
+        "hide-empty-text": true
+    },
+    "network": {
+        "format-wifi": "󰖩 {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+        "format-linked": "󰈂 {ifname} (Sem IP)",
+        "format-disconnected": "󰖪 Desconectado",
+        "tooltip-format-wifi": "Força do sinal: {signalStrength}%",
+        "on-click": "nm-connection-editor"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "custom/brightness": {
+        "exec": "ddcutil -b 7 getvcp 10 -t | awk '{print $4}'",
+        "exec-if": "ddcutil -b 7 getvcp 10 >/dev/null 2>&1",
+        "format": "󰃟 {}%",
+        "interval": 5,
+        "on-scroll-up": "ddcutil -b 7 setvcp 10 + 10",
+        "on-scroll-down": "ddcutil -b 7 setvcp 10 - 10",
+        "tooltip": false
+    }
+}

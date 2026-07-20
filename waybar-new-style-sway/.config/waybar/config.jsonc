@@ -9,10 +9,10 @@
   "margin-left": 0,
   "margin-right": 0,
   "modules-left": [
-    "hyprland/workspaces"
+    "sway/workspaces"
   ],
   "modules-center": [
-    "hyprland/window"
+    "sway/window"
   ],
   "modules-right": [
     "tray",
@@ -23,7 +23,7 @@
     "clock"
   ],
   // Workspaces
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "format": "{name}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -38,7 +38,7 @@
     }
   },
   // Janela ativa
-  "hyprland/window": {
+  "sway/window": {
     "format": "{}",
     "max-length": 60,
     "separate-outputs": true,

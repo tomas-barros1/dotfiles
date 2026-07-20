@@ -38,12 +38,6 @@ else
   compinit -C
 fi
 
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle :prompt:pure:git:branch cache 1
-zstyle ':prompt:pure:*' async 1
-
 alias y="yay"
 
 alias gs="git status"
@@ -67,10 +61,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
-fpath+=($HOME/.zsh/pure)
-autoload -U promptinit; promptinit
-prompt pure
-
+eval "$(oh-my-posh init --config=~/dotfiles/oh-my-posh/catppuccin_mocha.omp.json zsh)"
 source ~/.key-bindings.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh

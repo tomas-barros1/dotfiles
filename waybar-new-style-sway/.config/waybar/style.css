@@ -1,0 +1,184 @@
+/* Waybar — Catppuccin Mocha (redesign)
+   Fonte recomendada: Iosevka Nerd Font
+   (alternativa: JetBrainsMono Nerd Font)
+   ======================================= */
+
+@define-color rosewater #f5e0dc;
+@define-color flamingo  #f2cdcd;
+@define-color pink      #f5c2e7;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color maroon    #eba0ac;
+@define-color peach     #fab387;
+@define-color yellow    #f9e2af;
+@define-color green     #a6e3a1;
+@define-color teal      #94e2d5;
+@define-color sky       #89dceb;
+@define-color sapphire  #74c7ec;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+@define-color overlay2  #9399b2;
+@define-color overlay1  #7f849c;
+@define-color overlay0  #6c7086;
+@define-color surface2  #585b70;
+@define-color surface1  #45475a;
+@define-color surface0  #313244;
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+
+/* ── Base ─────────────────────────────── */
+* {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-size: 15px;
+  font-weight: 500;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: @mantle;
+  color: @text;
+  border-bottom: 1px solid @surface0;
+}
+
+/* ── Tooltips ─────────────────────────── */
+tooltip {
+  background-color: @mantle;
+  border: 1px solid @surface1;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: @text;
+}
+tooltip label {
+  color: @text;
+}
+
+/* ── Módulos: base compartilhada ───────── */
+#workspaces,
+#window,
+#clock,
+#custom-weather,
+#custom-brightness,
+#network,
+#pulseaudio,
+#tray {
+  background-color: @surface0;
+  padding: 0 12px;
+  margin: 6px 2px;
+  border-radius: 4px;
+  color: @text;
+}
+
+/* ── Workspaces ───────────────────────── */
+#workspaces {
+  background-color: transparent;
+  padding: 0 4px;
+  margin: 4px 2px;
+}
+
+#workspaces button {
+  padding: 0 7px;
+  margin: 0 1px;
+  background-color: transparent;
+  color: @overlay0;
+  border-radius: 4px;
+  border: none;
+  min-width: 24px;
+  min-height: 28px;
+  transition: background 0.1s, color 0.1s;
+}
+
+#workspaces button:hover {
+  background-color: @surface1;
+  color: @subtext1;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+  background-color: @mauve;
+  color: @crust;
+  font-weight: 700;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+  color: @crust;
+}
+
+/* ── Janela ativa ─────────────────────── */
+#window {
+  background-color: transparent;
+  border: 1px solid @surface0;
+  color: @lavender;
+  font-style: italic;
+  font-weight: 400;
+  padding: 0 14px;
+}
+
+/* ── Relógio ──────────────────────────── */
+#clock {
+  color: @blue;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* ── Clima ────────────────────────────── */
+#custom-weather {
+  color: @yellow;
+}
+
+/* ── Brilho ───────────────────────────── */
+#custom-brightness {
+  color: @yellow;
+}
+
+/* ── Rede ─────────────────────────────── */
+#network {
+  color: @sapphire;
+}
+
+#network.disconnected {
+  color: @overlay1;
+}
+
+/* ── Volume ───────────────────────────── */
+#pulseaudio {
+  color: @maroon;
+}
+
+#pulseaudio.muted {
+  color: @overlay1;
+}
+
+#pulseaudio.bluetooth {
+  color: @lavender;
+}
+
+/* ── Bandeja ──────────────────────────── */
+#tray {
+  background-color: @surface0;
+  padding: 0 12px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @red;
+  border-radius: 4px;
+}
+
+/* ── Hover geral ──────────────────────── */
+#clock:hover,
+#custom-weather:hover,
+#custom-brightness:hover,
+#network:hover,
+#pulseaudio:hover {
+  background-color: @surface1;
+  transition: background 0.15s;
+}

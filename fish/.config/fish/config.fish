@@ -2,14 +2,13 @@ if not status is-interactive
     return
 end
 
-# starship init fish | source
+starship init fish | source
 # oh-my-posh init fish --config ~/dotfiles/oh-my-posh/catppuccin_mocha.omp.json | source
-# prompt_for_fish init fish | source
 zoxide init fish | source
 fzf --fish | source
 $HOME/.local/bin/mise activate fish --shims | source
 
-set -x EDITOR nvim
+set -x EDITOR /home/tom/.local/share/mise/shims/nvim
 set -x SUDO_EDITOR $EDITOR
 
 if command -q fzf
@@ -24,6 +23,4 @@ alias y="yay"
 alias l="ls -la"
 alias ls="eza --git --icons=auto --group-directories-first"
 alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
-alias vim="nvim"
 alias n="nvim"
-alias cd="z"

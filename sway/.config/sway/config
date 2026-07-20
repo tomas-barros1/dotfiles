@@ -1,0 +1,9 @@
+include variables.conf
+include monitors.conf
+include input.conf
+include autostart.conf
+include general.conf
+include keybindings.conf
+include windowrules.conf
+
+include /etc/sway/config.d/*

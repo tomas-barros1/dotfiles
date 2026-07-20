@@ -1,5 +1,5 @@
 @theme "catppuccin-default"
 
 configuration {
-  font: "Ubuntu Nerd Font 16";
+  font: "JetBrainsMono Nerd Font 16";
 }
