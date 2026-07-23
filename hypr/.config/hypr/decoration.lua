@@ -1,10 +1,11 @@
 hl.config({
-  decoration = {
-    blur = {
-      enabled = false,
-    },
-    shadow = {
-      enabled = false,
-    },
-  },
+	decoration = {
+		rounding = 0,
+		blur = {
+			enabled = false,
+		},
+		shadow = {
+			enabled = false,
+		},
+	},
 })

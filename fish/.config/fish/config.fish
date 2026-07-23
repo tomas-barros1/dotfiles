@@ -8,7 +8,7 @@ zoxide init fish | source
 fzf --fish | source
 $HOME/.local/bin/mise activate fish --shims | source
 
-set -x EDITOR /home/tom/.local/share/mise/shims/nvim
+set -x EDITOR nvim
 set -x SUDO_EDITOR $EDITOR
 
 if command -q fzf
@@ -23,4 +23,5 @@ alias y="yay"
 alias l="ls -la"
 alias ls="eza --git --icons=auto --group-directories-first"
 alias cat="bat --theme='Catppuccin Mocha' --paging=never --color=always"
+alias cd="z"
 alias n="nvim"

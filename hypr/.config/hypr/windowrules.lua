@@ -1,9 +1,3 @@
--- Open all apps on the workspace they were launched from
-hl.window_rule({
-  match = { class = ".*" },
-  workspace = "unset",
-})
-
 -- System
 hl.window_rule({
   name = "xdg-desktop-portal-gtk",
@@ -21,8 +15,12 @@ hl.window_rule({
 
 -- Games
 for _, class in ipairs({
-  "^dota2$", "^osu!$", "^Lunar Client",
-  "^steam_app_", "^gamescope$",
+  "^dota2$",
+  "^cs2$",
+  "^osu!$",
+  "^gamescope$",
+  "^Lunar Client",
+  "^steam_app_",
 }) do
   hl.window_rule({
     match = { class = class },

@@ -3,9 +3,3 @@ hl.config({
     preserve_split = true,
   },
 })
-
-hl.config({
-  master = {
-    new_status = "master",
-  },
-})
