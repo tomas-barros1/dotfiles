@@ -10,7 +10,7 @@ hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
 hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd("walker -m symbols"))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd("~/.local/bin/powermenu.sh"))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(HOME_DIR .. "/.local/bin/wallpaper-select.sh"))
-hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd("steam"))
+hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd("flatpak run com.valvesoftware.Steam"))
 
 -- Screenshots
 hl.bind("PRINT", hl.dsp.exec_cmd("flameshot gui -p ~/Pictures/Screenshots -c"))

@@ -1,43 +1,4 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export AMD_VULKAN_ICD:RADV
-SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcolor\x3dbg\x2b\x3a\x23313244\x2cbg\x3a\x231E1E2E\x2cspinner\x3a\x23F5E0DC\x2chl\x3a\x23F38BA8\x20\x2d\x2dcolor\x3dfg\x3a\x23CDD6F4\x2cheader\x3a\x23F38BA8\x2cinfo\x3a\x23CBA6F7\x2cpointer\x3a\x23F5E0DC\x20\x2d\x2dcolor\x3dmarker\x3a\x23B4BEFE\x2cfg\x2b\x3a\x23CDD6F4\x2cprompt\x3a\x23CBA6F7\x2chl\x2b\x3a\x23F38BA8\x20\x2d\x2dcolor\x3dselected\x2dbg\x3a\x2345475A\x20\x2d\x2dcolor\x3dborder\x3a\x236C7086\x2clabel\x3a\x23CDD6F4
-SETUVAR --export MESA_DISK_CACHE_SIZE:10G
-SETUVAR --export MESA_SHADER_CACHE_MAX_SIZE:12G
-SETUVAR --export QT_QPA_PLATFORMTHEME:qt6ct
-SETUVAR VIRTUAL_ENV_DISABLE_PROMPT:true
-SETUVAR __fish_initialized:4300
-SETUVAR _fisher_jhillyerd_2F_plugin_2D_git_files:\x7e/\x2econfig/fish/functions/__git\x2ebranch_has_wip\x2efish\x1e\x7e/\x2econfig/fish/functions/__git\x2ecurrent_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/__git\x2edefault_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/__git\x2edelete_branches\x2efish\x1e\x7e/\x2econfig/fish/functions/__git\x2edestroy\x2efish\x1e\x7e/\x2econfig/fish/functions/__git\x2edevelop_branch\x2efish\x1e\x7e/\x2econfig/fish/functions/__git\x2einit\x2efish\x1e\x7e/\x2econfig/fish/functions/gbage\x2efish\x1e\x7e/\x2econfig/fish/functions/gbda\x2efish\x1e\x7e/\x2econfig/fish/functions/gdv\x2efish\x1e\x7e/\x2econfig/fish/functions/gignored\x2efish\x1e\x7e/\x2econfig/fish/functions/glp\x2efish\x1e\x7e/\x2econfig/fish/functions/grel\x2efish\x1e\x7e/\x2econfig/fish/functions/grename\x2efish\x1e\x7e/\x2econfig/fish/functions/grt\x2efish\x1e\x7e/\x2econfig/fish/functions/gtest\x2efish\x1e\x7e/\x2econfig/fish/functions/gtl\x2efish\x1e\x7e/\x2econfig/fish/functions/gunwip\x2efish\x1e\x7e/\x2econfig/fish/functions/gwip\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/git\x2efish
-SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/autopair\x2efish
-SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/autopair\x2efish\x1epatrickf1/fzf\x2efish\x1ejhillyerd/plugin\x2dgit
-SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_color_autosuggestion:6c7086
-SETUVAR fish_color_cancel:f38ba8
-SETUVAR fish_color_command:89b4fa
-SETUVAR fish_color_comment:7f849c
-SETUVAR fish_color_cwd:f9e2af
-SETUVAR fish_color_end:fab387
-SETUVAR fish_color_error:f38ba8
-SETUVAR fish_color_escape:eba0ac
-SETUVAR fish_color_gray:6c7086
-SETUVAR fish_color_host:89b4fa
-SETUVAR fish_color_host_remote:a6e3a1
-SETUVAR fish_color_keyword:cba6f7
-SETUVAR fish_color_normal:cdd6f4
-SETUVAR fish_color_operator:f5c2e7
-SETUVAR fish_color_option:a6e3a1
-SETUVAR fish_color_param:f2cdcd
-SETUVAR fish_color_quote:a6e3a1
-SETUVAR fish_color_redirection:f5c2e7
-SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d313244
-SETUVAR fish_color_selection:\x2d\x2dbackground\x3d313244
-SETUVAR fish_color_status:f38ba8
-SETUVAR fish_color_user:94e2d5
-SETUVAR fish_greeting:
-SETUVAR fish_pager_color_completion:cdd6f4
-SETUVAR fish_pager_color_description:6c7086
-SETUVAR fish_pager_color_prefix:f5c2e7
-SETUVAR fish_pager_color_progress:6c7086
-SETUVAR --export mesa_glthread:true
+SETUVAR __fish_webconfig_theme_notification:set\x2dtheme\x2dv1\x2d\x231
+SETUVAR --export fish_greeting:
