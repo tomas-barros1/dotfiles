@@ -64,3 +64,5 @@ function ls { eza --git --icons=auto --group-directories-first $args }
 function l { eza -lah --git --icons=auto --group-directories-first $args }
 
 function nt { wt.exe -w 0 new-tab -d (Get-Location) }
+
+function wsl { wsl -d Arch --cd /home/tom }
