@@ -55,6 +55,7 @@ Set-Alias -Name op -Value opencode.exe
 Set-Alias -Name n -Value nvim.exe
 
 Remove-Item Alias:ls -Force
+Remove-Item Alias:cat -Force
 
 function cat { bat.exe --theme="Catppuccin Mocha" $args }
 
