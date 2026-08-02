@@ -1,0 +1,16 @@
+// Input configuration.
+// Ported from hypr/input.lua:
+//   kb_layout = "us", kb_variant = "intl"
+//   accel_profile = "flat", force_no_accel = true
+input {
+    keyboard {
+        xkb {
+            layout "us"
+            variant "intl"
+        }
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+}

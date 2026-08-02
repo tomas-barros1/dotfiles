@@ -25,8 +25,8 @@
   // Workspaces
   "sway/workspaces": {
     "format": "{name}",
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "on-scroll-up": "swaymsg workspace next",
+    "on-scroll-down": "swaymsg workspace prev",
     "all-outputs": false,
     "active-only": false,
     "persistent-workspaces": {

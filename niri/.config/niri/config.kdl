@@ -1,0 +1,53 @@
+// niri configuration, translated from the Hyprland setup in ~/.config/hypr/
+// (the Lua modules there). Split into files mirroring them:
+//
+//   hyprland.lua   -> config.kdl        (this file, entry point)
+//   variables.lua  -> (no niri equivalent; values are inlined where used)
+//   env.lua        -> environment.kdl
+//   input.lua      -> input.kdl
+//   monitors.lua   -> outputs.kdl
+//   general.lua    -> layout.kdl        (border, gaps)
+//   decoration.lua -> layout.kdl        (no rounding/blur/shadows)
+//   layouts.lua    -> layout.kdl        (dwindle -> columns)
+//   animations.lua -> animations {}     (below)
+//   autostart.lua  -> autostart.kdl
+//   windowrules.lua -> window-rules.kdl
+//   keybindings.lua -> keybindings.kdl
+//
+// There is one old config.kdl backup in this folder: config.kdl.hypr-backup.
+
+include "environment.kdl"
+include "input.kdl"
+include "outputs.kdl"
+include "layout.kdl"
+include "autostart.kdl"
+include "window-rules.kdl"
+include "keybindings.kdl"
+
+// Cursor size (Hyprland env: XCURSOR_SIZE / HYPRCURSOR_SIZE = 24).
+cursor {
+    xcursor-size 24
+}
+
+// Screenshots (hyprshot/flameshot also saved here).
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// Ask clients to drop their own decorations so niri draws the border
+// around the window, like Hyprland did (no titlebars, rounding 0).
+prefer-no-csd
+
+// Hyprland had almost every animation disabled, keeping only the workspace
+// one (animations.lua). Mirror that: workspace switching animated, the rest off.
+animations {
+    workspace-switch { }
+    window-open { off; }
+    window-close { off; }
+    horizontal-view-movement { off; }
+    window-movement { off; }
+    window-resize { off; }
+    config-notification-open-close { off; }
+    exit-confirmation-open-close { off; }
+    screenshot-ui-open { off; }
+    overview-open-close { off; }
+    recent-windows-close { off; }
+}

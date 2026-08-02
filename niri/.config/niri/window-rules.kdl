@@ -1,0 +1,24 @@
+// Window rules.
+// Ported from hypr/windowrules.lua.
+//
+// System: xdg-desktop-portal-gtk was floated, centered, sized 1200x800.
+// niri has no per-window fixed size, so we float it and position the
+// top-left corner to appear centered on a 1920x1080 output.
+window-rule {
+    match app-id=r#"^xdg-desktop-portal-gtk$"#
+    open-floating true
+    default-floating-position x=360 y=140 relative-to="top-left"
+}
+
+// Polkit agent: Hyprland set workspace = "unset" (i.e. no workspace
+// assignment). niri does not need this, floating polkit would be wrong.
+// window-rule {
+//     match app-id=r#"^polkit-gnome-authentication-agent-1$"#
+//     open-floating true
+// }
+
+// Games: always open in real (exclusive) fullscreen, no animations.
+window-rule {
+    match app-id=r#"^(dota2|cs2|osu!|gamescope|Lunar Client.*|steam_app_.*)$"#
+    open-fullscreen true
+}

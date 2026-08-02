@@ -1,0 +1,129 @@
+// Keybindings.
+// Ported from hypr/keybindings.lua. "Mod" is Super (niri's default on a TTY),
+// matching Hyprland's MAIN_MOD = SUPER.
+//
+// niri difference: it is a scrollable-column layout, so the dwindle split
+// model (togglesplit, pseudo) maps to column/consume actions.
+binds {
+    // -- Apps -----------------------------------------------------------------
+    // Mod+Return: terminal (TERMINAL=footclient)
+    Mod+Return { spawn "footclient"; }
+    // Mod+Space: menu (MENU = walker over its socket)
+    Mod+Space { spawn-sh "nc -U /run/user/1000/walker/walker.sock"; }
+    // Mod+B: browser (BROWSER=helium-browser)
+    Mod+B { spawn "helium-browser"; }
+    // Mod+E: file manager (FILE_MANAGER=GSK_RENDERER=ngl nautilus)
+    Mod+E { spawn-sh "GSK_RENDERER=ngl nautilus"; }
+    Mod+Z { spawn "zeditor"; }
+    Mod+I { spawn "/home/tom/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"; }
+    Mod+H { spawn-sh "zeditor ~/dotfiles/hypr/.config/hypr/"; }
+    Mod+V { spawn "walker" "-m" "clipboard"; }
+    Mod+Period { spawn "walker" "-m" "symbols"; }
+    Mod+D { spawn "/home/tom/.local/bin/powermenu.sh"; }
+    Mod+Shift+W { spawn "/home/tom/.local/bin/wallpaper-select.sh"; }
+    Mod+S { spawn "flatpak" "run" "com.valvesoftware.Steam"; }
+
+    // -- Screenshots -----------------------------------------------------------
+    // Print: niri's interactive screenshot (drag to select a region).
+    Print { screenshot; }
+    // Mod+Print: focused window screenshot (hyprshot -m window equivalent;
+    // saved to screenshot-path in config.kdl).
+    Mod+Print { screenshot-window; }
+    // Mod+Shift+T: OCR selected region -> clipboard.
+    Mod+Shift+T { spawn-sh "grim -g \"$(slurp)\" - | tesseract stdin stdout -l por | wl-copy"; }
+
+    // -- Window management ------------------------------------------------------
+    Mod+W { close-window; }
+    Mod+G { toggle-window-floating; }
+    // Hyprland's pseudo has no direct niri equivalent; tabbed display is the
+    // closest "stack windows on top of each other" behaviour.
+    Mod+P { toggle-column-tabbed-display; }
+
+    // -- View modes ---------------------------------------------------------------
+    // Hyprland: Mod+F / Mod+F11 = fullscreen. niri fullscreen-window is real
+    // (exclusive) fullscreen, same as Hyprland's.
+    Mod+F { fullscreen-window; }
+    Mod+F11 { fullscreen-window; }
+
+    // -- Layout ---------------------------------------------------------------------
+    // Mod+J: togglesplit. niri has no split-direction toggle; the closest is
+    // pulling the focused window into/out of a column (vertical vs horizontal).
+    Mod+J { consume-or-expel-window-right; }
+
+    // -- Mouse interactions ------------------------------------------------------------
+    // Hyprland Mod+LMB drag / Mod+RMB resize are niri's built-in gestures:
+    //   Mod+LMB: move window, Mod+RMB: resize window. No binds needed.
+
+    // -- Session control ------------------------------------------------------------
+    // Mod+M: exit niri (shows a confirmation, like Hyprland).
+    Mod+M { quit; }
+
+    // -- Focus navigation -------------------------------------------------------------
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-down; }
+
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Down  { move-window-down; }
+
+    // -- Workspaces --------------------------------------------------------------------
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+
+    // -- Resize ----------------------------------------------------------------------------
+    // Hyprland Mod+equal/minus resized the window; split into column width and
+    // window height like the niri defaults. repeat=true keeps it while held.
+    Mod+Equal        repeat=true { set-column-width "+10%"; }
+    Mod+Minus        repeat=true { set-column-width "-10%"; }
+    Mod+Shift+Equal  repeat=true { set-window-height "+10%"; }
+    Mod+Shift+Minus  repeat=true { set-window-height "-10%"; }
+    // Mod+0: resize to 900x600 (one action per bind, so drive it through niri msg).
+    Mod+0 { spawn-sh "niri msg action set-window-width 900; niri msg action set-window-height 600"; }
+
+    // -- Media / Volume ---------------------------------------------------------------------
+    XF86AudioRaiseVolume repeat=true allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
+    XF86AudioLowerVolume repeat=true allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
+    XF86AudioMute        repeat=true allow-when-locked=true { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
+    XF86AudioNext  allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPrev  allow-when-locked=true { spawn-sh "playerctl previous"; }
+
+    // -- niri extras (not in the Hyprland config, but handy) ----------------------------------
+    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+O { toggle-overview; }
+    Mod+Tab { focus-workspace-previous; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+Ctrl+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+C { center-column; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}

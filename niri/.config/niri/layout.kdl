@@ -1,0 +1,47 @@
+// Layout and decorations.
+// Ported from hypr/general.lua + hypr/decoration.lua + hypr/layouts.lua:
+//   border_size 3, gaps_in 4 / gaps_out 8
+//   rounding 0, blur off, shadows off
+//   active border: gradient mauve -> lavender (angle 45), inactive: surface1
+//
+// Catppuccin Mocha palette (from hypr/catppuccin-mocha.lua):
+//   mauve    #cba6f7
+//   lavender #b4befe
+//   surface1 #45475a
+//   red      #f38ba8
+layout {
+    // Hyprland used gaps_in 4 / gaps_out 8; niri only has a single gaps value.
+    gaps 8
+
+    // dwindle had no column centering, keep the default "never".
+    center-focused-column "never"
+
+    // New windows open at half the output width (dwindle-like starting split).
+    default-column-width { proportion 0.5; }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    // Hyprland has no separate focus ring; the border does all the work.
+    focus-ring {
+        off
+    }
+
+    // Border always visible, like Hyprland's border.
+    border {
+        width 3
+        active-gradient from="#cba6f7" to="#b4befe" angle=45
+        inactive-color "#45475a"
+        urgent-color "#f38ba8"
+    }
+
+    // Shadows were disabled in Hyprland.
+    shadow {
+        off
+    }
+}
+
+// Hyprland had allow_tearing = true. niri does not support tearing as of 26.04.

@@ -1,0 +1,15 @@
+// Environment variables.
+// Ported from hypr/env.lua.
+// Note: HYPRCURSOR_SIZE is Hyprland-specific; the niri cursor size is set
+// in config.kdl (cursor {}).
+environment {
+    XCURSOR_SIZE "24"
+    XMODIFIERS "@im=fcitx"
+    SDL_IM_MODULE "fcitx"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    MOZ_ENABLE_WAYLAND "1"
+    QT_AUTO_SCREEN_SCALE_FACTOR "1"
+    QT_QPA_PLATFORM "wayland;xcb"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+}

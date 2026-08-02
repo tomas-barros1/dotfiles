@@ -1,0 +1,10 @@
+// Programs spawned at startup.
+// Ported from hypr/autostart.lua.
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "foot" "--server"
+spawn-at-startup "elephant"
+spawn-at-startup "walker" "--gapplication-service"
+spawn-sh-at-startup "wallpaper=$(cat ~/.cache/wallpaper 2>/dev/null); swaybg -i \"${wallpaper:-~/Wallpapers/clouds-3.png}\" -m fill &"
+spawn-at-startup "fcitx5"
+spawn-at-startup "waybar"
+spawn-at-startup "swaync"
