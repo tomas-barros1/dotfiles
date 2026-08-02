@@ -1,5 +1,5 @@
 [general]
-working_directory = "C:\\Users\\tom"
+working_directory = "C:\\Users\\Tom"
 
 import = [
   "./catppuccin-mocha.toml"
