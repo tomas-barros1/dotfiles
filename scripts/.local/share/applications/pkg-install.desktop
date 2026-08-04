@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=pkg-install
+Comment=Install and remove packages with yay + fzf
+Exec=foot -e /home/tom/.local/scripts/pkg-install
+Icon=utilities-terminal
+Terminal=false
+Categories=System;PackageManager;

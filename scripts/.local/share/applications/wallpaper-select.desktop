@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Wallpaper Select
+Comment=Seleciona um wallpaper usando imv
+Exec=/home/tom/.local/scripts/wallpaper-select.sh
+Icon=preferences-desktop-wallpaper
+Terminal=false
+Type=Application
+Categories=Settings;Appearance;

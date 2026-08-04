@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# pkg-install — install and remove packages with yay + fzf
+# Multi-select with Tab, Enter to confirm.
+
+set -uo pipefail
+
+FZF_STYLE='--style full'
+FZF_BIND='ctrl-/:change-preview-window(down|hidden)'
+BAT_PREVIEW='bat -n --theme="Catppuccin Mocha" --color=always'
+
+clear
+
+action=$(printf 'Install\nRemove\n' | fzf $FZF_STYLE --height=30% --header='Select action' --prompt='> ')
+
+if [[ -z "$action" ]]; then
+    exit 0
+fi
+
+case "$action" in
+    Install)
+        pkgs=$(yay -Slq | fzf $FZF_STYLE --multi --height=85% \
+            --header='Tab to select packages, Enter to confirm' \
+            --prompt='Install > ' \
+            --bind="$FZF_BIND" \
+            --preview="yay -Si {1} 2>/dev/null | $BAT_PREVIEW")
+        if [[ -z "$pkgs" ]]; then
+            exit 0
+        fi
+        echo
+        echo "Installing:"
+        echo "$pkgs" | sed 's/^/  - /'
+        echo
+        read -r -p "Confirm install? [y/N] " ans
+        if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+            exit 0
+        fi
+        echo "$pkgs" | xargs yay -S --noconfirm
+        ;;
+    Remove)
+        pkgs=$(yay -Qq | fzf $FZF_STYLE --multi --height=85% \
+            --header='Tab to select packages, Enter to confirm' \
+            --prompt='Remove > ' \
+            --bind="$FZF_BIND" \
+            --preview="yay -Qi {1} 2>/dev/null | $BAT_PREVIEW")
+        if [[ -z "$pkgs" ]]; then
+            exit 0
+        fi
+        echo
+        echo "Removing:"
+        echo "$pkgs" | sed 's/^/  - /'
+        echo
+        read -r -p "Confirm remove? [y/N] " ans
+        if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+            exit 0
+        fi
+        echo "$pkgs" | xargs yay -Rns --noconfirm
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+read -r -p "Press Enter to close..."
