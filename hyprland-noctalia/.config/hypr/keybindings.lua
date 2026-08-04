@@ -4,21 +4,22 @@ hl.bind(MAIN_MOD .. " + SPACE", hl.dsp.exec_cmd(MENU))
 hl.bind(MAIN_MOD .. " + B", hl.dsp.exec_cmd(LAUNCH .. BROWSER))
 hl.bind(MAIN_MOD .. " + E", hl.dsp.exec_cmd(LAUNCH .. FILE_MANAGER))
 hl.bind(MAIN_MOD .. " + Z", hl.dsp.exec_cmd(LAUNCH .. "zeditor"))
-hl.bind(MAIN_MOD .. " + I", hl.dsp.exec_cmd(LAUNCH .. HOME_DIR .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"))
-hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(LAUNCH .. "zeditor ~/dotfiles/hypr/.config/hypr/"))
-hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
-hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd("walker -m symbols"))
-hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd("~/.local/bin/powermenu.sh"))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(HOME_DIR .. "/.local/bin/wallpaper-select.sh"))
-hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. "flatpak run com.valvesoftware.Steam"))
+hl.bind(MAIN_MOD .. " + N", hl.dsp.exec_cmd(LAUNCH .. EDITOR))
+hl.bind(MAIN_MOD .. " + T", hl.dsp.exec_cmd(LAUNCH .. TERMINAL .. " -e " .. SYS_MONITOR))
+hl.bind(
+  MAIN_MOD .. " + I",
+  hl.dsp.exec_cmd(LAUNCH .. HOME_DIR .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea")
+)
+hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(LAUNCH .. EDITOR .. " ~/dotfiles/hyprland-noctalia/.config/hypr/"))
+hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd(MENU_CLIPBOARD))
+hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(MENU_EMOJI))
+hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(MENU_POWER))
+hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(MENU_WALLPAPER))
+hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. "steam"))
 
 -- Screenshots
-hl.bind("PRINT", hl.dsp.exec_cmd("flameshot gui -p ~/Pictures/Screenshots -c"))
-hl.bind(MAIN_MOD .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
-hl.bind(
-  MAIN_MOD .. " + " .. SHIFT_MOD .. " + T",
-  hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']])
-)
+hl.bind("PRINT", hl.dsp.exec_cmd(NOCTALIA .. "screenshot-region"))
+hl.bind(MAIN_MOD .. " + PRINT", hl.dsp.exec_cmd(NOCTALIA .. "screenshot-fullscreen pick"))
 
 -- Window management
 hl.bind(MAIN_MOD .. " + W", hl.dsp.window.close())
@@ -61,23 +62,11 @@ hl.bind(MAIN_MOD .. " + equal", hl.dsp.window.resize({ x = 20, y = 20, relative 
 hl.bind(MAIN_MOD .. " + minus", hl.dsp.window.resize({ x = -20, y = -20, relative = true }), { repeating = true })
 hl.bind(MAIN_MOD .. " + 0", hl.dsp.window.resize({ x = 900, y = 600 }))
 
--- Media / Volume
-hl.bind(
-  "XF86AudioRaiseVolume",
-  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-  { locked = true, repeating = true }
-)
-hl.bind(
-  "XF86AudioLowerVolume",
-  hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
-  { locked = true, repeating = true }
-)
-hl.bind(
-  "XF86AudioMute",
-  hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
-  { locked = true, repeating = true }
-)
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- Media / Volume (via Noctalia)
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(NOCTALIA .. "volume-up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(NOCTALIA .. "volume-down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(NOCTALIA .. "volume-mute"), { locked = true, repeating = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd(NOCTALIA .. "media next"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd(NOCTALIA .. "media toggle"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(NOCTALIA .. "media toggle"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(NOCTALIA .. "media previous"), { locked = true })

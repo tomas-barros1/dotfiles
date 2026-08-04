@@ -12,8 +12,8 @@ binds {
     Mod+Space { spawn-sh "nc -U /run/user/1000/walker/walker.sock"; }
     // Mod+B: browser (BROWSER=helium-browser)
     Mod+B { spawn "helium-browser"; }
-    // Mod+E: file manager (FILE_MANAGER=GSK_RENDERER=ngl nautilus)
-    Mod+E { spawn-sh "GSK_RENDERER=ngl nautilus"; }
+    // Mod+E: file manager
+    Mod+E { spawn "nautilus"; }
     Mod+Z { spawn "zeditor"; }
     Mod+I { spawn "/home/tom/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"; }
     Mod+H { spawn-sh "zeditor ~/dotfiles/hypr/.config/hypr/"; }
