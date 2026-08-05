@@ -2,7 +2,7 @@
 Type=Application
 Name=Sunsetr
 Comment=Alterna o filtro de luz azul (sunsetr)
-Icon=sunsetr.png
+Icon=/home/tom/.local/share/icons/sunsetr.png
 Exec=/home/tom/.local/scripts/sunsetr.sh
 Terminal=false
 StartupNotify=false

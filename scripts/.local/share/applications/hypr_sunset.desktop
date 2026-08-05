@@ -2,7 +2,7 @@
 Name=Hyprsunset
 Comment=Alterna o filtro de luz azul (hyprsunset)
 Exec=/home/tom/.local/scripts/hypr_sunset.sh
-Icon=hyprsunset
+Icon=/home/tom/.local/share/icons/hyprsunset.png
 Terminal=false
 Type=Application
 Categories=Utility;
