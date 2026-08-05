@@ -1,8 +1,10 @@
 [Desktop Entry]
+Type=Application
 Name=Sunsetr
 Comment=Alterna o filtro de luz azul (sunsetr)
+Icon=/usr/bin/sunsetr
 Exec=/home/tom/.local/scripts/sunsetr.sh
-Icon=night-light
 Terminal=false
-Type=Application
+StartupNotify=false
+NoDisplay=false
 Categories=Utility;

@@ -7,8 +7,8 @@ hl.bind(MAIN_MOD .. " + Z", hl.dsp.exec_cmd(LAUNCH .. "zeditor"))
 hl.bind(MAIN_MOD .. " + N", hl.dsp.exec_cmd(LAUNCH .. EDITOR))
 hl.bind(MAIN_MOD .. " + T", hl.dsp.exec_cmd(LAUNCH .. TERMINAL .. " -e " .. SYS_MONITOR))
 hl.bind(
-  MAIN_MOD .. " + I",
-  hl.dsp.exec_cmd(LAUNCH .. HOME_DIR .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea")
+	MAIN_MOD .. " + I",
+	hl.dsp.exec_cmd(LAUNCH .. HOME_DIR .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea")
 )
 hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(LAUNCH .. EDITOR .. " ~/dotfiles/hyprland-noctalia/.config/hypr/"))
 hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd(MENU_CLIPBOARD))
@@ -16,6 +16,15 @@ hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(MENU_EMOJI))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(MENU_POWER))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(MENU_WALLPAPER))
 hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. "steam"))
+
+-- Toggle night light
+hl.bind(MAIN_MOD .. " + K", hl.dsp.exec_cmd("noctalia msg nightlight-toggle"))
+
+-- Text extractor
+hl.bind(
+	MAIN_MOD .. " + " .. SHIFT_MOD .. " + T",
+	hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']])
+)
 
 -- Screenshots
 hl.bind("PRINT", hl.dsp.exec_cmd(NOCTALIA .. "screenshot-region"))
@@ -29,6 +38,27 @@ hl.bind(MAIN_MOD .. " + P", hl.dsp.window.pseudo())
 -- View modes
 hl.bind(MAIN_MOD .. " + F", hl.dsp.window.fullscreen())
 hl.bind(MAIN_MOD .. " + F11", hl.dsp.window.fullscreen())
+
+-- Toggle layout scrolling/dwindle na workspace atual
+local scroll_state = {} -- workspace.id -> true (scrolling) | false/nil (dwindle)
+
+hl.bind(MAIN_MOD .. " + L", function()
+	local workspace = hl.get_active_workspace()
+	if not workspace then
+		return
+	end
+
+	local using_scrolling = not scroll_state[workspace.id]
+	scroll_state[workspace.id] = using_scrolling
+
+	hl.workspace_rule({
+		workspace = tostring(workspace.id),
+		layout = using_scrolling and "scrolling" or "dwindle",
+	})
+
+	local label = using_scrolling and "Scrolling" or "Dwindle"
+	hl.exec_cmd(NOCTALIA .. 'notification-show "Layout: ' .. label .. " (ws " .. workspace.id .. ')"')
+end)
 
 -- Layout
 hl.bind(MAIN_MOD .. " + J", hl.dsp.layout("togglesplit"))
@@ -53,8 +83,8 @@ hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + down", hl.dsp.window.swap({ direct
 
 -- Workspaces
 for i = 1, 9 do
-  hl.bind(MAIN_MOD .. " + " .. i, hl.dsp.focus({ workspace = i }))
-  hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + " .. i, hl.dsp.window.move({ workspace = i }))
+	hl.bind(MAIN_MOD .. " + " .. i, hl.dsp.focus({ workspace = i }))
+	hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Resize
