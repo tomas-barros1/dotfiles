@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# pkg-remove — fuzzy-finder TUI para remover pacotes instalados (yay + fzf)
+# Baseado em omarchy-pkg-remove.txt, adaptado pro sistema local.
+
+set -uo pipefail
+
+BAT_PREVIEW='bat -n --theme="Catppuccin Mocha" --color=always'
+
+clear
+
+fzf_args=(
+    --multi
+    --preview 'yay -Qi {1}'
+    --preview-label='alt-p: descricao, alt-j/k: scroll, tab: multi'
+    --preview-label-pos='bottom'
+    --preview-window 'down:65%:wrap'
+    --bind 'alt-p:toggle-preview'
+    --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
+    --bind 'alt-k:preview-up,alt-j:preview-down'
+    --color 'pointer:red,marker:red'
+)
+
+pkg_names=$(yay -Qqe | fzf "${fzf_args[@]}")
+
+if [[ -z "$pkg_names" ]]; then
+    exit 0
+fi
+
+echo
+echo "Removendo:"
+echo "$pkg_names" | sed 's/^/  - /'
+echo
+read -r -p "Confirmar remocao? [y/N] " ans
+if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+    exit 0
+fi
+
+echo "$pkg_names" | tr '\n' ' ' | xargs sudo pacman -Rns --noconfirm
+
+read -r -p "Pressione Enter para fechar..."

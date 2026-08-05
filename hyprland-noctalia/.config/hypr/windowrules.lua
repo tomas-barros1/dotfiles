@@ -20,6 +20,7 @@ local GAME_CLASSES = {
 	"^osu!$",
 	"^gamescope$",
 	"^Lunar Client",
+	"^Minecraft",
 	"^steam_app_",
 }
 
@@ -68,3 +69,12 @@ end
 
 hl.on("window.fullscreen", update_dnd)
 hl.on("window.active", update_dnd)
+
+-- Workspaces 1-5 persistentes (sempre visíveis no Noctalia)
+for i = 1, 5 do
+	hl.workspace_rule({
+		workspace = tostring(i),
+		monitor = "DP-1",
+		persistent = true,
+	})
+end

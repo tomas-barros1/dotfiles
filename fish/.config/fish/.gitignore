@@ -1,0 +1,23 @@
+# Fisher-managed plugin files
+completions/fisher.fish
+completions/fzf_configure_bindings.fish
+conf.d/autopair.fish
+conf.d/fzf.fish
+conf.d/git.fish
+functions/fisher.fish
+functions/_autopair_*.fish
+functions/_fzf_*.fish
+functions/fzf_configure_bindings.fish
+functions/__git.*.fish
+functions/gbage.fish
+functions/gbda.fish
+functions/gdv.fish
+functions/gignored.fish
+functions/glp.fish
+functions/grel.fish
+functions/grename.fish
+functions/grt.fish
+functions/gtest.fish
+functions/gtl.fish
+functions/gunwip.fish
+functions/gwip.fish

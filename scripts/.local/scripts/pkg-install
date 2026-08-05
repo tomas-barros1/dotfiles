@@ -1,63 +1,43 @@
 #!/usr/bin/env bash
-# pkg-install — install and remove packages with yay + fzf
-# Multi-select with Tab, Enter to confirm.
+# pkg-install — fuzzy-finder TUI para instalar pacotes (yay + fzf)
+# Baseado em omarchy-pkg-aur-install.sh, adaptado pro sistema local.
 
 set -uo pipefail
 
-FZF_STYLE='--style full'
-FZF_BIND='ctrl-/:change-preview-window(down|hidden)'
 BAT_PREVIEW='bat -n --theme="Catppuccin Mocha" --color=always'
 
 clear
 
-action=$(printf 'Install\nRemove\n' | fzf $FZF_STYLE --height=30% --header='Select action' --prompt='> ')
+fzf_args=(
+    --multi
+    --preview 'yay -Siia {1}'
+    --preview-label='alt-p: descricao, alt-b/B: PKGBUILD, alt-j/k: scroll, tab: multi'
+    --preview-label-pos='bottom'
+    --preview-window 'down:65%:wrap'
+    --bind 'alt-p:toggle-preview'
+    --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
+    --bind 'alt-k:preview-up,alt-j:preview-down'
+    --bind 'alt-b:change-preview:yay -Gpa {1} | tail -n +5'
+    --bind 'alt-B:change-preview:yay -Siia {1}'
+    --color 'pointer:green,marker:green'
+)
 
-if [[ -z "$action" ]]; then
+pkg_names=$(yay -Slqa | fzf "${fzf_args[@]}")
+
+if [[ -z "$pkg_names" ]]; then
     exit 0
 fi
 
-case "$action" in
-    Install)
-        pkgs=$(yay -Slq | fzf $FZF_STYLE --multi --height=85% \
-            --header='Tab to select packages, Enter to confirm' \
-            --prompt='Install > ' \
-            --bind="$FZF_BIND" \
-            --preview="yay -Si {1} 2>/dev/null | $BAT_PREVIEW")
-        if [[ -z "$pkgs" ]]; then
-            exit 0
-        fi
-        echo
-        echo "Installing:"
-        echo "$pkgs" | sed 's/^/  - /'
-        echo
-        read -r -p "Confirm install? [y/N] " ans
-        if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
-            exit 0
-        fi
-        echo "$pkgs" | xargs yay -S --noconfirm
-        ;;
-    Remove)
-        pkgs=$(yay -Qq | fzf $FZF_STYLE --multi --height=85% \
-            --header='Tab to select packages, Enter to confirm' \
-            --prompt='Remove > ' \
-            --bind="$FZF_BIND" \
-            --preview="yay -Qi {1} 2>/dev/null | $BAT_PREVIEW")
-        if [[ -z "$pkgs" ]]; then
-            exit 0
-        fi
-        echo
-        echo "Removing:"
-        echo "$pkgs" | sed 's/^/  - /'
-        echo
-        read -r -p "Confirm remove? [y/N] " ans
-        if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
-            exit 0
-        fi
-        echo "$pkgs" | xargs yay -Rns --noconfirm
-        ;;
-    *)
-        exit 0
-        ;;
-esac
+echo
+echo "Instalando:"
+echo "$pkg_names" | sed 's/^/  - /'
+echo
+read -r -p "Confirmar instalacao? [y/N] " ans
+if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+    exit 0
+fi
 
-read -r -p "Press Enter to close..."
+echo "$pkg_names" | sed 's/^/aur\//' | tr '\n' ' ' | xargs yay -S --noconfirm
+sudo updatedb
+
+read -r -p "Pressione Enter para fechar..."
