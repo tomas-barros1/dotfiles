@@ -1,0 +1,8 @@
+// Dank Material Shell (DMS) — bar, notifications, launcher, wallpaper.
+spawn-at-startup "dms" "run"
+
+// Terminal server so footclient attaches (matches the Hyprland setup).
+spawn-at-startup "foot" "--server"
+
+// DBus activation environment for systemd-managed apps.
+spawn-sh-at-startup "dbus-update-activation-environment --systemd --all"

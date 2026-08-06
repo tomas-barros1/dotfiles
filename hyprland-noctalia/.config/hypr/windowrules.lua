@@ -7,12 +7,6 @@ hl.window_rule({
 	size = "1200 800",
 })
 
--- Polkit agent
-hl.window_rule({
-	match = { class = "^(polkit-gnome-authentication-agent-1)$" },
-	workspace = "unset",
-})
-
 -- Classes de jogos (fonte única de verdade, usada nas regras e no DND)
 local GAME_CLASSES = {
 	"^dota2$",

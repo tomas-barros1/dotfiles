@@ -1,0 +1,21 @@
+// niri configuration, split into per-topic files (mirrors the dotfiles layout).
+
+include "input.kdl"
+include "outputs.kdl"
+include "layout.kdl"
+include "animations.kdl"
+include "window-rules.kdl"
+include "environment.kdl"
+include "autostart.kdl"
+include "misc.kdl"
+
+// DMS (Dank Material Shell) — auto-generated files, now flat in this dir.
+include optional=true "colors.kdl"
+include optional=true "dms-layout.kdl"
+include optional=true "alttab.kdl"
+include optional=true "cursor.kdl"
+include optional=true "wpblur.kdl"
+
+// All keybindings (unified setup replicating Hyprland binds + DMS integration)
+include "keybindings.kdl"
+
