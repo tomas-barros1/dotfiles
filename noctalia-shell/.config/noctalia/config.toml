@@ -15,6 +15,10 @@ scale = 1.10
 start = [ "workspaces" ]
 thickness = 35
 
+[notification]
+enable_daemon = true
+layer = "top" # top | overlay
+
 [brightness]
 enable_ddcutil = true
 
