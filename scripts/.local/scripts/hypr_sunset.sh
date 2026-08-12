@@ -5,5 +5,5 @@ pids=$(pidof hyprsunset)
 if [[ -n "$pids" ]]; then
   kill $pids
 else
-  hyprsunset &
+  exec hyprsunset
 fi

@@ -10,7 +10,7 @@ clear
 
 fzf_args=(
     --multi
-    --preview 'yay -Siia {1}'
+    --preview 'yay -Si {1}'
     --preview-label='alt-p: descricao, alt-b/B: PKGBUILD, alt-j/k: scroll, tab: multi'
     --preview-label-pos='bottom'
     --preview-window 'down:65%:wrap'
@@ -18,11 +18,11 @@ fzf_args=(
     --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
     --bind 'alt-k:preview-up,alt-j:preview-down'
     --bind 'alt-b:change-preview:yay -Gpa {1} | tail -n +5'
-    --bind 'alt-B:change-preview:yay -Siia {1}'
+    --bind 'alt-B:change-preview:yay -Si {1}'
     --color 'pointer:green,marker:green'
 )
 
-pkg_names=$(yay -Slqa | fzf "${fzf_args[@]}")
+pkg_names=$(yay -Slq | sort -u | fzf "${fzf_args[@]}")
 
 if [[ -z "$pkg_names" ]]; then
     exit 0
@@ -37,7 +37,7 @@ if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
     exit 0
 fi
 
-echo "$pkg_names" | sed 's/^/aur\//' | tr '\n' ' ' | xargs yay -S --noconfirm
+echo "$pkg_names" | tr '\n' ' ' | xargs yay -S --noconfirm
 sudo updatedb
 
 read -r -p "Pressione Enter para fechar..."

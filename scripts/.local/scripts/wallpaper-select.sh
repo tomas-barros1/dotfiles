@@ -25,5 +25,4 @@ if [[ -z "$SELECTION" || ! -f "$SELECTION" ]]; then
 fi
 
 pkill swaybg
-swaybg -i "$SELECTION" -m fill &
-disown
+exec swaybg -i "$SELECTION" -m fill

@@ -5,5 +5,5 @@ pids=$(pidof sunsetr)
 if [[ -n "$pids" ]]; then
   kill $pids
 else
-  sunsetr &
+  exec sunsetr
 fi
