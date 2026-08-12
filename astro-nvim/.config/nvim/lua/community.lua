@@ -9,6 +9,7 @@ return {
   { import = "astrocommunity.recipes.cache-colorscheme" },
   { import = "astrocommunity.search.grug-far-nvim" },
   { import = "astrocommunity.pack.ruby" },
+  { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.go" },
