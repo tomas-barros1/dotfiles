@@ -1,0 +1,17 @@
+^\.local/share/nvim
+^\.local/share/mise
+^\.local/share/flatpak
+^\.local/share/gvfs-metadata
+^\.local/share/keyrings
+^\.local/share/pki
+^\.local/share/zoxide
+^\.local/share/nautilus
+^\.local/share/hyprland
+^\.local/share/nwg-look
+^\.local/share/qalculate
+^\.local/share/opentui
+^\.local/share/opencode
+^\.local/share/org\.gnome\.TextEditor
+^\.local/share/recently-used\.xbel
+^\.local/state
+^\.local/share/fish/fish_history

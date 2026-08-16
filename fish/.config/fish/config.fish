@@ -3,12 +3,11 @@ if not status is-interactive
 end
 
 starship init fish | source
-# oh-my-posh init fish --config ~/dotfiles/oh-my-posh/catppuccin_mocha.omp.json | source
 zoxide init fish | source
 fzf --fish | source
 mise activate fish --shims | source
 
-set -x EDITOR /home/tom/.local/share/mise/shims/nvim
+set -x EDITOR nvim
 set -x SUDO_EDITOR $EDITOR
 
 set -x FZF_CTRL_T_OPTS \

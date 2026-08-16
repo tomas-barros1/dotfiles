@@ -5,7 +5,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("walker --gapplication-service")
   hl.exec_cmd("flameshot")
   hl.exec_cmd(
-    [[sh -c 'wallpaper=$(cat ~/.cache/wallpaper 2>/dev/null); swaybg -i "${wallpaper:-~/Wallpapers/clouds-3.png}" -m fill &']])
+    [[sh -c 'wallpaper=$(cat "$HOME/.cache/wallpaper" 2>/dev/null); swaybg -i "${wallpaper:-$HOME/Wallpapers/sea-sunset-clouds-sky-5k-zh.jpg}" -m fill &']])
   hl.exec_cmd("fcitx5")
   hl.exec_cmd("waybar")
   hl.exec_cmd("swaync")

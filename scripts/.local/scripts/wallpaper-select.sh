@@ -24,5 +24,8 @@ if [[ -z "$SELECTION" || ! -f "$SELECTION" ]]; then
   exit 0
 fi
 
+mkdir -p "$HOME/.cache"
+echo "$SELECTION" > "$HOME/.cache/wallpaper"
+
 pkill swaybg
 exec swaybg -i "$SELECTION" -m fill
