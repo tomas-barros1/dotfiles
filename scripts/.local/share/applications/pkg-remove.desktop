@@ -1,8 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=pkg-remove
+Name=Remover pacote
 Comment=Remover pacotes instalados com fzf
-Exec=foot -e /home/tom/.local/scripts/pkg-remove
 Icon=utilities-terminal
+Exec=foot -e /home/tom/.local/scripts/pkg-remove
 Terminal=false
+StartupNotify=false
+NoDisplay=false
 Categories=System;PackageManager;

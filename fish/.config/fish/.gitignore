@@ -21,3 +21,4 @@ functions/gtest.fish
 functions/gtl.fish
 functions/gunwip.fish
 functions/gwip.fish
+fish_variables

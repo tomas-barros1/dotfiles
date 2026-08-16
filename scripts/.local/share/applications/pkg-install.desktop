@@ -1,8 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=pkg-install
+Name=Instalar pacote
 Comment=Instalar pacotes com yay + fzf
-Exec=foot -e /home/tom/.local/scripts/pkg-install
 Icon=utilities-terminal
+Exec=foot -e /home/tom/.local/scripts/pkg-install
 Terminal=false
+StartupNotify=false
+NoDisplay=false
 Categories=System;PackageManager;
