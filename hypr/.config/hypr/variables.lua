@@ -12,7 +12,7 @@ CLIPBOARD = "walker -m clipboard"
 SYMBOLS = "walker -m symbols"
 POWERMENU = HOME_DIR .. "/.local/scripts/powermenu.sh"
 WALLPAPER_SELECT = HOME_DIR .. "/.local/scripts/wallpaper-select.sh"
-STEAM = "flatpak run com.valvesoftware.Steam"
+STEAM = "steam"
 SCREENSHOT_GUI = "flameshot gui -p " .. HOME_DIR .. "/Pictures/Screenshots -c"
 SCREENSHOT_WINDOW = "hyprshot -m window"
 SCREENSHOT_OCR = [[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']]
@@ -24,3 +24,4 @@ PLAYERCTL_PREV = "playerctl previous"
 PLAYERCTL_PLAY_PAUSE = "playerctl play-pause"
 RESIZE_STEP = 20
 RESIZE_RESET = { x = 900, y = 600 }
+SUNSETR_TOGGLE = [[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || sunsetr &']]

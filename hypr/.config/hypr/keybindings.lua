@@ -10,6 +10,7 @@ hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(SYMBOLS))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(POWERMENU))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(WALLPAPER_SELECT))
 hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. STEAM))
+hl.bind(MAIN_MOD .. " + K", hl.dsp.exec_cmd(SUNSETR_TOGGLE))
 
 -- Screenshots
 hl.bind("PRINT", hl.dsp.exec_cmd(SCREENSHOT_GUI))
