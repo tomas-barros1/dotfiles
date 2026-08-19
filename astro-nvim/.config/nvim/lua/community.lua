@@ -6,6 +6,7 @@ return {
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
   { import = "astrocommunity.terminal-integration.vim-tmux-navigator" },
+  { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.recipes.cache-colorscheme" },
   { import = "astrocommunity.search.grug-far-nvim" },
   { import = "astrocommunity.pack.ruby" },

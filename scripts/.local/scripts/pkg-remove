@@ -30,8 +30,8 @@ echo
 echo "Removendo:"
 echo "$pkg_names" | sed 's/^/  - /'
 echo
-read -r -p "Confirmar remocao? [y/N] " ans
-if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+read -r -p "Confirmar remocao? [Y/n] " ans
+if [[ "$ans" == "n" || "$ans" == "N" ]]; then
     exit 0
 fi
 

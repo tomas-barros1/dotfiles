@@ -9,7 +9,7 @@ HOME_DIR = os.getenv("HOME")
 
 -- Noctalia replaces walker, flameshot, waybar, swaync and the old scripts
 NOCTALIA = "noctalia msg "
-LAUNCH = "uwsm app -- " -- uwsm-managed launches (as in the old config)
+LAUNCH = "uwsm app -- "
 MENU = NOCTALIA .. "panel-toggle launcher"
 MENU_EMOJI = NOCTALIA .. "panel-toggle launcher /emo"
 MENU_CLIPBOARD = NOCTALIA .. "panel-toggle clipboard"

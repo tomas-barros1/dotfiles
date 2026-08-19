@@ -32,11 +32,10 @@ echo
 echo "Instalando:"
 echo "$pkg_names" | sed 's/^/  - /'
 echo
-read -r -p "Confirmar instalacao? [y/N] " ans
-if [[ "$ans" != "y" && "$ans" != "Y" ]]; then
+read -r -p "Confirmar instalacao? [Y/n] " ans
+if [[ "$ans" == "n" || "$ans" == "N" ]]; then
     exit 0
 fi
-
 echo "$pkg_names" | tr '\n' ' ' | xargs yay -S --noconfirm
 sudo updatedb
 

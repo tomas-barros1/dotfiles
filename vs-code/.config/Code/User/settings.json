@@ -1,6 +1,6 @@
 {
     "editor.tabSize": 2,
-    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontSize": 15,
     "fonted.font": "Inter",
     "telemetry.telemetryLevel": "off",
@@ -8,14 +8,14 @@
     "explorer.compactFolders": false,
     "files.autoSave": "afterDelay",
     "editor.formatOnSave": true,
-    "workbench.iconTheme": "symbols",
+    "workbench.iconTheme": "catppuccin-mocha",
     "vim.useCtrlKeys": false,
     "workbench.sideBar.location": "right",
     "window.commandCenter": false,
     "workbench.layoutControl.enabled": false,
     "chat.commandCenter.enabled": false,
     "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font Mono",
-    "workbench.colorTheme": "Oscura Dusk",
+    "workbench.colorTheme": "Catppuccin Mocha",
     "editor.minimap.enabled": false,
     "security.workspace.trust.enabled": false,
     "html.autoClosingTags": true,
@@ -42,5 +42,6 @@
     "editor.linkedEditing": true,
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "editor.stickyScroll.enabled": false
 }

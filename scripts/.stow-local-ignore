@@ -15,3 +15,5 @@
 ^\.local/share/recently-used\.xbel
 ^\.local/state
 ^\.local/share/fish/fish_history
+^\.local/share/icons
+^\.local/share/applications

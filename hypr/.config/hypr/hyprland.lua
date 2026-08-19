@@ -1,5 +1,4 @@
 require("variables")
-require("env")
 require("monitors")
 require("input")
 require("autostart")

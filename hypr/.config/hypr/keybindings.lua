@@ -11,6 +11,7 @@ hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(POWERMENU))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(WALLPAPER_SELECT))
 hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. STEAM))
 hl.bind(MAIN_MOD .. " + K", hl.dsp.exec_cmd(SUNSETR_TOGGLE))
+hl.bind(MAIN_MOD .. " + T", hl.dsp.exec_cmd(SYSTEM_MONITOR))
 
 -- Screenshots
 hl.bind("PRINT", hl.dsp.exec_cmd(SCREENSHOT_GUI))
@@ -54,26 +55,22 @@ for i = 1, 9 do
 end
 
 -- Resize
-hl.bind(MAIN_MOD .. " + equal", hl.dsp.window.resize({ x = RESIZE_STEP, y = RESIZE_STEP, relative = true }), { repeating = true })
-hl.bind(MAIN_MOD .. " + minus", hl.dsp.window.resize({ x = -RESIZE_STEP, y = -RESIZE_STEP, relative = true }), { repeating = true })
+hl.bind(
+	MAIN_MOD .. " + equal",
+	hl.dsp.window.resize({ x = RESIZE_STEP, y = RESIZE_STEP, relative = true }),
+	{ repeating = true }
+)
+hl.bind(
+	MAIN_MOD .. " + minus",
+	hl.dsp.window.resize({ x = -RESIZE_STEP, y = -RESIZE_STEP, relative = true }),
+	{ repeating = true }
+)
 hl.bind(MAIN_MOD .. " + 0", hl.dsp.window.resize(RESIZE_RESET))
 
 -- Media / Volume
-hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd(VOLUME_UP),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd(VOLUME_DOWN),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioMute",
-	hl.dsp.exec_cmd(VOLUME_MUTE),
-	{ locked = true, repeating = true }
-)
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(VOLUME_UP), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(VOLUME_DOWN), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(VOLUME_MUTE), { locked = true, repeating = true })
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd(PLAYERCTL_NEXT), { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd(PLAYERCTL_PLAY_PAUSE), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(PLAYERCTL_PLAY_PAUSE), { locked = true })
