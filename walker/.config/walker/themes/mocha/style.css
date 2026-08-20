@@ -121,6 +121,15 @@ child:selected .item-box * {
   -gtk-icon-transform: scale(0.9);
 }
 
+.item-quick-activation {
+  margin-right: 14px;
+  font-size: 14px;
+  background-color: @surface2;
+  color: @text;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
 .current {
   font-style: italic;
   color: @mauve;

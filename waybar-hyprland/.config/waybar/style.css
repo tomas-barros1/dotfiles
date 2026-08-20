@@ -2,7 +2,7 @@
 
 /* ── Base ─────────────────────────────── */
 * {
-  font-family: "Iosevka Nerd Font", monospace;
+  font-family: "JetBrains Mono Nerd Font", monospace;
   font-size: 13.5px;
   font-weight: 500;
   min-height: 0;
@@ -44,7 +44,9 @@ tooltip label {
   border: none;
   min-width: 22px;
   min-height: 22px;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 #workspaces button:hover {
@@ -92,10 +94,10 @@ tooltip label {
   padding: 0;
 }
 
-#system>widget>#pulseaudio,
-#system>widget>#custom-brightness,
-#system>widget>#network,
-#system>widget>#custom-weather {
+#system > widget > #pulseaudio,
+#system > widget > #custom-brightness,
+#system > widget > #network,
+#system > widget > #custom-weather {
   background-color: transparent;
   padding: 0 12px;
   margin: 0;
@@ -103,7 +105,7 @@ tooltip label {
 }
 
 /* separador sutil entre módulos do grupo */
-#system>widget:not(:first-child) {
+#system > widget:not(:first-child) {
   border-left: 1px solid @surface2;
 }
 
@@ -152,11 +154,11 @@ tooltip label {
   padding: 0 12px;
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background-color: @red;
   border-radius: 6px;

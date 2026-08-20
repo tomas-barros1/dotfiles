@@ -4,7 +4,7 @@ hl.bind(MAIN_MOD .. " + SPACE", hl.dsp.exec_cmd(MENU))
 hl.bind(MAIN_MOD .. " + B", hl.dsp.exec_cmd(LAUNCH .. BROWSER))
 hl.bind(MAIN_MOD .. " + E", hl.dsp.exec_cmd(LAUNCH .. FILE_MANAGER))
 hl.bind(MAIN_MOD .. " + I", hl.dsp.exec_cmd(LAUNCH .. IDE))
-hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(LAUNCH .. TERMINAL .. " -e nvim " .. HYPR_DIR))
+hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(TERMINAL .. " -D " .. HYPR_DIR .. " -e nvim"))
 hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd(CLIPBOARD))
 hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(SYMBOLS))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(POWERMENU))
@@ -12,6 +12,8 @@ hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(WALLPAPER_SELE
 hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. STEAM))
 hl.bind(MAIN_MOD .. " + K", hl.dsp.exec_cmd(SUNSETR_TOGGLE))
 hl.bind(MAIN_MOD .. " + T", hl.dsp.exec_cmd(SYSTEM_MONITOR))
+hl.bind(MAIN_MOD .. " + Z", hl.dsp.exec_cmd(ZED_EDITOR))
+hl.bind(MAIN_MOD .. " + N", hl.dsp.exec_cmd(NVIM))
 
 -- Screenshots
 hl.bind("PRINT", hl.dsp.exec_cmd(SCREENSHOT_GUI))

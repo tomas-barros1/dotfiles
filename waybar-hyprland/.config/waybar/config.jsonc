@@ -106,7 +106,7 @@
     "format-ethernet": "󰈀 {ifname}",
     "format-disconnected": "󰖪 desconectado",
     "on-click": "nm-connection-editor",
-    "tooltip-format-wifi": " {essid}\n{ipaddr}/{cidr}\nSinal: {signalStrength}%\nFrequência: {frequency}MHz",
+    "tooltip-format-wifi": " {essid}\n{ipaddr}/{cidr}\nSinal: {signalStrength}%\nFrequência: {frequency}MHz",
     "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}/{cidr}\n↑ {bandwidthUpBytes} ↓ {bandwidthDownBytes}",
     "tooltip-format-disconnected": "sem conexão"
   },
@@ -120,8 +120,8 @@
   // Relógio — módulo em destaque (accent) da barra
   "clock": {
     "interval": 1,
-    "format": "  {:L%A %d %H:%M}",
-    "format-alt": "  {:L%A, %d de %B de %Y}",
+    "format": " {:L%A %d %H:%M}",
+    "format-alt": " {:L%A, %d de %B de %Y}",
     "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
     "locale": "pt_BR.utf8",
     "calendar": {
