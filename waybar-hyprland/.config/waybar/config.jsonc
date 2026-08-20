@@ -1,10 +1,10 @@
 {
-  // Waybar — Catppuccin Mocha (redesign)
+  // Waybar — Catppuccin Mocha (redesign v2)
   // =====================================
   "layer": "top",
   "position": "top",
   "height": 40,
-  "spacing": 3,
+  "spacing": 0,
   "margin-top": 0,
   "margin-left": 0,
   "margin-right": 0,
@@ -15,11 +15,8 @@
     "hyprland/window"
   ],
   "modules-right": [
-    "tray",
-    "pulseaudio",
-    "custom/brightness",
-    "network",
-    "custom/weather",
+    "group/tray-wrap",
+    "group/system",
     "clock"
   ],
   // Workspaces
@@ -45,43 +42,26 @@
     "icon": true,
     "icon-size": 16
   },
-  // Relógio
-  "clock": {
-    "interval": 1,
-    "format": " {:L%A %d %H:%M}",
-    "format-alt": "{:L%A, %d de %B de %Y}",
-    "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
-    "locale": "pt_BR.utf8",
-    "calendar": {
-      "mode": "month",
-      "mode-mon-col": 3,
-      "weeks-pos": "right",
-      "on-scroll": 1,
-      "format": {
-        "months": "<span color='#f5e0dc'><b>{}</b></span>",
-        "days": "<span color='#cdd6f4'>{}</span>",
-        "weeks": "<span color='#94e2d5'><b>S{}</b></span>",
-        "weekdays": "<span color='#fab387'><b>{}</b></span>",
-        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
-      }
-    },
-    "actions": {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
+  // Bandeja — isolada em sua própria cápsula
+  "group/tray-wrap": {
+    "orientation": "horizontal",
+    "modules": [
+      "tray"
+    ]
   },
-  // Rede
-  "network": {
-    "interval": 3,
-    "format-wifi": " {essid}",
-    "format-ethernet": "󰈀 {ifname}",
-    "format-disconnected": "󰖪 desconectado",
-    "format-alt": " {signalStrength}%",
-    "on-click": "nm-connection-editor",
-    "tooltip-format-wifi": " {essid}\n{ipaddr}/{cidr}\nSinal: {signalStrength}%\nFrequência: {frequency}MHz",
-    "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}/{cidr}\n↑ {bandwidthUpBytes} ↓ {bandwidthDownBytes}",
-    "tooltip-format-disconnected": "sem conexão"
+  "tray": {
+    "spacing": 24,
+    "icon-size": 15
+  },
+  // Sistema — volume, brilho, rede e clima juntos numa única cápsula
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "custom/brightness",
+      "network",
+      "custom/weather"
+    ]
   },
   // Volume
   "pulseaudio": {
@@ -119,6 +99,17 @@
     "on-scroll-down": "ddcutil -b 7 setvcp 10 - 10",
     "tooltip": false
   },
+  // Rede
+  "network": {
+    "interval": 3,
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀 {ifname}",
+    "format-disconnected": "󰖪 desconectado",
+    "on-click": "nm-connection-editor",
+    "tooltip-format-wifi": " {essid}\n{ipaddr}/{cidr}\nSinal: {signalStrength}%\nFrequência: {frequency}MHz",
+    "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}/{cidr}\n↑ {bandwidthUpBytes} ↓ {bandwidthDownBytes}",
+    "tooltip-format-disconnected": "sem conexão"
+  },
   // Clima
   "custom/weather": {
     "exec": "waybar-weather",
@@ -126,9 +117,30 @@
     "return-type": "json",
     "hide-empty-text": true
   },
-  // Bandeja do sistema
-  "tray": {
-    "spacing": 8,
-    "icon-size": 15
+  // Relógio — módulo em destaque (accent) da barra
+  "clock": {
+    "interval": 1,
+    "format": "  {:L%A %d %H:%M}",
+    "format-alt": "  {:L%A, %d de %B de %Y}",
+    "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "locale": "pt_BR.utf8",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#f5e0dc'><b>{}</b></span>",
+        "days": "<span color='#cdd6f4'>{}</span>",
+        "weeks": "<span color='#94e2d5'><b>S{}</b></span>",
+        "weekdays": "<span color='#fab387'><b>{}</b></span>",
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
   }
 }
