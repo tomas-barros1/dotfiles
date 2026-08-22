@@ -1,18 +1,7 @@
-@define-color base #1e1e2e;
-@define-color mantle #181825;
-@define-color surface0 #313244;
-@define-color surface1 #45475a;
-@define-color overlay1 #7f849c;
-@define-color text #cdd6f4;
-@define-color subtext0 #a6adc8;
-@define-color blue #89b4fa;
-@define-color mauve #cba6f7;
+@import "colors.css";
 
 * {
   all: unset;
-}
-
-* {
   font-family: "JetBrains Mono Nerd Font";
   font-size: 18px;
   color: @text;
@@ -36,14 +25,7 @@ scrollbar {
   border: 2px solid @surface1;
 }
 
-.preview-box {
-}
-
-.box {
-}
-
 .search-container {
-  background: @mantle;
   padding: 10px;
 }
 
@@ -64,21 +46,8 @@ scrollbar {
   outline: none;
 }
 
-.content-container {
-}
-
 .placeholder {
   color: @overlay1;
-}
-
-.scroll {
-}
-
-.list {
-}
-
-child,
-child > * {
 }
 
 child:hover .item-box {
@@ -140,7 +109,4 @@ child:selected .item-box * {
   padding: 10px;
   margin-top: 10px;
   color: @subtext0;
-}
-
-.preview {
 }

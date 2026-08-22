@@ -15,3 +15,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export QT_QPA_PLATFORM="wayland;xcb"
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME=qt6ct
+
+# localsearch-3 (Nautilus) requer XDG_SESSION_CLASS=user
+# greetd nao exporta; UWSM injeta isso no systemd user manager
+XDG_SESSION_CLASS=user

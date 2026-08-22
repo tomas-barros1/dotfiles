@@ -16,7 +16,7 @@ hl.bind(MAIN_MOD .. " + Z", hl.dsp.exec_cmd(ZED_EDITOR))
 hl.bind(MAIN_MOD .. " + N", hl.dsp.exec_cmd(NVIM))
 
 -- Screenshots
-hl.bind("PRINT", hl.dsp.exec_cmd(SCREENSHOT_GUI))
+hl.bind("PRINT", hl.dsp.exec_cmd(LAUNCH .. SCREENSHOT_GUI))
 hl.bind(MAIN_MOD .. " + PRINT", hl.dsp.exec_cmd(SCREENSHOT_WINDOW))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + T", hl.dsp.exec_cmd(SCREENSHOT_OCR))
 

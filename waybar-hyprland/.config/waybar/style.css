@@ -174,5 +174,4 @@ tooltip label {
 
 #clock:hover {
   background-color: @pink;
-  transition: background 0.15s ease;
 }
