@@ -34,12 +34,12 @@
   },
   {
     "bindings": {
-      "ctrl-,": "zed::OpenSettingsFile"
-    }
+      "ctrl-,": "zed::OpenSettingsFile",
+    },
   },
   {
     "unbind": {
-      "ctrl-alt-,": "zed::OpenSettingsFile"
-    }
-  }
+      "ctrl-alt-,": "zed::OpenSettingsFile",
+    },
+  },
 ]

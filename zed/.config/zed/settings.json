@@ -23,6 +23,11 @@
     "dock": "left",
   },
   "agent": {
+    "sandbox_permissions": {
+      "allow_fs_write_all": true,
+      "allow_all_hosts": true,
+      "allow_unsandboxed": false
+    },
     "dock": "left",
     "favorite_models": [],
     "model_parameters": [],

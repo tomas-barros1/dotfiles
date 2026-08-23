@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! pgrep -x alacritty >/dev/null 2>&1; then
+    nohup alacritty --daemon >/dev/null 2>&1 &
+    sleep 0.2
+fi
+
+exec alacritty "$@"

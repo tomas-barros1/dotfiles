@@ -1,10 +1,10 @@
 -- Apps
-hl.bind(MAIN_MOD .. " + RETURN", hl.dsp.exec_cmd(LAUNCH .. TERMINAL))
+hl.bind(MAIN_MOD .. " + RETURN", hl.dsp.exec_cmd(TERMINAL))
 hl.bind(MAIN_MOD .. " + SPACE", hl.dsp.exec_cmd(MENU))
 hl.bind(MAIN_MOD .. " + B", hl.dsp.exec_cmd(LAUNCH .. BROWSER))
 hl.bind(MAIN_MOD .. " + E", hl.dsp.exec_cmd(LAUNCH .. FILE_MANAGER))
 hl.bind(MAIN_MOD .. " + I", hl.dsp.exec_cmd(LAUNCH .. IDE))
-hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(TERMINAL .. " -D " .. HYPR_DIR .. " -e nvim"))
+hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(TERMINAL .. " -- sh -lc 'cd " .. HYPR_DIR .. " && exec nvim'"))
 hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd(CLIPBOARD))
 hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(SYMBOLS))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(POWERMENU))

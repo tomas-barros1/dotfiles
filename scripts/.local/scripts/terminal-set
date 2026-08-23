@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+config_file="${XDG_CONFIG_HOME:-$HOME/.config}/xdg-terminals.list"
+
+current=""
+[[ -r "$config_file" ]] && current=$(sed -n '1s/\.desktop$//p' "$config_file")
+
+choice=$(printf '%s\n' footclient foot alacritty | gum choose --header "Terminal atual: ${current:-não definido}")
+
+[[ -n "$choice" ]] || exit 0
+
+mkdir -p "${config_file%/*}"
+
+case "$choice" in
+    footclient)
+        printf '%s\n' footclient.desktop Alacritty.desktop foot.desktop > "$config_file"
+        ;;
+    foot)
+        printf '%s\n' foot.desktop footclient.desktop Alacritty.desktop > "$config_file"
+        ;;
+    alacritty)
+        printf '%s\n' Alacritty.desktop footclient.desktop foot.desktop > "$config_file"
+        ;;
+esac

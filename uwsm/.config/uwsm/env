@@ -9,6 +9,11 @@ export SDL_IM_MODULE=fcitx
 # Wayland / Ozone / Web
 export ELECTRON_OZONE_PLATFORM_HINT=auto
 export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland
+
+#AMD GPU
+export AMD_VULKAN_ICD=RADV
+export MESA_SHADER_CACHE_MAX_SIZE=12G
 
 # Qt Toolkit & Theming
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
@@ -19,3 +24,5 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 # localsearch-3 (Nautilus) requer XDG_SESSION_CLASS=user
 # greetd nao exporta; UWSM injeta isso no systemd user manager
 XDG_SESSION_CLASS=user
+
+export TERMINAL=xdg-terminal-exec

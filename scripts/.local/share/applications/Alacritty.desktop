@@ -1,0 +1,19 @@
+[Desktop Entry]
+Type=Application
+TryExec=/home/tom/.local/bin/alacritty-terminal
+Exec=/home/tom/.local/bin/alacritty-terminal
+Icon=Alacritty
+Terminal=false
+Categories=System;TerminalEmulator;
+Name=Alacritty
+GenericName=Terminal
+Comment=A fast, cross-platform, OpenGL terminal emulator
+StartupNotify=true
+StartupWMClass=Alacritty
+Actions=New;
+X-Desktop-File-Install-Version=0.28
+X-TerminalArgExec=msg create-window
+
+[Desktop Action New]
+Name=New Terminal
+Exec=/home/tom/.local/bin/alacritty-terminal msg create-window

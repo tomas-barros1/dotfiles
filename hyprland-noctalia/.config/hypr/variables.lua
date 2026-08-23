@@ -1,8 +1,8 @@
-TERMINAL = "footclient"
+TERMINAL = "uwsm app -- xdg-terminal-exec"
 FILE_MANAGER = "nautilus"
 BROWSER = "helium-browser"
 SYS_MONITOR = "btop"
-EDITOR = TERMINAL .. " -e /home/tom/.local/share/mise/installs/neovim/0.11/bin/nvim"
+EDITOR = "/home/tom/.local/share/mise/installs/neovim/0.11/bin/nvim"
 MAIN_MOD = "SUPER"
 SHIFT_MOD = "SHIFT"
 HOME_DIR = os.getenv("HOME")
