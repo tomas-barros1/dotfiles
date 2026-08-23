@@ -7,4 +7,14 @@ if ! pgrep -x alacritty >/dev/null 2>&1; then
     sleep 0.2
 fi
 
+if [[ "${1:-}" == "msg create-window" ]]; then
+    shift
+
+    if (($#)); then
+        exec alacritty -e "$@"
+    else
+        exec alacritty
+    fi
+fi
+
 exec alacritty "$@"

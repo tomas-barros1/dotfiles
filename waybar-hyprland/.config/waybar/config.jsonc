@@ -94,7 +94,7 @@
     "exec": "ddcutil -b 7 getvcp 10 -t | awk '{print $4}'",
     "exec-if": "ddcutil -b 7 getvcp 10 >/dev/null 2>&1",
     "format": "󰃟 {}%",
-    "on-click": "ddc_brightness",
+    "on-click": "ddcutil setvcp 10 $(echo | walker --dmenu -p 'Brilho (0-100):')",
     "interval": 5,
     "on-scroll-up": "ddcutil -b 7 setvcp 10 + 10",
     "on-scroll-down": "ddcutil -b 7 setvcp 10 - 10",

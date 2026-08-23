@@ -7,7 +7,7 @@ config_file="${XDG_CONFIG_HOME:-$HOME/.config}/xdg-terminals.list"
 current=""
 [[ -r "$config_file" ]] && current=$(sed -n '1s/\.desktop$//p' "$config_file")
 
-choice=$(printf '%s\n' footclient foot alacritty | gum choose --header "Terminal atual: ${current:-não definido}")
+choice=$(printf '%s\n' footclient foot alacritty kitty | gum choose --header "Terminal atual: ${current:-não definido}")
 
 [[ -n "$choice" ]] || exit 0
 
@@ -23,4 +23,11 @@ case "$choice" in
     alacritty)
         printf '%s\n' Alacritty.desktop footclient.desktop foot.desktop > "$config_file"
         ;;
+    kitty)
+        printf '%s\n' kitty.desktop footclient.desktop foot.desktop Alacritty.desktop > "$config_file"
+        ;;
 esac
+
+if command -v gsettings >/dev/null 2>&1; then
+    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal "$choice" 2>/dev/null || true
+fi
