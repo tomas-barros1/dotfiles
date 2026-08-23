@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Terminal padrão
+Name=Trocar terminal
 Comment=Troca a lista de terminais padrão
 Icon=utilities-terminal
 Exec=uwsm app -- xdg-terminal-exec /home/tom/.local/scripts/terminal-set
