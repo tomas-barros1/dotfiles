@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# pkg-install — fuzzy-finder TUI para instalar pacotes (yay + fzf)
-# Baseado em omarchy-pkg-aur-install.sh, adaptado pro sistema local.
-
 set -uo pipefail
 
 BAT_PREVIEW='bat -n --theme="Catppuccin Mocha" --color=always'
@@ -17,7 +14,7 @@ fzf_args=(
     --bind 'alt-p:toggle-preview'
     --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
     --bind 'alt-k:preview-up,alt-j:preview-down'
-    --bind 'alt-b:change-preview:yay -Gpa {1} | tail -n +5'
+    --bind "alt-b:change-preview:yay -Gpa {1} | $BAT_PREVIEW -l bash"
     --bind 'alt-B:change-preview:yay -Si {1}'
     --color 'pointer:green,marker:green'
 )
@@ -32,11 +29,13 @@ echo
 echo "Instalando:"
 echo "$pkg_names" | sed 's/^/  - /'
 echo
+
 read -r -p "Confirmar instalacao? [Y/n] " ans
 if [[ "$ans" == "n" || "$ans" == "N" ]]; then
     exit 0
 fi
-echo "$pkg_names" | tr '\n' ' ' | xargs yay -S --noconfirm
-sudo updatedb
+
+mapfile -t pkg_array <<< "$pkg_names"
+yay -S "${pkg_array[@]}"
 
 read -r -p "Pressione Enter para fechar..."

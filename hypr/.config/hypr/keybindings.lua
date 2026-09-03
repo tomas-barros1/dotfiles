@@ -32,6 +32,27 @@ hl.bind(MAIN_MOD .. " + F11", hl.dsp.window.fullscreen())
 -- Layout
 hl.bind(MAIN_MOD .. " + J", hl.dsp.layout("togglesplit"))
 
+-- Toggle layout scrolling/dwindle na workspace atual
+local scroll_state = {} -- workspace.id -> true (scrolling) | false/nil (dwindle)
+
+hl.bind(MAIN_MOD .. " + L", function()
+	local workspace = hl.get_active_workspace()
+	if not workspace then
+		return
+	end
+
+	local using_scrolling = not scroll_state[workspace.id]
+	scroll_state[workspace.id] = using_scrolling
+
+	hl.workspace_rule({
+		workspace = tostring(workspace.id),
+		layout = using_scrolling and "scrolling" or "dwindle",
+	})
+
+	local label = using_scrolling and "Scrolling" or "Dwindle"
+	hl.exec_cmd(string.format('notify-send "Workspace %d" "Layout: %s"', workspace.id, label))
+end)
+
 -- Mouse interactions
 hl.bind(MAIN_MOD .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(MAIN_MOD .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })

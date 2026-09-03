@@ -11,7 +11,7 @@ set -gx VISUAL nvim
 set -gx SUDO_EDITOR nvim
 
 alias ls='eza -lh --group-directories-first --icons=auto'
-alias lsa='ls -a'
+alias la='ls -a'
 alias cat="bat --theme='Catppuccin Mocha' --paging=auto --color=always"
 alias cd="z"
 alias n="nvim"

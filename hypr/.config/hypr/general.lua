@@ -20,4 +20,7 @@ hl.config({
 		disable_hyprland_logo = true,
 		mouse_move_enables_dpms = false,
 	},
+	render = {
+		direct_scanout = 2,
+	},
 })

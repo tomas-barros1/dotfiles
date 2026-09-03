@@ -21,6 +21,7 @@ GTK3 = HOME / ".config/gtk-3.0/settings.ini"
 GTK4 = HOME / ".config/gtk-4.0/settings.ini"
 QT5CT = HOME / ".config/qt5ct/qt5ct.conf"
 QT6CT = HOME / ".config/qt6ct/qt6ct.conf"
+ZED = HOME / ".config/zed/settings.json"
 
 
 def die(message: str, code: int = 1) -> None:
@@ -32,7 +33,7 @@ for cmd in ("fzf", "fc-list"):
     if shutil.which(cmd) is None:
         die(f"Erro: {cmd} não está instalado.", 127)
 
-TARGETS = [path for path in (FOOT, ALACRITTY, WAYBAR, WALKER, KITTY, GTK3, GTK4, QT5CT, QT6CT) if path.exists()]
+TARGETS = [path for path in (FOOT, ALACRITTY, WAYBAR, WALKER, KITTY, GTK3, GTK4, QT5CT, QT6CT, ZED) if path.exists()]
 
 if not TARGETS:
     die("Erro: nenhum arquivo de configuração de fonte foi encontrado.")
@@ -203,6 +204,15 @@ for qt_path in (QT5CT, QT6CT):
         flags=re.M,
     )
     qt_path.write_text(qt_text)
+
+if ZED.exists():
+    zed_text = ZED.read_text()
+    zed_text = re.sub(
+        r'("(buffer|ui)_font_family"\s*:\s*")[^"]*(")',
+        lambda m: f'{m.group(1)}{selected_font}{m.group(3)}',
+        zed_text,
+    )
+    ZED.write_text(zed_text)
 
 if subprocess.run(["pgrep", "-x", "waybar"], capture_output=True).returncode == 0:
     subprocess.run(["pkill", "-x", "waybar"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

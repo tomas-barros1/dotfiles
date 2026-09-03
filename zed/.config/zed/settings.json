@@ -15,7 +15,6 @@
     "diagnostics": false,
     "metrics": false,
   },
-  "tab_size": 2,
   "outline_panel": {
     "dock": "left",
   },
@@ -26,7 +25,7 @@
     "sandbox_permissions": {
       "allow_fs_write_all": true,
       "allow_all_hosts": true,
-      "allow_unsandboxed": false
+      "allow_unsandboxed": false,
     },
     "dock": "left",
     "favorite_models": [],
@@ -39,7 +38,6 @@
   "project_panel": {
     "dock": "right",
   },
-  "disable_ai": false,
   "session": {
     "trust_all_worktrees": true,
   },
@@ -54,7 +52,6 @@
     "light": "Catppuccin Mocha",
     "dark": "Catppuccin Mocha",
   },
-  "buffer_line_height": "comfortable",
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "ui_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_features": {

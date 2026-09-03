@@ -106,7 +106,7 @@
     "format-wifi": " {essid}",
     "format-ethernet": "󰈀 {ifname}",
     "format-disconnected": "󰖪 desconectado",
-    "on-click": "uwsm app -- xdg-terminal-exec wlctl",
+    "on-click": "uwsm app -- xdg-terminal-exec impala",
     "tooltip-format-wifi": " {essid}\n{ipaddr}/{cidr}\nSinal: {signalStrength}%\nFrequência: {frequency}MHz",
     "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}/{cidr}\n↑ {bandwidthUpBytes} ↓ {bandwidthDownBytes}",
     "tooltip-format-disconnected": "sem conexão"
