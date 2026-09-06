@@ -1,9 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-pids=$(pidof sunsetr)
-
-if [[ -n "$pids" ]]; then
-  kill $pids
+if pgrep -x "sunsetr" >/dev/null; then
+  pkill -x "sunsetr"
 else
-  exec sunsetr
+  sunsetr &
 fi

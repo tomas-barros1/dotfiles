@@ -1,18 +1,22 @@
-# Espelha o alacritty.toml
 theme = Catppuccin Mocha
+
+shell-integration-features = no-cursor
+cursor-style-blink = false
 cursor-style = block
 
 term = xterm-256color
 clipboard-read = allow
 clipboard-write = allow
 
-font-family = "JetBrains Mono Nerd Font"
+font-family = Hack Nerd Font Mono
 font-size = 12
 
 background-opacity = 0.9
 window-padding-x = 14
 window-padding-y = 14
 window-decoration = none
+
+confirm-close-surface = false
 quit-after-last-window-closed = false
 
 keybind = shift+insert=paste_from_clipboard

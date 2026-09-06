@@ -1,9 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-pids=$(pidof hyprsunset)
-
-if [[ -n "$pids" ]]; then
-  kill $pids
+if pgrep -x "hyprsunset" >/dev/null; then
+  pkill -x "hyprsunset"
 else
-  exec hyprsunset
+  hyprsunset &
 fi

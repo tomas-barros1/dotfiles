@@ -10,15 +10,15 @@ padding = [14]
 size = 15
 
 [fonts.regular]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font Mono"
 style = "Regular"
 
 [fonts.bold]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font Mono"
 style = "Bold"
 
 [fonts.italic]
-family = "JetBrainsMono Nerd Font"
+family = "Hack Nerd Font Mono"
 style = "Italic"
 
 [window]

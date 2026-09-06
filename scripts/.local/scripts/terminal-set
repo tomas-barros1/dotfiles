@@ -1,36 +1,66 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 config_file="${XDG_CONFIG_HOME:-$HOME/.config}/xdg-terminals.list"
+cache_file="${XDG_CACHE_HOME:-$HOME/.cache}/xdg-terminal-exec"
 
+# Extrai o terminal atual e limpa o ID reverso se for o ghostty
 current=""
-[[ -r "$config_file" ]] && current=$(sed -n '1s/\.desktop$//p' "$config_file")
+if [[ -r "$config_file" ]]; then
+  current=$(sed -n '1s/\.desktop$//p' "$config_file" | sed 's/com\.mitchellh\.//I' | tr '[:upper:]' '[:lower:]')
+fi
 
-choice=$(printf '%s\n' footclient foot alacritty kitty rio | gum choose --header "Terminal atual: ${current:-não definido}")
+# Escolha interativa via gum (com fallback caso gum não esteja no path)
+if command -v gum >/dev/null 2>&1; then
+  choice=$(printf '%s\n' footclient foot alacritty kitty rio ghostty | gum choose --header "Terminal atual: ${current:-não definido}")
+else
+  choice=$(printf '%s\n' footclient foot alacritty kitty rio ghostty | fzf --prompt="Terminal [atual: ${current:-nenhum}] > ")
+fi
 
-[[ -n "$choice" ]] || exit 0
+[[ -n "${choice:-}" ]] || exit 0
 
 mkdir -p "${config_file%/*}"
 
+# Mapeia a escolha para o .desktop principal
 case "$choice" in
-    footclient)
-        printf '%s\n' footclient.desktop Alacritty.desktop foot.desktop > "$config_file"
-        ;;
-    foot)
-        printf '%s\n' foot.desktop footclient.desktop Alacritty.desktop > "$config_file"
-        ;;
-    alacritty)
-        printf '%s\n' Alacritty.desktop footclient.desktop foot.desktop > "$config_file"
-        ;;
-    kitty)
-        printf '%s\n' kitty.desktop footclient.desktop foot.desktop Alacritty.desktop > "$config_file"
-        ;;
-    rio)
-        printf '%s\n' rio.desktop footclient.desktop foot.desktop Alacritty.desktop > "$config_file"
-        ;;
+  footclient) main="footclient.desktop" ;;
+  foot)       main="foot.desktop" ;;
+  alacritty)  main="Alacritty.desktop" ;;
+  kitty)      main="kitty.desktop" ;;
+  rio)        main="rio.desktop" ;;
+  ghostty)    main="com.mitchellh.ghostty.desktop" ;;
+  *)          exit 1 ;;
 esac
 
+# Lista padrão de fallbacks
+all_desktops=(
+  com.mitchellh.ghostty.desktop
+  footclient.desktop
+  foot.desktop
+  Alacritty.desktop
+  kitty.desktop
+  rio.desktop
+)
+
+# Coloca o selecionado no topo e os outros na sequência sem duplicatas
+{
+  echo "$main"
+  for d in "${all_desktops[@]}"; do
+    [[ "$d" != "$main" ]] && echo "$d"
+  done
+} > "$config_file"
+
+# Integração com o Nautilus (extensão open-any-terminal)
 if command -v gsettings >/dev/null 2>&1; then
-    gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal "$choice" 2>/dev/null || true
+  nautilus_id="$choice"
+  [[ "$choice" == "ghostty" ]] && nautilus_id="com.mitchellh.ghostty"
+  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal "$nautilus_id" 2>/dev/null || true
+fi
+
+# Invalida o cache do xdg-terminal-exec para surtir efeito imediato
+rm -f "$cache_file"
+
+# Notificação visual
+if command -v notify-send >/dev/null 2>&1; then
+  notify-send -a "Terminal Set" -i terminal "Terminal padrão alterado" "Agora definido para: <b>$choice</b>"
 fi

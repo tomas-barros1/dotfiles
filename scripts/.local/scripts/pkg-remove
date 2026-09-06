@@ -35,6 +35,7 @@ if [[ "$ans" == "n" || "$ans" == "N" ]]; then
     exit 0
 fi
 
-echo "$pkg_names" | tr '\n' ' ' | xargs sudo pacman -Rns --noconfirm
+mapfile -t pkg_array <<< "$pkg_names"
+yay -Rns "${pkg_array[@]}"
 
 read -r -p "Pressione Enter para fechar..."
