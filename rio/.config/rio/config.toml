@@ -1,0 +1,40 @@
+confirm-before-quit = false
+
+theme = "catppuccin-mocha"
+
+env-vars = ["TERM=xterm-256color"]
+
+padding = [14]
+
+[fonts]
+size = 15
+
+[fonts.regular]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[fonts.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[fonts.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[window]
+decorations = "Disabled"
+opacity = 0.9
+
+[navigation]
+mode = "Plain"
+hide-if-single = true
+
+[bindings]
+keys = [
+  { key = "insert", with = "shift", action = "Paste" },
+  { key = "insert", with = "control", action = "Copy" },
+  # Shift+Return como CSI-u (equivalente ao binding do alacritty)
+  { key = "return", with = "shift", esc = "\u001b[13;2u" },
+  # Alt+Shift+Return como CSI-u para tmux distinguir de Alt+Return
+  { key = "return", with = "alt | shift", esc = "\u001b[13;4u" },
+]

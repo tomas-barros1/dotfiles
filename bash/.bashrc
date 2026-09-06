@@ -11,4 +11,7 @@ PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 export EDITOR='nvim'
 export VISUAL='nvim'
 export SUDO_EDITOR='nvim'
+
 export PATH=~/.cargo/bin/:$PATH
+export OLLAMA_API_BASE=http://127.0.0.1:11434
+. "$HOME/.local/share/../bin/env"

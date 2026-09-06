@@ -7,7 +7,7 @@ config_file="${XDG_CONFIG_HOME:-$HOME/.config}/xdg-terminals.list"
 current=""
 [[ -r "$config_file" ]] && current=$(sed -n '1s/\.desktop$//p' "$config_file")
 
-choice=$(printf '%s\n' footclient foot alacritty kitty | gum choose --header "Terminal atual: ${current:-não definido}")
+choice=$(printf '%s\n' footclient foot alacritty kitty rio | gum choose --header "Terminal atual: ${current:-não definido}")
 
 [[ -n "$choice" ]] || exit 0
 
@@ -25,6 +25,9 @@ case "$choice" in
         ;;
     kitty)
         printf '%s\n' kitty.desktop footclient.desktop foot.desktop Alacritty.desktop > "$config_file"
+        ;;
+    rio)
+        printf '%s\n' rio.desktop footclient.desktop foot.desktop Alacritty.desktop > "$config_file"
         ;;
 esac
 

@@ -1,0 +1,19 @@
+# Espelha o alacritty.toml
+theme = Catppuccin Mocha
+cursor-style = block
+
+term = xterm-256color
+clipboard-read = allow
+clipboard-write = allow
+
+font-family = "JetBrains Mono Nerd Font"
+font-size = 12
+
+background-opacity = 0.9
+window-padding-x = 14
+window-padding-y = 14
+window-decoration = none
+quit-after-last-window-closed = false
+
+keybind = shift+insert=paste_from_clipboard
+keybind = ctrl+insert=copy_to_clipboard

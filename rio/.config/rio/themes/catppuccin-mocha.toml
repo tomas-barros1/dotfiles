@@ -1,0 +1,38 @@
+[colors]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
+
+light-black = "#585b70"
+light-red = "#f38ba8"
+light-green = "#a6e3a1"
+light-yellow = "#f9e2af"
+light-blue = "#89b4fa"
+light-magenta = "#f5c2e7"
+light-cyan = "#94e2d5"
+light-white = "#a6adc8"
+
+dim-foreground = "#7f849c"
+
+cursor = "#f5e0dc"
+vi-cursor = "#b4befe"
+
+selection-background = "#f5e0dc"
+selection-foreground = "#1e1e2e"
+
+search-match-background = "#a6adc8"
+search-match-foreground = "#1e1e2e"
+
+search-focused-match-background = "#a6e3a1"
+search-focused-match-foreground = "#1e1e2e"
+
+hint-foreground = "#1e1e2e"
+hint-background = "#f9e2af"

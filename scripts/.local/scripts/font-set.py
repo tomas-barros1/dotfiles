@@ -17,6 +17,7 @@ ALACRITTY = HOME / ".config/alacritty/alacritty.toml"
 WAYBAR = HOME / ".config/waybar/style.css"
 WALKER = HOME / ".config/walker/themes/mocha/style.css"
 KITTY = HOME / ".config/kitty/kitty.conf"
+RIO = HOME / ".config/rio/config.toml"
 GTK3 = HOME / ".config/gtk-3.0/settings.ini"
 GTK4 = HOME / ".config/gtk-4.0/settings.ini"
 QT5CT = HOME / ".config/qt5ct/qt5ct.conf"
@@ -33,7 +34,7 @@ for cmd in ("fzf", "fc-list"):
     if shutil.which(cmd) is None:
         die(f"Erro: {cmd} não está instalado.", 127)
 
-TARGETS = [path for path in (FOOT, ALACRITTY, WAYBAR, WALKER, KITTY, GTK3, GTK4, QT5CT, QT6CT, ZED) if path.exists()]
+TARGETS = [path for path in (FOOT, ALACRITTY, WAYBAR, WALKER, KITTY, RIO, GTK3, GTK4, QT5CT, QT6CT, ZED) if path.exists()]
 
 if not TARGETS:
     die("Erro: nenhum arquivo de configuração de fonte foi encontrado.")
@@ -163,6 +164,16 @@ if KITTY.exists():
     kitty_text = KITTY.read_text()
     kitty_text = replace_first_fn(kitty_text, r"^(\s*font_family\s+).*$", lambda m: f'{m.group(1)}{selected_font}')
     KITTY.write_text(kitty_text)
+
+if RIO.exists():
+    rio_text = RIO.read_text()
+    rio_text = re.sub(
+        r'^(\s*family\s*=\s*")[^"]+(")$',
+        lambda m: f'{m.group(1)}{selected_font}{m.group(2)}',
+        rio_text,
+        flags=re.M,
+    )
+    RIO.write_text(rio_text)
 
 for gtk_path in (GTK3, GTK4):
     if not gtk_path.exists():
