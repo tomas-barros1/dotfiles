@@ -52,8 +52,8 @@
     "light": "Catppuccin Mocha",
     "dark": "Catppuccin Mocha",
   },
-  "buffer_font_family": "Hack Nerd Font Mono",
-  "ui_font_family": "Hack Nerd Font Mono",
+  "buffer_font_family": "MonaspiceKr Nerd Font Mono",
+  "ui_font_family": "MonaspiceKr Nerd Font Mono",
   "buffer_font_features": {
     "calt": true,
   },

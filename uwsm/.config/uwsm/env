@@ -23,6 +23,6 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 
 # localsearch-3 (Nautilus) requer XDG_SESSION_CLASS=user
 # greetd nao exporta; UWSM injeta isso no systemd user manager
-XDG_SESSION_CLASS=user
+export XDG_SESSION_CLASS=user
 
 export TERMINAL=xdg-terminal-exec

@@ -110,7 +110,7 @@ function foot-font --description 'Escolhe e aplica a fonte do Foot com fzf'
             next
         }
         { print }
-    ' "$config" > "$temporary"
+    ' "$config" >"$temporary"
 
     if test $status -ne 0; or not mv "$temporary" "$config"
         rm -f "$temporary"

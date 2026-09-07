@@ -10,15 +10,15 @@ padding = [14]
 size = 15
 
 [fonts.regular]
-family = "Hack Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 style = "Regular"
 
 [fonts.bold]
-family = "Hack Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 style = "Bold"
 
 [fonts.italic]
-family = "Hack Nerd Font Mono"
+family = "MonaspiceKr Nerd Font Mono"
 style = "Italic"
 
 [window]

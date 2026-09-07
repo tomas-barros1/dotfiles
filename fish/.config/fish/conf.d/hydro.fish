@@ -115,6 +115,14 @@ end
 
 set --global hydro_color_normal (set_color normal)
 
+set --global hydro_color_duration F9E2AF
+set --global hydro_color_error F38BA8
+set --global hydro_color_git CBA6F7
+set --global hydro_color_prompt CBA6F7
+set --global hydro_color_pwd 89B4FA
+set --global hydro_color_start A6E3A1
+set --global hydro_multiline true
+
 for color in hydro_color_{pwd,git,error,prompt,duration,start}
     function $color --on-variable $color --inherit-variable color
         set --query $color && set --global _$color (set_color $$color)

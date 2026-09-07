@@ -8,8 +8,10 @@ term = xterm-256color
 clipboard-read = allow
 clipboard-write = allow
 
-font-family = Hack Nerd Font Mono
+font-family = MonaspiceKr Nerd Font Mono
 font-size = 12
+
+resize-overlay = never
 
 background-opacity = 0.9
 window-padding-x = 14
@@ -19,5 +21,9 @@ window-decoration = none
 confirm-close-surface = false
 quit-after-last-window-closed = false
 
+clipboard-paste-protection = false
+
 keybind = shift+insert=paste_from_clipboard
 keybind = ctrl+insert=copy_to_clipboard
+
+
