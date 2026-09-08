@@ -1,6 +1,7 @@
 hl.on("hyprland.start", function()
 	hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=secrets,pkcs11,ssh")
 	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	hl.exec_cmd("foot --server")
 	hl.exec_cmd("fcitx5 -d")
 	hl.exec_cmd("walker --gapplication-service")
 	hl.exec_cmd("elephant")

@@ -2,7 +2,7 @@
 
 * {
   all: unset;
-  font-family: "MonaspiceKr Nerd Font Mono";
+  font-family: "JetBrainsMono Nerd Font Mono";
   font-size: 18px;
   color: @text;
 }

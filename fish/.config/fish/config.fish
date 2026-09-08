@@ -1,12 +1,7 @@
-if not status is-interactive
-    return
-end
+fish_config theme choose catppuccin-mocha
 
-set -g fish_key_bindings fish_vi_key_bindings
-
-zoxide init fish | source
-fzf --fish | source
-mise activate fish --shims | source
+set -gx fish_greeting ""
+set -gx fish_prompt_pwd_dir_length 999
 
 set -gx EDITOR nvim
 set -gx VISUAL nvim
@@ -22,19 +17,26 @@ set -gx FZF_DEFAULT_OPTS "\
 set -gx FZF_CTRL_T_OPTS "\
 --style full \
 --walker-skip .git,node_modules,target \
---preview '\''bat -n --theme=\"Catppuccin Mocha\" --color=always {}'\'' \
---bind '\''ctrl-/:change-preview-window(down|hidden)'\''"
+--preview 'bat -n --theme=\"Catppuccin Mocha\" --color=always {}' \
+--bind 'ctrl-/:change-preview-window(down|hidden)'"
 
-fish_config theme choose catppuccin-mocha
+fish_add_path \
+    $HOME/.dotnet/tools \
+    $HOME/.cargo/bin \
+    $HOME/.local/bin \
+    $HOME/dotfiles/scripts/.local/scripts
 
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias la='ls -a'
 alias cat="bat --theme='Catppuccin Mocha' --paging=auto --color=always"
-alias cd="z"
-alias n="nvim"
-alias op="opencode"
-alias t="tmux"
+alias cd=z
+alias n=nvim
+alias op=opencode
+alias t=tmux
+alias py=python
 
-set -g fish_greeting
-set -g fish_prompt_pwd_dir_length 999
-set -g fish_user_paths /home/tom/.dotnet/tools /home/tom/.cargo/bin /home/tom/.local/bin /home/tom/dotfiles/scripts/.local/scripts
+if status is-interactive
+    mise activate fish | source
+    zoxide init fish | source
+    fzf --fish | source
+end

@@ -8,7 +8,7 @@ term = xterm-256color
 clipboard-read = allow
 clipboard-write = allow
 
-font-family = MonaspiceKr Nerd Font Mono
+font-family = JetBrainsMono Nerd Font Mono
 font-size = 12
 
 resize-overlay = never
