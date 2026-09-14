@@ -8,7 +8,7 @@ term = xterm-256color
 clipboard-read = allow
 clipboard-write = allow
 
-font-family = JetBrainsMono Nerd Font Mono
+font-family = CaskaydiaCove Nerd Font
 font-size = 12
 
 resize-overlay = never
@@ -25,5 +25,19 @@ clipboard-paste-protection = false
 
 keybind = shift+insert=paste_from_clipboard
 keybind = ctrl+insert=copy_to_clipboard
+
+keybind = ctrl+shift+e=ignore
+keybind = ctrl+shift+o=ignore
+keybind = ctrl+alt+arrow_down=ignore
+keybind = ctrl+alt+arrow_up=ignore
+keybind = ctrl+alt+arrow_left=ignore
+keybind = ctrl+alt+arrow_right=ignore
+keybind = ctrl+shift+enter=ignore
+keybind = super+ctrl+shift+arrow_down=ignore
+keybind = super+ctrl+shift+arrow_up=ignore
+keybind = super+ctrl+shift+arrow_left=ignore
+keybind = super+ctrl+shift+arrow_right=ignore
+keybind = super+ctrl+[=ignore
+keybind = super+ctrl+]=ignore
 
 

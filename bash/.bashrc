@@ -5,7 +5,7 @@ if [ -z "$PS1" ]; then
     export CI=1
     export NO_COLOR=1
     export PATH="$HOME/.local/bin:$PATH"
-fi 
+fi
 
 PS1='\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 export EDITOR='nvim'

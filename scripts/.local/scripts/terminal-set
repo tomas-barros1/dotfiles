@@ -21,15 +21,34 @@ fi
 
 mkdir -p "${config_file%/*}"
 
-# Mapeia a escolha para o .desktop principal
+# Mapeia a escolha para o .desktop principal e para o nome que o
+# nautilus-open-any-terminal espera (só o binário do terminal)
 case "$choice" in
-  footclient) main="footclient.desktop" ;;
-  foot)       main="foot.desktop" ;;
-  alacritty)  main="Alacritty.desktop" ;;
-  kitty)      main="kitty.desktop" ;;
-  rio)        main="rio.desktop" ;;
-  ghostty)    main="com.mitchellh.ghostty.desktop" ;;
-  *)          exit 1 ;;
+footclient)
+  main="footclient.desktop"
+  nautilus_id="foot"
+  ;;
+foot)
+  main="foot.desktop"
+  nautilus_id="foot"
+  ;;
+alacritty)
+  main="Alacritty.desktop"
+  nautilus_id="alacritty"
+  ;;
+kitty)
+  main="kitty.desktop"
+  nautilus_id="kitty"
+  ;;
+rio)
+  main="rio.desktop"
+  nautilus_id="rio"
+  ;;
+ghostty)
+  main="com.mitchellh.ghostty.desktop"
+  nautilus_id="ghostty"
+  ;;
+*) exit 1 ;;
 esac
 
 # Lista padrão de fallbacks
@@ -48,13 +67,11 @@ all_desktops=(
   for d in "${all_desktops[@]}"; do
     [[ "$d" != "$main" ]] && echo "$d"
   done
-} > "$config_file"
+} >"$config_file"
 
 # Integração com o Nautilus (extensão open-any-terminal)
 if command -v gsettings >/dev/null 2>&1; then
-  nautilus_id="$choice"
-  [[ "$choice" == "ghostty" ]] && nautilus_id="com.mitchellh.ghostty"
-  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal "$nautilus_id" 2>/dev/null || true
+  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal "$nautilus_id"
 fi
 
 # Invalida o cache do xdg-terminal-exec para surtir efeito imediato
