@@ -2,7 +2,7 @@
 
 * {
   all: unset;
-  font-family: "CaskaydiaCove Nerd Font";
+  font-family: "NordwandMono Nerd Font";
   font-size: 18px;
   color: @text;
 }

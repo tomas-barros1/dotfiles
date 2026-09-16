@@ -5,11 +5,12 @@ set -gx SUDO_EDITOR nvim
 set -gx fish_greeting ""
 set -gx fish_prompt_pwd_dir_length 999
 
-fish_add_path -g \
+set -gx --path PATH \
     $HOME/.dotnet/tools \
     $HOME/.cargo/bin \
     $HOME/.local/bin \
-    $HOME/dotfiles/scripts/.local/scripts
+    $HOME/dotfiles/scripts/.local/scripts \
+    $PATH
 
 set -gx FZF_DEFAULT_OPTS "\
 --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
@@ -24,40 +25,41 @@ set -gx FZF_CTRL_T_OPTS "\
 --preview 'bat -n --theme=\"Catppuccin Mocha\" --color=always {}' \
 --bind 'ctrl-/:change-preview-window(down|hidden)'"
 
-alias ls='eza -lh --group-directories-first --icons=auto'
-alias la='ls -a'
-alias cat="bat --theme='Catppuccin Mocha' --paging=auto --color=always"
-alias cd=z
-alias n=nvim
-alias op=opencode
-alias t=tmux
-alias py=python
-alias man=batman
+function __fish_init --description 'source cached tool inits'
+    set -l cache $HOME/.cache/fish/init.fish
+    set -l omp $HOME/dotfiles/oh-my-posh/catppuccin_mocha.omp.json
+    set -l deps (command --search zoxide fzf oh-my-posh) $omp
 
-alias gss='git status --short'
-alias gd='git diff'
-alias ga='git add .'
-alias gcl='git clone'
-alias gcm='git commit -m'
-alias gp='git push'
-alias gpl='git pull'
+    set -l stale 1
+    if test -s $cache
+        set stale 0
+        for d in $deps
+            test $d -nt $cache; and set stale 1; and break
+        end
+    end
 
-function __fish_cache_eval
-    set -l name $argv[1]
-    set -l cache $HOME/.cache/fish/$name.fish
+    if test $stale -eq 1
+        command mkdir -p (path dirname $cache)
+        begin
+            command -q zoxide; and zoxide init fish
+            command -q fzf; and fzf --fish
+            command -q oh-my-posh; and oh-my-posh init fish --config $omp
+        end >$cache
+    end
 
-    command -q $name; or return
+    source $cache
+end
 
-    if not test -s $cache; or test (command -v $name) -nt $cache
-        $argv[2..-1] >$cache
+function __mise_init --on-event fish_prompt --description 'lazy: carrega mise no 1º prompt'
+    functions --erase __mise_init
+    command -q mise; or return
+    set -l cache $HOME/.cache/fish/mise.fish
+    if not test -s $cache; or test (command -v mise) -nt $cache
+        mise activate fish >$cache 2>/dev/null
     end
     source $cache
 end
 
 if status is-interactive
-    mkdir -p $HOME/.cache/fish
-
-    __fish_cache_eval mise mise activate fish
-    __fish_cache_eval zoxide zoxide init fish
-    __fish_cache_eval fzf fzf --fish
+    __fish_init
 end

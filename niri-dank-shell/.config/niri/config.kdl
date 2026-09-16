@@ -1,0 +1,15 @@
+include "input.kdl"
+include "outputs.kdl"
+include "layout.kdl"
+include "window-rules.kdl"
+include "environment.kdl"
+include "autostart.kdl"
+include "misc.kdl"
+
+include optional=true "colors.kdl"
+include optional=true "dms-layout.kdl"
+include optional=true "alttab.kdl"
+include optional=true "cursor.kdl"
+include optional=true "wpblur.kdl"
+
+include "keybindings.kdl"

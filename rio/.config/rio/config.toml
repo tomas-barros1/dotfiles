@@ -4,21 +4,21 @@ theme = "catppuccin-mocha"
 
 env-vars = ["TERM=xterm-256color"]
 
-padding = [14]
+margin = [14]
 
 [fonts]
-size = 15
+size = 16
 
 [fonts.regular]
-family = "CaskaydiaCove Nerd Font"
+family = "NordwandMono Nerd Font"
 style = "Regular"
 
 [fonts.bold]
-family = "CaskaydiaCove Nerd Font"
+family = "NordwandMono Nerd Font"
 style = "Bold"
 
 [fonts.italic]
-family = "CaskaydiaCove Nerd Font"
+family = "NordwandMono Nerd Font"
 style = "Italic"
 
 [window]

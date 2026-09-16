@@ -1,0 +1,9 @@
+// Dank Material Shell (DMS) — bar, notifications, launcher, wallpaper.
+spawn-at-startup "dms" "run"
+
+spawn-at-startup "/usr/bin/gnome-keyring-daemon" "--start" "--components=secrets,pkcs11,ssh"
+
+spawn-at-startup "fcitx5" "-d"
+
+// DBus activation environment for systemd-managed apps.
+spawn-sh-at-startup "dbus-update-activation-environment --systemd --all"

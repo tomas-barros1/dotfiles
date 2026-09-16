@@ -8,7 +8,7 @@ term = xterm-256color
 clipboard-read = allow
 clipboard-write = allow
 
-font-family = CaskaydiaCove Nerd Font
+font-family = NordwandMono Nerd Font
 font-size = 12
 
 resize-overlay = never
@@ -39,5 +39,3 @@ keybind = super+ctrl+shift+arrow_left=ignore
 keybind = super+ctrl+shift+arrow_right=ignore
 keybind = super+ctrl+[=ignore
 keybind = super+ctrl+]=ignore
-
-
