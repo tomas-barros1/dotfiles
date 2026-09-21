@@ -1,7 +1,12 @@
-# Fisher-managed plugin files
+# Baixado/gerado por plugins (fisher, autopair, sponge) e CLIs (copilot)
 completions/fisher.fish
+completions/copilot.fish
 conf.d/autopair.fish
+conf.d/sponge.fish
 functions/fisher.fish
+functions/copilot.fish
 functions/_autopair_*.fish
+functions/_sponge_*.fish
+functions/sponge_filter_*.fish
 functions/__git.*.fish
 fish_variables

@@ -16,6 +16,7 @@ FOOT = HOME / ".config/foot/foot.ini"
 ALACRITTY = HOME / ".config/alacritty/alacritty.toml"
 WAYBAR = HOME / ".config/waybar/style.css"
 WALKER = HOME / ".config/walker/themes/mocha/style.css"
+SWAYNC = HOME / ".config/swaync/style.css"
 KITTY = HOME / ".config/kitty/kitty.conf"
 RIO = HOME / ".config/rio/config.toml"
 GHOSTTY = HOME / ".config/ghostty/config.ghostty"
@@ -35,7 +36,7 @@ for cmd in ("fzf", "fc-list"):
     if shutil.which(cmd) is None:
         die(f"Erro: {cmd} não está instalado.", 127)
 
-TARGETS = [path for path in (FOOT, ALACRITTY, WAYBAR, WALKER, KITTY, RIO, GHOSTTY, GTK3, GTK4, QT5CT, QT6CT, ZED) if path.exists()]
+TARGETS = [path for path in (FOOT, ALACRITTY, WAYBAR, WALKER, SWAYNC, KITTY, RIO, GHOSTTY, GTK3, GTK4, QT5CT, QT6CT, ZED) if path.exists()]
 
 if not TARGETS:
     die("Erro: nenhum arquivo de configuração de fonte foi encontrado.")
@@ -154,7 +155,7 @@ if ALACRITTY.exists():
     )
     ALACRITTY.write_text(alacritty_text)
 
-for path in (WAYBAR, WALKER):
+for path in (WAYBAR, WALKER, SWAYNC):
     if not path.exists():
         continue
     text = path.read_text()

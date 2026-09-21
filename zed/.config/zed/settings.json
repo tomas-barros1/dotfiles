@@ -6,6 +6,7 @@
 {
   // Aparência geral
   // "cli_default_open_behavior": "existing_window",
+  "disable_ai": true,
   "agent_servers": {
     "github-copilot-cli": {
       "type": "registry",
@@ -46,6 +47,7 @@
     "selections_menu": false,
     "quick_actions": false,
   },
+  "show_signature_help_after_edits": true,
   "icon_theme": "JetBrains New UI Icons (Dark)",
   "theme": {
     "mode": "system",
