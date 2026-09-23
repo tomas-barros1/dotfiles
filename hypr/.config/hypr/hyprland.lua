@@ -1,4 +1,3 @@
-require("variables")
 require("monitors")
 require("input")
 require("autostart")

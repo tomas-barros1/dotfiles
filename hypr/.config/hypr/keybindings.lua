@@ -1,41 +1,49 @@
+local home = os.getenv("HOME")
+local mod = "SUPER"
+local terminal = "uwsm app -- xdg-terminal-exec"
+local launch = "uwsm app -- "
+
 -- Apps
-hl.bind(MAIN_MOD .. " + RETURN", hl.dsp.exec_cmd(TERMINAL))
-hl.bind(MAIN_MOD .. " + SPACE", hl.dsp.exec_cmd(MENU))
-hl.bind(MAIN_MOD .. " + B", hl.dsp.exec_cmd(LAUNCH .. BROWSER))
-hl.bind(MAIN_MOD .. " + E", hl.dsp.exec_cmd(LAUNCH .. FILE_MANAGER))
-hl.bind(MAIN_MOD .. " + I", hl.dsp.exec_cmd(LAUNCH .. IDE))
-hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(TERMINAL .. " -- sh -lc 'cd " .. HYPR_DIR .. " && exec nvim'"))
-hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd(CLIPBOARD))
-hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(SYMBOLS))
-hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(POWERMENU))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(WALLPAPER_SELECT))
-hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. STEAM))
-hl.bind(MAIN_MOD .. " + K", hl.dsp.exec_cmd(SUNSETR_TOGGLE))
-hl.bind(MAIN_MOD .. " + T", hl.dsp.exec_cmd(SYSTEM_MONITOR))
-hl.bind(MAIN_MOD .. " + Z", hl.dsp.exec_cmd(ZED_EDITOR))
-hl.bind(MAIN_MOD .. " + N", hl.dsp.exec_cmd(NVIM))
+hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock"))
+hl.bind(mod .. " + B", hl.dsp.exec_cmd(launch .. "helium-browser"))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd(launch .. "nautilus"))
+hl.bind(mod .. " + I", hl.dsp.exec_cmd(launch .. home .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"))
+hl.bind(mod .. " + H", hl.dsp.exec_cmd(terminal .. " -- sh -lc 'cd " .. home .. "/.config/hypr && exec nvim'"))
+hl.bind(mod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
+hl.bind(mod .. " + PERIOD", hl.dsp.exec_cmd("walker -m symbols"))
+hl.bind(mod .. " + D", hl.dsp.exec_cmd(home .. "/.local/scripts/powermenu.sh"))
+hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("waypaper_rs"))
+hl.bind(mod .. " + S", hl.dsp.exec_cmd(launch .. "steam"))
+hl.bind(mod .. " + K", hl.dsp.exec_cmd([[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || sunsetr &']]))
+hl.bind(mod .. " + T", hl.dsp.exec_cmd(terminal .. " -- btop"))
+hl.bind(mod .. " + Z", hl.dsp.exec_cmd("zeditor"))
+hl.bind(mod .. " + N", hl.dsp.exec_cmd(terminal .. " -- nvim"))
 
 -- Screenshots
-hl.bind("PRINT", hl.dsp.exec_cmd(LAUNCH .. SCREENSHOT_GUI))
-hl.bind(MAIN_MOD .. " + PRINT", hl.dsp.exec_cmd(SCREENSHOT_WINDOW))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + T", hl.dsp.exec_cmd(SCREENSHOT_OCR))
+hl.bind("PRINT", hl.dsp.exec_cmd(launch .. "flameshot gui -p " .. home .. "/Screenshots -c"))
+hl.bind(mod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind(
+	mod .. " + SHIFT + T",
+	hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']])
+)
 
 -- Window management
-hl.bind(MAIN_MOD .. " + W", hl.dsp.window.close())
-hl.bind(MAIN_MOD .. " + G", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(MAIN_MOD .. " + P", hl.dsp.window.pseudo())
+hl.bind(mod .. " + W", hl.dsp.window.close())
+hl.bind(mod .. " + G", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 
 -- View modes
-hl.bind(MAIN_MOD .. " + F", hl.dsp.window.fullscreen())
-hl.bind(MAIN_MOD .. " + F11", hl.dsp.window.fullscreen())
+hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
+hl.bind(mod .. " + F11", hl.dsp.window.fullscreen())
 
 -- Layout
-hl.bind(MAIN_MOD .. " + J", hl.dsp.layout("togglesplit"))
+hl.bind(mod .. " + J", hl.dsp.layout("togglesplit"))
 
 -- Toggle layout scrolling/dwindle na workspace atual
 local scroll_state = {} -- workspace.id -> true (scrolling) | false/nil (dwindle)
 
-hl.bind(MAIN_MOD .. " + L", function()
+hl.bind(mod .. " + L", function()
 	local workspace = hl.get_active_workspace()
 	if not workspace then
 		return
@@ -54,47 +62,60 @@ hl.bind(MAIN_MOD .. " + L", function()
 end)
 
 -- Mouse interactions
-hl.bind(MAIN_MOD .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(MAIN_MOD .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Session control
-hl.bind(MAIN_MOD .. " + M", hl.dsp.exit())
+hl.bind(mod .. " + M", hl.dsp.exit())
 
 -- Focus navigation
-hl.bind(MAIN_MOD .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(MAIN_MOD .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(MAIN_MOD .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(MAIN_MOD .. " + down", hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + up", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + down", hl.dsp.focus({ direction = "down" }))
 
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + left", hl.dsp.window.swap({ direction = "left" }))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + right", hl.dsp.window.swap({ direction = "right" }))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + up", hl.dsp.window.swap({ direction = "up" }))
-hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + down", hl.dsp.window.swap({ direction = "down" }))
+hl.bind(mod .. " + SHIFT + left", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mod .. " + SHIFT + right", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mod .. " + SHIFT + up", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mod .. " + SHIFT + down", hl.dsp.window.swap({ direction = "down" }))
 
 -- Workspaces
 for i = 1, 9 do
-	hl.bind(MAIN_MOD .. " + " .. i, hl.dsp.focus({ workspace = i }))
-	hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + " .. i, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }))
+	hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Resize
+local resize_step = 20
 hl.bind(
-	MAIN_MOD .. " + equal",
-	hl.dsp.window.resize({ x = RESIZE_STEP, y = RESIZE_STEP, relative = true }),
+	mod .. " + equal",
+	hl.dsp.window.resize({ x = resize_step, y = resize_step, relative = true }),
 	{ repeating = true }
 )
 hl.bind(
-	MAIN_MOD .. " + minus",
-	hl.dsp.window.resize({ x = -RESIZE_STEP, y = -RESIZE_STEP, relative = true }),
+	mod .. " + minus",
+	hl.dsp.window.resize({ x = -resize_step, y = -resize_step, relative = true }),
 	{ repeating = true }
 )
-hl.bind(MAIN_MOD .. " + 0", hl.dsp.window.resize(RESIZE_RESET))
+hl.bind(mod .. " + 0", hl.dsp.window.resize({ x = 900, y = 600 }))
 
 -- Media / Volume
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(VOLUME_UP), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(VOLUME_DOWN), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(VOLUME_MUTE), { locked = true, repeating = true })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd(PLAYERCTL_NEXT), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd(PLAYERCTL_PLAY_PAUSE), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(PLAYERCTL_PLAY_PAUSE), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(PLAYERCTL_PREV), { locked = true })
+hl.bind(
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+	{ locked = true, repeating = true }
+)
+hl.bind(
+	"XF86AudioMute",
+	hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+	{ locked = true, repeating = true }
+)
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })

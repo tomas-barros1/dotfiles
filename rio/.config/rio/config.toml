@@ -10,15 +10,15 @@ margin = [14]
 size = 16
 
 [fonts.regular]
-family = "NordwandMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 [fonts.bold]
-family = "NordwandMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [fonts.italic]
-family = "NordwandMono Nerd Font"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
 [window]

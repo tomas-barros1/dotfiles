@@ -1,4 +1,4 @@
-local colors = require("catppuccin-mocha")
+local colors = require("catppuccin")
 
 hl.config({
 	general = {

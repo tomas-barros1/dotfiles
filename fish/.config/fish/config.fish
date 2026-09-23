@@ -25,28 +25,16 @@ set -gx FZF_CTRL_T_OPTS "\
 --preview 'bat -n --theme=\"Catppuccin Mocha\" --color=always {}' \
 --bind 'ctrl-/:change-preview-window(down|hidden)'"
 
-function __fish_init --description 'source cached tool inits'
+function __fish_init --on-event fish_prompt --description 'lazy: zoxide+fzf no 1º prompt'
+    functions --erase __fish_init
     set -l cache $HOME/.cache/fish/init.fish
-    set -l omp $HOME/dotfiles/oh-my-posh/catppuccin_mocha.omp.json
-    set -l deps (command --search zoxide fzf oh-my-posh) $omp
-
-    set -l stale 1
-    if test -s $cache
-        set stale 0
-        for d in $deps
-            test $d -nt $cache; and set stale 1; and break
-        end
-    end
-
-    if test $stale -eq 1
+    if not test -s $cache
         command mkdir -p (path dirname $cache)
         begin
             command -q zoxide; and zoxide init fish
             command -q fzf; and fzf --fish
-            command -q oh-my-posh; and oh-my-posh init fish --config $omp
         end >$cache
     end
-
     source $cache
 end
 
@@ -54,12 +42,13 @@ function __mise_init --on-event fish_prompt --description 'lazy: carrega mise no
     functions --erase __mise_init
     command -q mise; or return
     set -l cache $HOME/.cache/fish/mise.fish
-    if not test -s $cache; or test (command -v mise) -nt $cache
+    if not test -s $cache
         mise activate fish >$cache 2>/dev/null
     end
     source $cache
 end
 
-if status is-interactive
-    __fish_init
+function fish-cache-refresh --description 'força regeneração dos caches de init (zoxide/fzf/mise)'
+    rm -f $HOME/.cache/fish/init.fish $HOME/.cache/fish/mise.fish
+    exec fish
 end

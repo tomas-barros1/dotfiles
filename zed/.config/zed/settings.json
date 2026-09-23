@@ -54,8 +54,8 @@
     "light": "Catppuccin Mocha",
     "dark": "Catppuccin Mocha",
   },
-  "buffer_font_family": "NordwandMono Nerd Font",
-  "ui_font_family": "NordwandMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_features": {
     "calt": true,
   },

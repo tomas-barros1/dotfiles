@@ -1,4 +1,5 @@
 # Baixado/gerado por plugins (fisher, autopair, sponge) e CLIs (copilot)
+conf.d/hydro.fish
 completions/fisher.fish
 completions/copilot.fish
 conf.d/autopair.fish
@@ -9,4 +10,6 @@ functions/_autopair_*.fish
 functions/_sponge_*.fish
 functions/sponge_filter_*.fish
 functions/__git.*.fish
+functions/fish_mode_prompt.fish
+functions/fish_prompt.fish
 fish_variables
