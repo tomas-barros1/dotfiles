@@ -1,6 +1,4 @@
 {
-  // Waybar — Catppuccin Mocha (redesign v2)
-  // =====================================
   "layer": "top",
   "position": "top",
   "height": 40,
@@ -42,7 +40,6 @@
     "icon": true,
     "icon-size": 16
   },
-  // Bandeja — isolada em sua própria cápsula
   "group/tray-wrap": {
     "orientation": "horizontal",
     "modules": [
@@ -53,7 +50,6 @@
     "spacing": 24,
     "icon-size": 15
   },
-  // Sistema — volume, brilho, rede e clima juntos numa única cápsula
   "group/system": {
     "orientation": "horizontal",
     "modules": [
@@ -125,7 +121,7 @@
     "interval": 1,
     "format": " {:L%A %d %H:%M}",
     "format-alt": " {:L%A, %d de %B de %Y}",
-    "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "tooltip-format": "<big>{:L%d de %B de %Y}</big>\n{calendar}",
     "locale": "pt_BR.utf8",
     "calendar": {
       "mode": "month",
