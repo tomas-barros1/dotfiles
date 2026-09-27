@@ -14,6 +14,7 @@ hl.bind(mod .. " + H", hl.dsp.exec_cmd(terminal .. " -- sh -lc 'cd " .. home .. 
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
 hl.bind(mod .. " + PERIOD", hl.dsp.exec_cmd("walker -m symbols"))
 hl.bind(mod .. " + D", hl.dsp.exec_cmd(home .. "/.local/scripts/powermenu.sh"))
+hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(terminal .. " -- " .. home .. "/.local/scripts/svc-menu"))
 hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("waypaper_rs"))
 hl.bind(mod .. " + S", hl.dsp.exec_cmd(launch .. "steam"))
 hl.bind(mod .. " + K", hl.dsp.exec_cmd([[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || sunsetr &']]))

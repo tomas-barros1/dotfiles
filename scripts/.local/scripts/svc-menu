@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# svc-menu — fuzzy-finder TUI para gerir os serviços da sessão (systemd --user)
+# No padrão do pkg-remove: lista as unidades da sessão gráfica
+# (WantedBy=graphical-session.target) com estado, e alterna com uma tecla.
+#   enter: ativar/desativar   alt-r: reiniciar   alt-l: logs   alt-e: editar unit
+
+set -uo pipefail
+
+USER_UNIT_DIR="$HOME/.config/systemd/user"
+
+list_units() {
+    {
+        # já habilitadas na sessão
+        ls "$USER_UNIT_DIR/graphical-session.target.wants" 2>/dev/null
+        # candidatas (mesmo desabilitadas): tudo que quer a sessão gráfica
+        grep -l -E '^WantedBy=graphical-session\.target' \
+            /usr/lib/systemd/user/*.service \
+            /usr/share/systemd/user/*.service \
+            /etc/systemd/user/*.service \
+            "$USER_UNIT_DIR"/*.service 2>/dev/null | xargs -r -n1 basename
+    } | grep -E '\.service$' | sort -u | while read -r unit; do
+        local en ac
+        en=$(systemctl --user is-enabled "$unit" 2>/dev/null || true)
+        ac=$(systemctl --user is-active "$unit" 2>/dev/null || true)
+        printf '%-32s %-11s %s\n' "$unit" "${en:-indirect}" "${ac:-unknown}"
+    done
+}
+
+clear
+
+fzf_args=(
+    --prompt='serviços ▸ '
+    --header='enter: ativar/desativar   alt-r: reiniciar   alt-l: logs   alt-e: editar'
+    --expect='enter,alt-r,alt-l,alt-e'
+    --preview 'SYSTEMD_COLORS=1 systemctl --user status {1}; echo; journalctl --user -u {1} -n 12 --no-pager | tail -n 12'
+    --preview-label='alt-p: descricao, alt-j/k: scroll'
+    --preview-label-pos='bottom'
+    --preview-window 'down:65%:wrap'
+    --bind 'alt-p:toggle-preview'
+    --bind 'alt-d:preview-half-page-down,alt-u:preview-half-page-up'
+    --bind 'alt-k:preview-up,alt-j:preview-down'
+    --color 'pointer:red,marker:red'
+)
+
+sel=$(list_units | fzf "${fzf_args[@]}")
+
+[[ -z "$sel" ]] && exit 0
+key=$(head -n1 <<<"$sel")
+unit=$(tail -n +2 <<<"$sel" | awk '{print $1}')
+[[ -z "$unit" ]] && exit 0
+
+case "$key" in
+enter)
+    state=$(systemctl --user is-enabled "$unit" 2>/dev/null || true)
+    case "$state" in
+    enabled | enabled-runtime)
+        echo "Desativando $unit..."
+        systemctl --user disable --now "$unit" && echo "  ✓ desativado (não sobe mais no login)" || echo "  ✗ falhou"
+        ;;
+    masked)
+        echo "$unit está mascarado — libere com: systemctl --user unmask $unit"
+        ;;
+    *)
+        echo "Ativando $unit..."
+        systemctl --user enable --now "$unit" && echo "  ✓ ativado (sobe no login)" || echo "  ✗ falhou"
+        ;;
+    esac
+    ;;
+alt-r)
+    echo "Reiniciando $unit..."
+    systemctl --user restart "$unit" && echo "  ✓ reiniciado"
+    ;;
+alt-l)
+    SYSTEMD_COLORS=1 journalctl --user -u "$unit" -n 50 --no-pager
+    ;;
+alt-e)
+    EDITOR="${EDITOR:-nvim}" systemctl --user edit "$unit"
+    ;;
+esac
+
+read -r -p "Pressione Enter para fechar..."

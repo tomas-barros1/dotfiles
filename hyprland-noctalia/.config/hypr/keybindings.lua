@@ -14,6 +14,7 @@ hl.bind(MAIN_MOD .. " + H", hl.dsp.exec_cmd(TERMINAL .. " -- " .. EDITOR .. " ~/
 hl.bind(MAIN_MOD .. " + V", hl.dsp.exec_cmd(MENU_CLIPBOARD))
 hl.bind(MAIN_MOD .. " + PERIOD", hl.dsp.exec_cmd(MENU_EMOJI))
 hl.bind(MAIN_MOD .. " + D", hl.dsp.exec_cmd(MENU_POWER))
+hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + S", hl.dsp.exec_cmd(TERMINAL .. " -- " .. HOME_DIR .. "/.local/scripts/svc-menu"))
 hl.bind(MAIN_MOD .. " + " .. SHIFT_MOD .. " + W", hl.dsp.exec_cmd(MENU_WALLPAPER))
 hl.bind(MAIN_MOD .. " + S", hl.dsp.exec_cmd(LAUNCH .. "steam"))
 
