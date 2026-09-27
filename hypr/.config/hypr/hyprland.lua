@@ -1,6 +1,5 @@
 require("monitors")
 require("input")
-require("autostart")
 require("general")
 require("animations")
 require("decoration")

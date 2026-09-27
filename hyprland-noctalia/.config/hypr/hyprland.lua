@@ -1,7 +1,6 @@
 require("variables")
 require("monitors")
 require("input")
-require("autostart")
 require("general")
 require("decoration")
 require("layouts")

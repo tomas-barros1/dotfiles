@@ -1,0 +1,13 @@
+[Unit]
+Description=Restore wallpaper on session start (waypaper)
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/waypaper_rs --restore
+RemainAfterExit=yes
+
+[Install]
+WantedBy=graphical-session.target

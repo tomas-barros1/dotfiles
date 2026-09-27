@@ -1,0 +1,13 @@
+[Unit]
+Description=Flameshot screenshot tool
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+ExecStart=/usr/bin/flameshot
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=graphical-session.target
