@@ -43,6 +43,7 @@
     "trust_all_worktrees": true,
   },
   "toolbar": {
+    "breadcrumbs": false,
     "agent_review": false,
     "selections_menu": false,
     "quick_actions": false,
@@ -74,6 +75,9 @@
   "format_on_save": "on",
 
   "terminal": {
+    "shell": {
+      "program": "codemux",
+    },
     "font_family": "JetBrainsMono Nerd Font",
   },
 

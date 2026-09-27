@@ -22,12 +22,6 @@
     },
   },
   {
-    "context": "Pane",
-    "bindings": {
-      "ctrl-w": "pane::CloseActiveItem",
-    },
-  },
-  {
     "bindings": {
       "ctrl-g": "git_panel::Toggle",
     },

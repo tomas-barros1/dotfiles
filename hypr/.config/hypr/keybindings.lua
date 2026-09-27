@@ -5,9 +5,10 @@ local launch = "uwsm app -- "
 
 -- Apps
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -- tmux"))
 hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd(launch .. "helium-browser"))
-hl.bind(mod .. " + E", hl.dsp.exec_cmd(launch .. "nautilus"))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd("gio open " .. home))
 hl.bind(mod .. " + I", hl.dsp.exec_cmd(launch .. home .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"))
 hl.bind(mod .. " + H", hl.dsp.exec_cmd(terminal .. " -- sh -lc 'cd " .. home .. "/.config/hypr && exec nvim'"))
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))

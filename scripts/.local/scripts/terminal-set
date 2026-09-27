@@ -10,12 +10,8 @@ if [[ -r "$config_file" ]]; then
   current=$(sed -n '1s/\.desktop$//p' "$config_file" | sed 's/com\.mitchellh\.//I' | tr '[:upper:]' '[:lower:]')
 fi
 
-# Escolha interativa via gum (com fallback caso gum não esteja no path)
-if command -v gum >/dev/null 2>&1; then
-  choice=$(printf '%s\n' footclient foot alacritty kitty rio ghostty | gum choose --header "Terminal atual: ${current:-não definido}")
-else
-  choice=$(printf '%s\n' footclient foot alacritty kitty rio ghostty | fzf --prompt="Terminal [atual: ${current:-nenhum}] > ")
-fi
+# Escolha interativa via fzf
+choice=$(printf '%s\n' footclient foot alacritty kitty rio ghostty | fzf --layout=reverse --prompt="Terminal [atual: ${current:-nenhum}] > ")
 
 [[ -n "${choice:-}" ]] || exit 0
 
