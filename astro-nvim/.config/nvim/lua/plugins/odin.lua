@@ -1,40 +1,45 @@
+-- Odin language support: syntax highlighting, LSP, formatting and run/build
+
+local function odin_task(name, subcmd)
+  return function()
+    local root = vim.fs.root(0, { "ols.json", ".git" })
+    if not root then
+      vim.notify("Odin project root not found", vim.log.levels.ERROR)
+      return
+    end
+
+    vim.cmd "write"
+
+    local overseer = require "overseer"
+    local task = overseer.new_task {
+      name = name,
+      cmd = { "odin", subcmd, "src" },
+      cwd = root,
+    }
+    task:start()
+    overseer.open { enter = false } -- abre o painel sem roubar o foco
+  end
+end
+
 return {
-  -- Odin Language Server (OLS): diagnóstico, navegação, snippets e formatação.
-  -- `ols`/`odinfmt` instalados via pacman/AUR estão no PATH; o astrolsp só ativa o server
-  -- (via vim.lsp.enable, resolvendo `ols` no /usr/bin).
   {
-    "AstroNvim/astrolsp",
-    optional = true,
-    ---@type AstroLSPOpts
-    opts = {
-      servers = { "ols" },
+    "stevearc/overseer.nvim",
+    opts = {},
+    keys = {
+      { "<F6>", odin_task("Odin Run", "run"), ft = "odin", desc = "Run Odin project" },
+      { "<F7>", odin_task("Odin Build", "build"), ft = "odin", desc = "Build Odin project" },
     },
   },
-  -- Tree-sitter: syntax highlighting e indentação para Odin
   {
-    "AstroNvim/astrocore",
-    optional = true,
-    ---@type AstroCoreOpts
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "odin" } },
+  },
+  {
+    "stevearc/conform.nvim",
     opts = {
-      treesitter = { ensure_installed = { "odin" } },
+      formatters_by_ft = {
+        odin = { "odinfmt" },
+      },
     },
   },
-  -- Instalação automática via Mason — DESATIVADA porque ols/odinfmt vêm do pacman.
-  -- Em máquinas sem o pacote do sistema, reative os blocos abaixo:
-  -- {
-  --   "mason-org/mason-lspconfig.nvim",
-  --   optional = true,
-  --   opts = function(_, opts)
-  --     opts.ensure_installed =
-  --       require("astrocore").list_insert_unique(opts.ensure_installed, { "ols" })
-  --   end,
-  -- },
-  -- {
-  --   "WhoIsSethDaniel/mason-tool-installer.nvim",
-  --   optional = true,
-  --   opts = function(_, opts)
-  --     opts.ensure_installed =
-  --       require("astrocore").list_insert_unique(opts.ensure_installed, { "ols" })
-  --   end,
-  -- },
 }
