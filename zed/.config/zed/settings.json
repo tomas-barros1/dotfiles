@@ -22,16 +22,6 @@
   "collaboration_panel": {
     "dock": "left",
   },
-  "agent": {
-    "sandbox_permissions": {
-      "allow_fs_write_all": true,
-      "allow_all_hosts": true,
-      "allow_unsandboxed": false,
-    },
-    "dock": "left",
-    "favorite_models": [],
-    "model_parameters": [],
-  },
   "git_panel": {
     "dock": "left",
   },
@@ -85,6 +75,24 @@
     "inline": {
       "enabled": true,
       "max_severity": null,
+    },
+  },
+
+  "agent": {
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {
+        "terminal": {
+          "always_confirm": [
+            {
+              "pattern": "\\bsudo\\b",
+            },
+            {
+              "pattern": "\\bgit\\s+push\\b",
+            },
+          ],
+        },
+      },
     },
   },
 }

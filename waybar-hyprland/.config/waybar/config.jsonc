@@ -111,7 +111,7 @@
   // Clima
   "custom/weather": {
     "exec": "waybar-weather",
-    "on-click": "mousam",
+    "on-click": "kweather",
     "restart-interval": 60,
     "return-type": "json",
     "hide-empty-text": true
