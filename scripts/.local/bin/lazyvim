@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Launch Neovim with the LazyVim configuration.
+#
+# Plain `nvim` keeps using AstroNvim (~/.config/nvim).
+# NVIM_APPNAME tells Neovim to use dedicated config/data/state/cache dirs
+# (~/.config/nvim-lazy, ~/.local/share/nvim-lazy, ...), so both setups
+# coexist without clashing over lazy-lock.json or plugin installs.
+
+set -euo pipefail
+
+readonly NVIM_APP="nvim-lazy"
+readonly CONFIG_SRC="${HOME}/dotfiles/lazy_nvim/.config/nvim"
+readonly CONFIG_LINK="${XDG_CONFIG_HOME:-${HOME}/.config}/${NVIM_APP}"
+
+# Stow cannot link this config (astro-nvim already owns ~/.config/nvim),
+# so keep the symlink in sync here.
+if [[ ! -e "${CONFIG_LINK}" ]]; then
+    if [[ ! -d "${CONFIG_SRC}" ]]; then
+        printf 'lazyvim: missing config at %s\n' "${CONFIG_SRC}" >&2
+        exit 1
+    fi
+    mkdir -p -- "$(dirname -- "${CONFIG_LINK}")"
+    ln -s -- "${CONFIG_SRC}" "${CONFIG_LINK}"
+fi
+
+exec env NVIM_APPNAME="${NVIM_APP}" nvim "$@"
