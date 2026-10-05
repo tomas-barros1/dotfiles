@@ -6,10 +6,7 @@ HISTSIZE=50000
 SAVEHIST=50000
 
 setopt EXTENDED_HISTORY
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
-setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY            # já faz o append incremental
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_SPACE
@@ -17,11 +14,12 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 
 # --- PATH ---
+typeset -U path                 # sem entradas duplicadas
 path=(
-  /home/tom/.dotnet/tools
-  /home/tom/.cargo/bin
-  /home/tom/.local/bin
-  /home/tom/dotfiles/scripts/.local/scripts
+  $HOME/.dotnet/tools
+  $HOME/.cargo/bin
+  $HOME/.local/bin
+  $HOME/dotfiles/scripts/.local/scripts
   $path
 )
 
@@ -29,26 +27,51 @@ path=(
 export EDITOR=nvim
 export VISUAL=nvim
 export SUDO_EDITOR=nvim
+export BAT_THEME="Catppuccin Mocha"
+
+mkdir -p "$HOME/.cache/zsh"
+
+# --- Completion (antes das integrações, pra elas registrarem o compdef) ---
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+_init_compinit() {
+  setopt localoptions extendedglob   # necessário pro qualifier (#q...)
+  autoload -Uz compinit
+  local dump="$HOME/.cache/zsh/zcompdump"
+  # rebuild completo só 1x/dia; nos outros usa o cache (-C)
+  if [[ -n $dump(#qN.mh+24) || ! -f $dump ]]; then
+    compinit -d "$dump"
+  else
+    compinit -C -d "$dump"
+  fi
+  [[ -s $dump && ( ! -s $dump.zwc || $dump -nt $dump.zwc ) ]] && zcompile "$dump"
+}
+_init_compinit
+unfunction _init_compinit
+
+zmodload zsh/complist
+bindkey -M menuselect '^[[Z' reverse-menu-complete  # Shift+Tab
 
 # --- Integrações de terceiros (cacheadas em arquivo) ---
+# Obs: se mudar os argumentos de um init, apague o cache em ~/.cache/zsh/<nome>.zsh
 zsh_cache_eval() {
-  local name=$1 cache="$HOME/.cache/zsh/${1}.zsh"
+  local name=$1 cache="$HOME/.cache/zsh/${1}.zsh" bin
   shift
-  command -v "$name" >/dev/null || return
-  if [[ ! -s "$cache" || "$(command -v $name)" -nt "$cache" ]]; then
-    mkdir -p "$HOME/.cache/zsh"
-    "$@" > "$cache"
+  bin=$(command -v "$name") || return
+  if [[ ! -s "$cache" || "$bin" -nt "$cache" ]]; then
+    "$@" > "$cache" && zcompile "$cache" 2>/dev/null
   fi
   source "$cache"
 }
 
 zsh_cache_eval mise mise activate zsh
 zsh_cache_eval starship starship init zsh
-zsh_cache_eval zoxide zoxide init zsh
+zsh_cache_eval zoxide zoxide init zsh --cmd cd   # substitui o cd (e cria cdi)
 zsh_cache_eval fzf fzf --zsh
 
 # --- FZF ---
-export FZF_DEFAULT_OPTS="\
+export FZF_DEFAULT_OPTS=" \
 --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
 --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
@@ -58,14 +81,13 @@ export FZF_DEFAULT_OPTS="\
 export FZF_CTRL_T_OPTS="\
 --style full \
 --walker-skip .git,node_modules,target \
---preview 'bat -n --theme=\"Catppuccin Mocha\" --color=always {}' \
+--preview 'bat -n --color=always {}' \
 --bind 'ctrl-/:change-preview-window(down|hidden)'"
 
 # --- Aliases ---
 alias ls='eza -lh --group-directories-first --icons=auto'
 alias la='ls -a'
-alias cat="bat --theme='Catppuccin Mocha' --paging=auto --color=always"
-alias cd="z"
+alias cat='bat --paging=auto'
 alias n="nvim"
 alias op="opencode"
 alias t="tmux"
@@ -83,27 +105,10 @@ function y() {
 function p() {
   if (( $# == 0 )); then paru; else paru -S "$@"; fi
 }
-function ys() { yay -Ss "$1" }
-function ps() { paru -Ss "$1" }
+function ys() { yay -Ss "$@" }
+function pss() { paru -Ss "$@" }
 function py() { python "$@" }
 function save_mp3() { yt-dlp --embed-thumbnail -t mp3 "$@" }
-
-# --- Completion (zstyle antes do compinit) ---
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
-# --- compinit cacheado (só rebuild completo 1x/dia) ---
-autoload -Uz compinit
-_comp_dump="$HOME/.cache/zsh/zcompdump"
-mkdir -p "$HOME/.cache/zsh"
-if [[ -n "$_comp_dump"(#qN.mh+24) || ! -f "$_comp_dump" ]]; then
-  compinit -d "$_comp_dump"
-else
-  compinit -C -d "$_comp_dump"
-fi
-
-zmodload zsh/complist
-bindkey -M menuselect '^[[Z' reverse-menu-complete  # Shift+Tab
 
 # --- Histórico por prefixo (↑/↓ estilo Fish) ---
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
@@ -120,31 +125,37 @@ _load_deferred() {
 
   ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
+  export DEJA_CYCLE_KEY='^N'   # tira o picker de alternativas do Tab (fica livre pro fzf/menu select)
+  if [[ -r $HOME/.local/share/deja/init.zsh ]]; then
+    source $HOME/.local/share/deja/init.zsh
+  elif (( $+commands[deja] )); then
+    eval "$(deja init zsh)"    # bootstrap: só na 1ª vez, gera o init.zsh
+  fi
+
   local plugins=(
-    /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # sempre por último
   )
+  local f
   for f in $plugins; do
-    [[ -f "$f" && ( ! -f "$f.zwc" || "$f" -nt "$f.zwc" ) ]] && zcompile "$f" 2>/dev/null
+    [[ -f "$f" ]] || continue
+    [[ ! -f "$f.zwc" || "$f" -nt "$f.zwc" ]] && zcompile "$f" 2>/dev/null
     source "$f"
   done
 
   # keybinds que os plugins acima podem sobrescrever
-  bindkey '^[[1;3C' forward-word
-  bindkey '^[[1;3D' backward-word
-  bindkey '^[[1;5C' forward-word
-  bindkey '^[[1;5D' backward-word
-  bindkey '^H'       backward-kill-word
-  bindkey '^[[3;5~'  kill-word
-  bindkey '^[[C'      end-of-line
-  bindkey '^[[F'      end-of-line
-
-  bindkey '^[[H'  beginning-of-line   # Home
-  bindkey '^[[F'  end-of-line         # End (já tinha, mantém uma vez só)
-  bindkey '^[[3~' delete-char         # Delete
-  bindkey '^[[3;5~' kill-word         # Ctl + delete
-  bindkey '^[[1~' beginning-of-line   # Home (alternativo)
-  bindkey '^[[4~' end-of-line         # End (alternativo)
+  bindkey '^[[1;3C'  forward-word        # Alt+→
+  bindkey '^[[1;3D'  backward-word       # Alt+←
+  bindkey '^[[1;5C'  forward-word        # Ctrl+→
+  bindkey '^[[1;5D'  backward-word       # Ctrl+←
+  bindkey '^H'       backward-kill-word  # Ctrl+Backspace
+  bindkey '^[[3;5~'  kill-word           # Ctrl+Delete
+  bindkey '^[[3~'    delete-char         # Delete
+  bindkey '^[[H'     beginning-of-line   # Home
+  bindkey '^[[1~'    beginning-of-line   # Home (alternativo)
+  bindkey '^[[F'     end-of-line         # End
+  bindkey '^[[4~'    end-of-line         # End (alternativo)
+  # seta → não é sobrescrita: move 1 char e o deja aceita a sugestão inteira no fim da linha
+  # Ctrl+→ aceita a próxima palavra da sugestão (via forward-word encapsulado pelo deja)
 }
 add-zsh-hook precmd _load_deferred
 
