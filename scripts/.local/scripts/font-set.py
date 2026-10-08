@@ -265,40 +265,79 @@ printf "\033[2m%s\033[0m\n" "$font_info"
         env["FONT_SET_WM"] = wm
         env["FONT_SET_WINID"] = win_id
 
-        preview_body = """#!/bin/sh
+        preview_body = r"""#!/bin/sh
+# Non-blocking preview: returns immediately, renders in the background.
 font="$1"
-font_file=$(fc-match -f "%{file}" "$font" 2>/dev/null)
-[ -z "$font_file" ] && exit 0
+IMG="$FONT_SET_NSXIV_IMG"
+LAST="$IMG.last"
+STARTED="$IMG.started"
+LOG="${FONT_SET_LOG:-/dev/null}"
 
-# Mata nsxiv anterior desta sessão
-pkill -f "nsxiv.*$FONT_SET_NSXIV_PATTERN" 2>/dev/null
+# remember the most recently focused font (used to drop stale renders)
+printf '%s' "$font" > "$LAST"
 
-sample=$(printf "Aa Bb \\303\\207\\303\\247 \\303\\201\\303\\241 0123456789\\nPortugu\\303\\252s: a\\303\\247\\303\\243o, cora\\303\\247\\303\\243o, ma\\303\\247\\303\\243, ping\\303\\274im.\\nABCDEFGHIJKLMNOPQRSTUVWXYZ\\nabcdefghijklmnopqrstuvwxyz\\nThe quick brown fox jumps over the lazy dog.")
+(
+    font_file=$(fc-match -f "%{file}" "$font" 2>/dev/null)
+    [ -z "$font_file" ] && { echo "fc-match sem arquivo: $font"; exit 0; }
 
-magick -size 1000x560 \\
-    -background "${FONT_PREVIEW_BG:-#1e1e2e}" \\
-    -fill "${FONT_PREVIEW_FG:-#cdd6f4}" \\
-    -font "$font_file" -pointsize "${FONT_PREVIEW_SIZE:-28}" \\
-    -gravity NorthWest -interline-spacing 10 \\
-    caption:"$sample" "$FONT_SET_NSXIV_IMG" 2>/dev/null || exit 0
+    sample=$(printf 'Aa Bb Çç Áá 0123456789\nPortuguês: ação, coração, maçã, pingüim.\nABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\nThe quick brown fox jumps over the lazy dog.')
 
-case "$FONT_SET_WM" in
-    hyprland)
-        # float + noinitialfocus: abre flutuante SEM roubar foco
-        hyprctl dispatch exec "[float;noinitialfocus;size 1000 560;move 0 0] nsxiv -b -N fontpreview $FONT_SET_NSXIV_IMG" >/dev/null 2>&1
-        ;;
-    sway)
-        nsxiv -b -N "fontpreview" -g "1000x560+0+0" "$FONT_SET_NSXIV_IMG" >/dev/null 2>&1 &
-        # Devolve foco ao terminal
-        sleep 0.05
-        swaymsg "[con_id=$FONT_SET_WINID] focus" >/dev/null 2>&1
-        ;;
-    x11)
-        nsxiv -b -N "fontpreview" -g "1000x560+0+0" "$FONT_SET_NSXIV_IMG" >/dev/null 2>&1 &
-        sleep 0.05
-        xdotool windowfocus "$FONT_SET_WINID" 2>/dev/null
-        ;;
-esac
+    tmp="$IMG.$$.png"
+    OMP_NUM_THREADS=1 MAGICK_THREAD_LIMIT=1 magick -size 800x400 \
+        -background "${FONT_PREVIEW_BG:-#1e1e2e}" \
+        -fill "${FONT_PREVIEW_FG:-#cdd6f4}" \
+        -font "$font_file" -pointsize "${FONT_PREVIEW_SIZE:-28}" \
+        -gravity NorthWest -interline-spacing 10 \
+        caption:"$sample" "$tmp" || { echo "magick falhou: font=$font file=$font_file"; rm -f "$tmp"; exit 0; }
+
+    # selection moved on while rendering? drop this result
+    if [ "$(cat "$LAST" 2>/dev/null)" != "$font" ]; then
+        rm -f "$tmp"
+        exit 0
+    fi
+
+    # atomic replace; nsxiv auto-reloads the file
+    mv -f "$tmp" "$IMG"
+
+    # launch nsxiv only once (mkdir is atomic)
+    if mkdir "$STARTED" 2>/dev/null; then
+        echo "abrindo nsxiv wm=$FONT_SET_WM img=$IMG DISPLAY=$DISPLAY"
+        case "$FONT_SET_WM" in
+            hyprland)
+                # Janela do nsxiv ENCAIXADA no tiling, a direita do terminal.
+                # Hyprland >= 0.55 (config Lua): hyprctl dispatch recebe expressoes Lua.
+                hyprctl dispatch 'hl.dsp.layout("preselect r")' >/dev/null 2>&1 \
+                    || hyprctl dispatch layoutmsg preselect r >/dev/null 2>&1
+                out=$(hyprctl dispatch "hl.dsp.exec_cmd(\"nsxiv -b -N fontpreview $IMG\")" 2>&1)
+                echo "hyprctl exec (lua): $out"
+                if [ "$out" != "ok" ]; then
+                    # Hyprland antigo (hyprlang)
+                    out=$(hyprctl dispatch exec "nsxiv -b -N fontpreview $IMG" 2>&1)
+                    echo "hyprctl exec (legado): $out"
+                fi
+                # devolve o foco ao terminal (a janela do nsxiv demora um instante para mapear)
+                if [ -n "$FONT_SET_WINID" ]; then
+                    for _ in 1 2 3 4 5 6 7 8; do
+                        sleep 0.1
+                        out=$(hyprctl dispatch "hl.dsp.focus({ window = \"address:$FONT_SET_WINID\" })" 2>&1)
+                        [ "$out" = "ok" ] || hyprctl dispatch focuswindow "address:$FONT_SET_WINID" >/dev/null 2>&1
+                    done
+                    echo "hyprctl focus: $out"
+                fi
+                ;;
+            sway)
+                nsxiv -b -N fontpreview -g "800x400+0+0" "$IMG" &
+                sleep 0.05
+                swaymsg "[con_id=$FONT_SET_WINID] focus" >/dev/null 2>&1
+                ;;
+            x11)
+                nsxiv -b -N fontpreview -g "800x400+0+0" "$IMG" &
+                sleep 0.05
+                xdotool windowfocus "$FONT_SET_WINID" 2>/dev/null
+                ;;
+        esac
+    fi
+) >>"$LOG" 2>&1 &
 
 exit 0
 """
@@ -324,12 +363,21 @@ exit 0
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
-            for p in (preview_script_path, nsxiv_img):
+            for p in (preview_script_path, nsxiv_img, f"{nsxiv_img}.last"):
                 if p:
                     try:
                         os.remove(p)
                     except OSError:
                         pass
+            try:
+                os.rmdir(f"{nsxiv_img}.started")
+            except OSError:
+                pass
+            for stray in Path("/tmp").glob(f"font-set-nsxiv-{pid}.png.*.png"):
+                try:
+                    stray.unlink()
+                except OSError:
+                    pass
 
         if proc.returncode != 0:
             raise SystemExit(130)
@@ -389,16 +437,47 @@ if ALACRITTY.exists():
     )
     ALACRITTY.write_text(alacritty_text)
 
+
+def css_set_font(text: str, font: str):
+    """Troca a PRIMEIRA familia de um font-family em CSS (waybar/walker/swaync).
+
+    Aceita: aspas duplas/simples, sem aspas, lista com fallbacks, e a
+    declaracao na mesma linha de outras (ex.: `* { font-family: "X"; font-size: 13px; }`).
+    Os fallbacks depois da primeira virgula sao mantidos.
+    """
+    pattern = re.compile(r"(font-family\s*:\s*)([^;{}]*?)(\s*!important)?(\s*;)", re.I)
+
+    def repl(m):
+        value = m.group(2)
+        # acha a primeira virgula fora de aspas
+        quote = None
+        cut = len(value)
+        for i, ch in enumerate(value):
+            if quote:
+                if ch == quote:
+                    quote = None
+            elif ch in "\"'":
+                quote = ch
+            elif ch == ",":
+                cut = i
+                break
+        rest = value[cut:]
+        imp = m.group(3) or ""
+        return f'{m.group(1)}"{font}"{rest}{imp}{m.group(4)}'
+
+    new_text, n = pattern.subn(repl, text, count=1)
+    return new_text, n > 0
+
+
 for path in (WAYBAR, WALKER, SWAYNC):
     if not path.exists():
         continue
     text = path.read_text()
-    text = replace_first_fn(
-        text,
-        r'^(\s*font-family:\s*")[^"]+(";\s*)$',
-        lambda m: f"{m.group(1)}{selected_font}{m.group(2)}",
-    )
-    path.write_text(text)
+    text, changed = css_set_font(text, selected_font)
+    if changed:
+        path.write_text(text)
+    else:
+        print(f"Aviso: nenhum font-family encontrado em {path}", file=sys.stderr)
 
 if KITTY.exists():
     kitty_text = KITTY.read_text()
