@@ -1,0 +1,12 @@
+# A TOML linter such as Tombi can use this schema to validate your config.
+#:schema https://yazi-rs.github.io/schemas/yazi.json
+
+[opener]
+edit = [
+	{ run = "nvim %s", desc = "Neovim", block = true, for = "unix" },
+]
+
+[open]
+prepend_rules = [
+	{ mime = "text/*", use = "edit" },
+]
