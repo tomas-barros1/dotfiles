@@ -1,8 +1,11 @@
 require("variables")
 require("monitors")
+require("env")
 require("input")
 require("general")
 require("decoration")
 require("layouts")
 require("keybindings")
+require("autostart")
 require("windowrules")
+

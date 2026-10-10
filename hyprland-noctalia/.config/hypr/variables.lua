@@ -1,4 +1,4 @@
-TERMINAL = "uwsm app -- xdg-terminal-exec"
+TERMINAL = "xdg-terminal-exec"
 FILE_MANAGER = "nautilus"
 BROWSER = "helium-browser"
 SYS_MONITOR = "btop"
@@ -9,7 +9,7 @@ HOME_DIR = os.getenv("HOME")
 
 -- Noctalia replaces walker, flameshot, waybar, swaync and the old scripts
 NOCTALIA = "noctalia msg "
-LAUNCH = "uwsm app -- "
+LAUNCH = ""
 MENU = NOCTALIA .. "panel-toggle launcher"
 MENU_EMOJI = NOCTALIA .. "panel-toggle launcher /emo"
 MENU_CLIPBOARD = NOCTALIA .. "panel-toggle clipboard"

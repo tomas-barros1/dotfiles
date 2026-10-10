@@ -1,33 +1,35 @@
 local home = os.getenv("HOME")
 local mod = "SUPER"
-local terminal = "uwsm app -- xdg-terminal-exec"
-local launch = "uwsm app -- "
+local app = ""
+local terminal = "xdg-terminal-exec"
+
 
 -- Apps
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -- tmux"))
 hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd("nc -U /run/user/1000/walker/walker.sock"))
-hl.bind(mod .. " + B", hl.dsp.exec_cmd(launch .. "helium-browser"))
-hl.bind(mod .. " + E", hl.dsp.exec_cmd("gio open " .. home))
-hl.bind(mod .. " + I", hl.dsp.exec_cmd(launch .. home .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"))
+hl.bind(mod .. " + B", hl.dsp.exec_cmd(app .. "helium-browser"))
+-- hl.bind(mod .. " + E", hl.dsp.exec_cmd(app .. "gio open " .. home))
+hl.bind(mod .. " + E", hl.dsp.exec_cmd(terminal .. " -- yazi"))
+hl.bind(mod .. " + I", hl.dsp.exec_cmd(app .. home .. "/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea"))
 hl.bind(mod .. " + H", hl.dsp.exec_cmd(terminal .. " -- sh -lc 'cd " .. home .. "/.config/hypr && exec nvim'"))
-hl.bind(mod .. " + V", hl.dsp.exec_cmd("walker -m clipboard"))
-hl.bind(mod .. " + PERIOD", hl.dsp.exec_cmd("walker -m symbols"))
-hl.bind(mod .. " + D", hl.dsp.exec_cmd(home .. "/.local/scripts/powermenu.sh"))
+hl.bind(mod .. " + V", hl.dsp.exec_cmd(app .. "walker -m clipboard"))
+hl.bind(mod .. " + PERIOD", hl.dsp.exec_cmd(app .. "walker -m symbols"))
+hl.bind(mod .. " + D", hl.dsp.exec_cmd(app .. home .. "/.local/scripts/powermenu.sh"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(terminal .. " -- " .. home .. "/.local/scripts/svc-menu"))
-hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd("waypaper_rs"))
-hl.bind(mod .. " + S", hl.dsp.exec_cmd(launch .. "steam"))
-hl.bind(mod .. " + K", hl.dsp.exec_cmd([[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || sunsetr &']]))
+hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd(app .. "waypaper_rs"))
+hl.bind(mod .. " + S", hl.dsp.exec_cmd(app .. "steam"))
+hl.bind(mod .. " + K", hl.dsp.exec_cmd(app .. [[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || exec sunsetr']]))
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(terminal .. " -- btop"))
-hl.bind(mod .. " + Z", hl.dsp.exec_cmd("zeditor"))
+hl.bind(mod .. " + Z", hl.dsp.exec_cmd(app .. "zeditor"))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(terminal .. " -- nvim"))
 
 -- Screenshots
-hl.bind("PRINT", hl.dsp.exec_cmd(launch .. "flameshot gui -p " .. home .. "/Screenshots -c"))
-hl.bind(mod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
+hl.bind("PRINT", hl.dsp.exec_cmd(app .. "flameshot gui -p " .. home .. "/Screenshots -c"))
+hl.bind(mod .. " + PRINT", hl.dsp.exec_cmd(app .. "hyprshot -m window"))
 hl.bind(
 	mod .. " + SHIFT + T",
-	hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']])
+	hl.dsp.exec_cmd(app .. [[sh -c 'grim -g "$(slurp)" - | tesseract stdin stdout -l por | wl-copy']])
 )
 
 -- Window management
