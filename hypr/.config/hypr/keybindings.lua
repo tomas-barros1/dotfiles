@@ -3,7 +3,6 @@ local mod = "SUPER"
 local app = ""
 local terminal = "xdg-terminal-exec"
 
-
 -- Apps
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal .. " -- tmux"))
@@ -19,7 +18,10 @@ hl.bind(mod .. " + D", hl.dsp.exec_cmd(app .. home .. "/.local/scripts/powermenu
 hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd(terminal .. " -- " .. home .. "/.local/scripts/svc-menu"))
 hl.bind(mod .. " + SHIFT + W", hl.dsp.exec_cmd(app .. "waypaper_rs"))
 hl.bind(mod .. " + S", hl.dsp.exec_cmd(app .. "steam"))
-hl.bind(mod .. " + K", hl.dsp.exec_cmd(app .. [[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || exec sunsetr']]))
+hl.bind(
+	mod .. " + K",
+	hl.dsp.exec_cmd(app .. [[sh -c 'pgrep -x sunsetr > /dev/null && pkill sunsetr || exec sunsetr']])
+)
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(terminal .. " -- btop"))
 hl.bind(mod .. " + Z", hl.dsp.exec_cmd(app .. "zeditor"))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(terminal .. " -- nvim"))
