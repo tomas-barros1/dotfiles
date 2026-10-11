@@ -1,21 +1,6 @@
 ### Variables
 set $mod Mod4
 
-set $term xdg-terminal-exec
-set $browser helium.desktop
-set $filemanager org.gnome.Nautilus.desktop
-set $zeditor zeditor
-set $homedir /home/tom
-
-
-### Catppuccin Mocha
-set $mauve cba6f7
-set $lavender b4befe
-set $surface1 45475a
-set $surface0 313244
-set $base 1e1e2e
-set $text cdd6f4
-
 include monitors.conf
 include input.conf
 include autostart.conf
