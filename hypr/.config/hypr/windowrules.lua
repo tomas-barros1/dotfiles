@@ -20,19 +20,3 @@ hl.window_rule({
 	float = false,
 	suppress_event = "maximize fullscreen",
 })
-
--- Games
-for _, class in ipairs({
-	"^dota2$",
-	"^cs2$",
-	"^osu!$",
-	"^gamescope$",
-	"^Lunar Client",
-	"^steam_app_",
-}) do
-	hl.window_rule({
-		match = { class = class },
-		fullscreen = true,
-		immediate = true,
-	})
-end
