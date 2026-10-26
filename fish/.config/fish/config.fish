@@ -9,7 +9,7 @@ set -gx --path PATH \
     $HOME/.dotnet/tools \
     $HOME/.cargo/bin \
     $HOME/.local/bin \
-    $HOME/dotfiles/scripts/.local/scripts \
+    $HOME/.local/scripts \
     $PATH
 
 set -gx FZF_DEFAULT_OPTS "\
