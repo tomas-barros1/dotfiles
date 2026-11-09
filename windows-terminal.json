@@ -4,59 +4,94 @@
   "actions": [
     {
       "command": {
-        "action": "sendInput",
-        "input": "nt\r"
-      },
-      "id": "User.newTabHere"
-    },
-    {
-      "command": {
         "action": "closeTab"
       },
-      "id": "User.closeTab.0"
-    },
-    {
-      "command": {
-        "action": "newTab",
-        "startingDirectory": "{currentDirectory}"
-      },
-      "id": "User.newTab.5DEADB41"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u0017"
-      },
-      "id": "User.sendInput.817164EE"
+      "id": "User.CloseTab"
     }
   ],
   "copyFormatting": "none",
-  "copyOnSelect": true,
+  "copyOnSelect": false,
   "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
   "keybindings": [
     {
-      "id": "User.sendInput.817164EE",
-      "keys": "alt+backspace"
+      "id": "Terminal.CopyToClipboard",
+      "keys": "ctrl+c"
     },
     {
-      "id": "User.newTabHere",
-      "keys": "alt+n"
+      "id": "Terminal.PasteFromClipboard",
+      "keys": "ctrl+v"
     },
     {
-      "id": null,
-      "keys": "ctrl+shift+t"
+      "id": "Terminal.MoveFocusRight",
+      "keys": "alt+l"
+    },
+    {
+      "id": "Terminal.MoveFocusUp",
+      "keys": "alt+k"
+    },
+    {
+      "id": "Terminal.DuplicatePaneAuto",
+      "keys": "alt+shift+d"
+    },
+    {
+      "id": "Terminal.MoveFocusLeft",
+      "keys": "alt+h"
+    },
+    {
+      "id": "User.CloseTab",
+      "keys": "ctrl+w"
+    },
+    {
+      "id": "Terminal.ResizePaneLeft",
+      "keys": "ctrl+alt+left"
+    },
+    {
+      "id": "Terminal.MoveFocusDown",
+      "keys": "alt+j"
+    },
+    {
+      "id": "Terminal.ResizePaneRight",
+      "keys": "ctrl+alt+right"
+    },
+    {
+      "id": "Terminal.ResizePaneUp",
+      "keys": "ctrl+alt+up"
+    },
+    {
+      "id": "Terminal.ClosePane",
+      "keys": "alt+x"
+    },
+    {
+      "id": "Terminal.SwitchToTab8",
+      "keys": "alt+9"
+    },
+    {
+      "id": "Terminal.ResizePaneDown",
+      "keys": "ctrl+alt+down"
+    },
+    {
+      "id": "Terminal.SplitPaneRight",
+      "keys": "alt+\\"
+    },
+    {
+      "id": "Terminal.SplitPaneDown",
+      "keys": "alt+minus"
+    },
+    {
+      "id": "Terminal.TogglePaneZoom",
+      "keys": "alt+z"
+    },
+    {
+      "id": "Terminal.OpenNewTab",
+      "keys": "alt+c"
+    },
+    {
+      "id": "Terminal.OpenNewTab",
+      "keys": "alt+t"
     },
     {
       "id": "Terminal.SwitchToTab0",
       "keys": "alt+1"
-    },
-    {
-      "id": "Terminal.ClosePane",
-      "keys": "ctrl+x"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+1"
     },
     {
       "id": "Terminal.SwitchToTab1",
@@ -67,43 +102,26 @@
       "keys": "alt+3"
     },
     {
-      "id": null,
-      "keys": "ctrl+alt+2"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+3"
-    },
-    {
       "id": "Terminal.SwitchToTab3",
       "keys": "alt+4"
-    },
-    {
-      "id": null,
-      "keys": "ctrl+alt+4"
     },
     {
       "id": "Terminal.SwitchToTab4",
       "keys": "alt+5"
     },
     {
-      "id": null,
-      "keys": "ctrl+alt+5"
+      "id": "Terminal.SwitchToTab5",
+      "keys": "alt+6"
     },
     {
-      "id": null,
-      "keys": "alt+shift+plus"
+      "id": "Terminal.SwitchToTab6",
+      "keys": "alt+7"
     },
     {
-      "id": null,
-      "keys": "ctrl+shift+w"
-    },
-    {
-      "id": "User.closeTab.0",
-      "keys": "ctrl+w"
+      "id": "Terminal.SwitchToTab7",
+      "keys": "alt+8"
     }
   ],
-  "launchMode": "default",
   "newTabMenu": [
     {
       "type": "remainingProfiles"
@@ -112,20 +130,12 @@
   "profiles": {
     "defaults": {
       "colorScheme": "Catppuccin Mocha",
+      "cursorShape": "filledBox",
       "font": {
-        "face": "JetBrainsMonoNL Nerd Font",
-        "size": 12
+        "face": "JetBrainsMono Nerd Font"
       }
     },
     "list": [
-      {
-        "commandline": "\"C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.4.0_x64__8wekyb3d8bbwe\\pwsh.exe\" -nologo",
-        "cursorShape": "filledBox",
-        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "hidden": false,
-        "name": "PowerShell",
-        "source": "Windows.Terminal.PowershellCore"
-      },
       {
         "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -139,17 +149,18 @@
         "name": "Prompt de comando"
       },
       {
-        "commandline": "C:\\Program Files\\Git\\bin\\bash.exe --login -i",
-        "guid": "{fe8ab4e3-1304-447d-acf7-068d488c4955}",
-        "icon": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-for-windows.ico",
-        "name": "Git Bash",
-        "startingDirectory": "%USERPROFILE%"
+        "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo",
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "hidden": false,
+        "name": "PowerShell",
+        "source": "Windows.Terminal.PowershellCore"
       },
       {
-        "guid": "{e95583ed-adc2-5f4c-ac02-3b9306fe9282}",
-        "hidden": false,
-        "name": "Arch",
-        "source": "Microsoft.WSL"
+        "guid": "{eaa08534-4c41-4506-9efc-0fbdc3e58a27}",
+        "name": "MSYS2",
+        "commandline": "C:\\msys64\\usr\\bin\\bash.exe -li",
+        "startingDirectory": "%USERPROFILE%",
+        "icon": "C:\\msys64\\msys2.ico"
       }
     ]
   },
