@@ -13,19 +13,29 @@ $cacheDir = Join-Path $env:LOCALAPPDATA 'pwsh-cache'
 $null = New-Item -ItemType Directory -Force -Path $cacheDir
 
 # Só devolve o caminho: o dot-source precisa rodar no escopo do profile.
+# O nome do cache inclui os argumentos, então mudar o init gera um cache novo.
 function Get-CachedInit {
   param([string]$Name, [string[]]$InitArgs)
   $exe = Get-Command $Name -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
   if (-not $exe) { return }
-  $cache = Join-Path $cacheDir "$Name.ps1"
+  $cache = Join-Path $cacheDir "$Name-$($InitArgs -join '_').ps1"
   if (-not (Test-Path $cache) -or (Get-Item $exe.Source).LastWriteTime -gt (Get-Item $cache).LastWriteTime) {
     & $exe.Source @InitArgs | Set-Content -Path $cache -Encoding utf8
   }
   $cache
 }
 
+# O alias cd (Set-Location) tem precedência sobre funções, então sai antes do zoxide.
+Remove-Item Alias:cd -Force -ErrorAction SilentlyContinue
+
 if ($f = Get-CachedInit starship 'init', 'powershell', '--print-full-init') { . $f }
 if ($f = Get-CachedInit zoxide 'init', 'powershell') { . $f }
+
+# z e zi vêm do init padrão; cd e cdi usam as mesmas funções.
+if (Get-Command __zoxide_z -ErrorAction SilentlyContinue) {
+  function cd  { __zoxide_z @args }
+  function cdi { __zoxide_zi @args }
+}
 
 Import-Module CompletionPredictor -ErrorAction SilentlyContinue
 $predSource = if (Get-Module CompletionPredictor) { 'HistoryAndPlugin' } else { 'History' }
